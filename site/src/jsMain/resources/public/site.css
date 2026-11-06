@@ -1,0 +1,107 @@
+/* Spacing tokens — Apple-style 4/8 ladder for layout spacing */
+:root {
+  --layout-spacing-xs: 4px;
+  --layout-spacing-s: 8px;
+  --layout-spacing-12: 12px;
+  --layout-spacing-m: 16px;
+  --layout-spacing-l: 24px;
+  --layout-spacing-xl: 32px;
+  --layout-spacing-40: 40px;
+  --layout-spacing-xxl: 48px;
+  --layout-spacing-3xl: 64px;
+  --layout-column: 32rem; /* Reading column width (unchanged) */
+
+  /* Optional rem equivalents for font-relative bits */
+  --layout-spacing-xs-rem: 0.25rem;
+  --layout-spacing-s-rem: 0.5rem;
+  --layout-spacing-12-rem: 0.75rem;
+  --layout-spacing-m-rem: 1rem;
+  --layout-spacing-l-rem: 1.5rem;
+  --layout-spacing-xl-rem: 2rem;
+  --layout-spacing-40-rem: 2.5rem;
+  --layout-spacing-xxl-rem: 3rem;
+  --layout-spacing-3xl-rem: 4rem;
+}
+
+/* Container keeps Benji-like quiet 32rem column with soft side inset */
+.container {
+  max-width: min(calc(100% - 3rem), var(--layout-column));
+  margin-inline: auto;
+  padding-bottom: var(--layout-spacing-3xl);
+}
+
+/* Headers at the top of sections / posts */
+.article > header,
+.post > header,
+.back-link {
+  margin-bottom: var(--layout-spacing-xl);
+}
+
+/* Paragraph rhythm inside the article */
+.article p {
+  margin-bottom: var(--layout-spacing-m);
+}
+
+/* Headings spacing: more air before than after */
+.article h2,
+.article h3,
+.article h4 {
+  margin-top: var(--layout-spacing-40);
+  margin-bottom: var(--layout-spacing-m);
+}
+
+/* Lists: internal <= external */
+.article ul,
+.article ol {
+  margin-block: var(--layout-spacing-m);
+  padding-left: 1.25rem; /* keep a modest indent; not part of the token ladder */
+}
+.article li {
+  margin-block: var(--layout-spacing-s);
+}
+
+/* Blocks and media */
+.article blockquote,
+.article pre,
+.article img {
+  margin-block: var(--layout-spacing-l);
+}
+
+/* Rules between sections */
+.article hr {
+  margin-block: var(--layout-spacing-xl);
+}
+
+/* Writing index / feed */
+.writing {
+  margin-top: var(--layout-spacing-xxl);
+}
+.writing h2 {
+  margin-bottom: var(--layout-spacing-m);
+}
+.writing a {
+  column-gap: var(--layout-spacing-l);
+  padding-block: var(--layout-spacing-12);
+}
+
+/* Footer spacing – quieter than sections above */
+.footer {
+  margin-top: var(--layout-spacing-xxl);
+  gap: var(--layout-spacing-12);
+}
+
+/* Mobile touch-ups: keep readable, still on tokens */
+@media (max-width: 480px) {
+  .container {
+    max-width: calc(100% - 2rem);
+    padding-bottom: var(--layout-spacing-xxl);
+  }
+  .writing a {
+    column-gap: var(--layout-spacing-m);
+    padding-block: var(--layout-spacing-s);
+  }
+  .footer {
+    gap: var(--layout-spacing-s);
+  }
+}
+
