@@ -1,0 +1,63 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  isHome?: boolean;
+}
+
+const NAME = "Jan Celada";
+const DEFAULT_DESCRIPTION = "Senior Android developer in the Philippines. Kotlin, Android, and AI tooling.";
+
+const {
+  title,
+  description = DEFAULT_DESCRIPTION,
+  isHome = false,
+} = Astro.props;
+
+const pageTitle = title ? `${title} - ${NAME}` : NAME;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={isHome ? "website" : "article"} />
+    <meta property="og:url" content={canonicalUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap"
+    />
+    <link rel="stylesheet" href="/site.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={NAME} href="/rss.xml" />
+  </head>
+  <body class:list={[{ "is-home": isHome, "is-post": !isHome }]}>
+    <main class:list={["container", { "container--home": isHome, "container--post": !isHome }]}>
+      <slot />
+      {isHome && (
+        <footer class="footer">
+          <span>Based in the Philippines.</span>
+          <img
+            src="/cat-peekaboo.svg"
+            width="22"
+            height="12"
+            alt=""
+            aria-hidden="true"
+            class="footer-cat"
+          />
+        </footer>
+      )}
+    </main>
+  </body>
+</html>

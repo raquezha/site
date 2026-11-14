@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../layouts/PageLayout.astro";
+import { formatDayMonth, formatYear, isPublished, resolveDate, resolveSlug } from "../utils/dates";
+
+const entries = await getCollection("writing", isPublished);
+const sorted = entries
+  .map((entry) => {
+    const date = resolveDate(entry);
+    return {
+      title: entry.data.title,
+      shortTitle: entry.data.shortTitle ?? entry.data.title,
+      date,
+      year: formatYear(date),
+      dayMonth: formatDayMonth(date),
+      route: `/writing/${resolveSlug(entry.id, entry.data.routeOverride)}`,
+    };
+  })
+  .sort((a, b) => b.date.localeCompare(a.date));
+
+let seenYear = "";
+const posts = sorted.map((post) => {
+  const showYear = post.year !== seenYear;
+  seenYear = post.year;
+  return { ...post, showYear };
+});
+---
+
+<PageLayout isHome={true}>
+  <article class="article homepage">
+    <header>
+      <div class="home-name">
+        <h1>Jan Celada</h1>
+        <img
+          src="/cat-lounging.svg"
+          width="22"
+          height="14"
+          alt=""
+          aria-hidden="true"
+          class="home-cat"
+        />
+      </div>
+      <span class="article-date">Android, Kotlin, and AI tooling</span>
+    </header>
+    <p>I build Android applications and small tools with Kotlin.</p>
+    <p>
+      I work at Nueca, and I spend a lot of time exploring practical ways for
+      agents to improve software work. Find my work on{" "}
+      <a href="https://github.com/raquezha" target="_blank" rel="noopener noreferrer">GitHub</a>{posts.length > 0 ? ", or read longer notes below." : "."}
+    </p>
+  </article>
+
+  {posts.length > 0 && (
+    <section class="writing">
+      <h2>Writing</h2>
+      <ul>
+        {posts.map((post) => (
+          <li>
+            <a href={post.route} title={post.title}>
+              <span class="post-year" aria-hidden={!post.showYear}>
+                {post.showYear ? post.year : ""}
+              </span>
+              <span class="title">{post.shortTitle}</span>
+              <time class="post-date" datetime={post.date} data-date={post.date}>
+                {post.dayMonth}
+              </time>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</PageLayout>

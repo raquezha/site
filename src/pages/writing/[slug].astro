@@ -1,0 +1,141 @@
+---
+import { getCollection, render } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { formatLongDate, isPublished, resolveDate, resolveSlug } from "../../utils/dates";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("writing", isPublished);
+  return entries.map((entry) => ({
+    params: { slug: resolveSlug(entry.id, entry.data.routeOverride) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const { title, description } = entry.data;
+const date = resolveDate(entry);
+const h2Headings = headings.filter((h) => h.depth === 2);
+const showToc = h2Headings.length >= 3;
+---
+
+<PageLayout title={title} description={description}>
+  <div class:list={["post-layout", { "post-layout--with-toc": showToc }]}>
+    {showToc && (
+      <aside class="post-toc" aria-label="On this page">
+        <a href="/" class="back-link back-link--toc">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            aria-hidden="true"
+            class="back-icon"
+          >
+            <path
+              d="M10 15 L4 9 L10 3"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M4 9 H13 Q23 9 20 22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Index
+        </a>
+        <span class="post-toc-title">On this page</span>
+        <nav>
+          <ul>
+            {h2Headings.map((heading, idx) => (
+              <li>
+                <a
+                  href={`#${heading.slug}`}
+                  class:list={["post-toc-link", { "is-active": idx === 0 }]}
+                  data-toc-slug={heading.slug}
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+    )}
+    <div class="post-main">
+      <a href="/" class:list={["back-link", "back-link--main"]}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          aria-hidden="true"
+          class="back-icon"
+        >
+          <path
+            d="M10 15 L4 9 L10 3"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M4 9 H13 Q23 9 20 22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        Index
+      </a>
+      <article class="article post">
+        <header>
+          <h1>{title}</h1>
+          <time class="article-date" datetime={date} data-date={date}>
+            {formatLongDate(date)}
+          </time>
+        </header>
+        <Content />
+      </article>
+    </div>
+  </div>
+  {showToc && (
+    <script is:inline>
+      (() => {
+        const links = Array.from(document.querySelectorAll(".post-toc-link"));
+        if (!links.length) return;
+        const targets = links
+          .map((link) => document.getElementById(link.getAttribute("data-toc-slug") || ""))
+          .filter(Boolean);
+        if (!targets.length) return;
+        const setActive = (id) => {
+          for (const link of links) {
+            link.classList.toggle("is-active", link.getAttribute("data-toc-slug") === id);
+          }
+        };
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                setActive(entry.target.id);
+                break;
+              }
+            }
+          },
+          { rootMargin: "0px 0px -75% 0px", threshold: 0 }
+        );
+        for (const target of targets) observer.observe(target);
+      })();
+    </script>
+  )}
+</PageLayout>

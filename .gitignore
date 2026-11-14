@@ -1,27 +1,12 @@
-# General ignores
+dist/
+.astro/
+node_modules/
+npm-debug.log*
 .DS_Store
-build
-out
-kotlin-js-store
+.env
+.env.*
+.idea/
+.vscode/
 
-# IntelliJ ignores
-*.iml
-/*.ipr
-
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/gradle.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-/.idea/artifacts
-/.idea/compiler.xml
-/.idea/jarRepositories.xml
-/.idea/*.iml
-/.idea/modules
-/.idea/libraries-with-intellij-classes.xml
-
-# Gradle ignores
-.gradle
-
+# Local-only article drafts (never push)
+src/content/writing/drafts/
