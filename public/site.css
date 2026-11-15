@@ -59,11 +59,11 @@
      Wired now where the site already uses the same size and line height;
      the rest are wired by the slice that owns the element (noted per rule). */
   --type-home-name-size: 16px;   --type-home-name-lh: 24px;   --type-home-name-weight: 600; --type-home-name-tracking: -0.1px;  /* home/name S:43cb7669… */
-  --type-home-body-size: 14px;   --type-home-body-lh: 20px;   --type-home-body-weight: 400; --type-home-body-tracking: -0.09px; /* home/body S:ffe491df…, post/body S:ed5d6613… */
-  --type-home-writing-size: 14px; --type-home-writing-lh: 17px; --type-home-writing-tracking: -0.09px;                            /* home/writing S:4d911652… */
+  --type-home-body-size: 14px;   --type-home-body-lh: 20px;   --type-home-body-weight: 460; --type-home-body-tracking: -0.09px; /* home/body S:ffe491df… (Inter Regular, wght 460; corrected in Slice 02) */
+  --type-home-writing-size: 14px; --type-home-writing-lh: 17px; --type-home-writing-weight: 460; --type-home-writing-tracking: -0.09px; /* home/writing S:4d911652… (wght 460, wired in Slice 3) */
   --type-home-footer-size: 12px; --type-home-footer-lh: 18px; --type-home-footer-tracking: 0;                                     /* home/footer S:44dc0817… */
   --type-post-title-size: 14px;  --type-post-title-lh: 20px;  --type-post-title-weight: 500; --type-post-title-tracking: -0.09px; /* typography/title/large S:f1fd0b78… */
-  --type-post-body-size: 14px;   --type-post-body-lh: 20px;   --type-post-body-tracking: -0.09px;                                 /* post/body S:ed5d6613… */
+  --type-post-body-size: 14px;   --type-post-body-lh: 20px;   --type-post-body-weight: 400; --type-post-body-tracking: -0.09px; /* post/body S:ed5d6613… (Home subtitle 59:1523, first paragraph 59:1524) */
   --type-post-h2-size: 14px;     --type-post-h2-lh: 20px;     --type-post-h2-weight: 600;    --type-post-h2-tracking: -0.09px;    /* post/h2 S:a4e297f8… */
   --type-post-h3-size: 13px;     --type-post-h3-lh: 18px;     --type-post-h3-weight: 600;    --type-post-h3-tracking: -0.05px;    /* post/h3 S:69d3ad5b… */
   --type-post-list-number-size: 12px; --type-post-list-number-lh: 20px;                                                         /* post/list-number S:7abeff19… */
@@ -165,43 +165,50 @@ body {
   line-height: 1.25rem; /* 20px */
 }
 .homepage > header {
+  /* Slice 02: Figma Home/content 59:1518 is a vertical stack with a 16px gap
+     (name 59:1519 -> subtitle 59:1523 -> first paragraph 59:1524 -> bio 59:1525). */
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  margin-bottom: var(--layout-spacing-l); /* 24px before bio */
+  gap: var(--layout-spacing-m);           /* 16px name -> subtitle */
+  margin-bottom: var(--layout-spacing-m); /* 16px subtitle -> first paragraph */
 }
 .homepage > header h1 {
   margin: 0;
-  color: var(--content-name);
-  font-size: 0.875rem; /* 14px Medium; Figma home/name 16/24 600 -> Slice 2 */
-  font-weight: 500;
-  line-height: 1.25rem; /* 20px */
-  letter-spacing: -0.01em;
+  color: var(--content-name);                      /* content/name VariableID:227:1565 */
+  font-size: var(--type-home-name-size);           /* home/name 16 */
+  font-weight: var(--type-home-name-weight);       /* 600 Semi Bold */
+  line-height: var(--type-home-name-lh);           /* 24 */
+  letter-spacing: var(--type-home-name-tracking);  /* -0.1px */
 }
 .homepage .article-date {
-  color: var(--content-subtle);
-  font-size: var(--type-home-body-size);
-  font-weight: var(--type-home-body-weight);
-  line-height: var(--type-home-body-lh);
-  letter-spacing: var(--type-home-body-tracking);
+  color: var(--content-subtle);                    /* content/subtle VariableID:227:1567 */
+  font-size: var(--type-post-body-size);           /* Figma 59:1523 uses post/body 14/20 400 */
+  font-weight: var(--type-post-body-weight);
+  line-height: var(--type-post-body-lh);
+  letter-spacing: var(--type-post-body-tracking);
 }
 .homepage p {
   margin: 0 0 var(--layout-spacing-m); /* 16px */
-  color: var(--content-muted); /* Figma bio-paragraph 59:1525 */
-  font-size: var(--type-home-body-size);
+  color: var(--content-muted); /* content/muted, Figma bio-paragraph 59:1525 */
+  font-size: var(--type-home-body-size);           /* home/body 14/20, wght 460 */
+  font-weight: var(--type-home-body-weight);
   line-height: var(--type-home-body-lh);
   letter-spacing: var(--type-home-body-tracking);
-  text-wrap: pretty;
+  /* no text-wrap: pretty here: Figma wraps greedily, and pretty moved "with" to line 2 at 390 (Slice 02 fix round 1) */
 }
 .homepage > header + p {
-  color: var(--content-lead); /* Figma first paragraph 59:1524 */
+  color: var(--content-lead); /* content/lead VariableID:227:1566, Figma first paragraph 59:1524 */
+  font-size: var(--type-post-body-size);           /* Figma 59:1524 uses post/body 14/20 400 */
+  font-weight: var(--type-post-body-weight);
+  line-height: var(--type-post-body-lh);
+  letter-spacing: var(--type-post-body-tracking);
 }
 .homepage > :last-child { margin-bottom: 0; }
 
 .home-name {
   display: inline-flex;
   align-items: center;
-  gap: var(--layout-spacing-s); /* 8px */
+  gap: var(--layout-spacing-xs); /* 4px, Figma Home/name 59:1519 itemSpacing */
 }
 .home-name h1 { margin: 0; }
 
