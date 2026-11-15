@@ -53,7 +53,7 @@
   --mark-lemon: #f8ec9c;      /* mark/lemon   VariableID:36:26 */
 
   /* State (Figma Screens (v2) "Home" hover 59:1548: non-hovered row titles at 60%) */
-  --state-row-dim-opacity: 0.6;
+  --state-row-dim-opacity: 0.3;
 
   /* Type · Figma text styles (Inter; tracking in px, -0.6434% of 14px = -0.09px).
      Wired now where the site already uses the same size and line height;
