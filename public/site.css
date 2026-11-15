@@ -1,38 +1,88 @@
 :root {
-  /* Foundations · Colors (raquezha.net v7.7) */
-  --surface-background: #fdfdfc;
-  --surface-sunken: #f3f3f0;
-  --surface-code: #f0f0ed;
+  /* ==========================================================================
+     Foundations · Tokens (Slice 01, 2026-11-15)
+     Source of truth: Figma tNpJxNOZLyt2s2wiXiWDD2 · Screens (v2) 59:1507,
+     local variables (collection "Color: Semantic" 39:144, "Marks" 30:526)
+     and local text styles. Names follow the Figma variable names
+     (slash -> dash). Values equal the Figma values.
+     ========================================================================== */
+
+  /* Color · Semantic (Figma variables, mode Light) */
+  --surface-background: #fdfdfc;              /* surface/background      VariableID:39:147 */
+  --content-primary: #111111;                 /* content/primary         VariableID:39:145 */
+  --content-muted: rgba(0, 0, 0, 0.55);       /* content/muted           VariableID:39:146  (= #727271 on background, 4.76:1) */
+  --content-caption: var(--content-muted);    /* content/caption         VariableID:63:5326 (alias) */
+  --outline-subtle: #f2f2f2;                  /* outline/subtle          VariableID:39:148 */
+  --outline-rule: #ededed;                    /* outline/rule            VariableID:39:149 */
+  --content-link: #111111;                    /* content/link            VariableID:39:150 */
+  --content-link-hover: #111111;              /* content/link-hover      VariableID:39:151 */
+  --outline-link-underline: #d9d9d9;          /* outline/link-underline  VariableID:39:152 */
+  --outline-link-underline-hover: #666666;    /* outline/link-underline-hover VariableID:39:153 */
+  --outline-focus: #0066cc;                   /* outline/focus           VariableID:39:154 */
+  --content-selection: #111111;               /* content/selection       VariableID:39:155 */
+  --surface-selection: #ededed;               /* surface/selection       VariableID:39:156 */
+  --content-nav-default: rgba(0, 0, 0, 0.55); /* content/nav-default     VariableID:39:157 */
+  --content-nav-active: #111111;              /* content/nav-active      VariableID:39:158 */
+  --surface-code: #f8f8f8;                    /* surface/code            VariableID:51:1250 */
+  --content-link-styled: #1a68d1;             /* content/link-styled     VariableID:58:1183 */
+  --surface-code-inline: rgba(0, 0, 0, 0.04); /* surface/code-inline     VariableID:58:1184 */
+  --marker-bullet: #b3b3b3;                   /* marker/bullet           VariableID:58:1185 */
+  --content-on-inverse: #cccccc;              /* content/on-inverse      VariableID:59:2466 */
+  --surface-terminal: #141414;                /* surface/terminal        VariableID:63:3462 */
+  --content-terminal-prompt: #14a647;         /* content/terminal-prompt VariableID:63:3463 */
+
+  /* Color · Unbound fills used on Screens (v2) (hex in Figma, no variable yet).
+     Logged as a Figma gap in Slice 01; values copied exactly. */
+  --content-name: #20201e;    /* Home name "Jan Celada" 59:1520 */
+  --content-lead: #30302e;    /* Home first paragraph 59:1524, post list item text */
+  --content-subtle: #70706c;  /* Home subtitle 59:1523, footer 59:1574 */
+
+  /* Color · Site-only (no Figma variable or node yet; kept as-is, unverified) */
   --surface-code-block: #1e1e1c;
-  --surface-selection: #ededed;
-
-  --content-home: #111111;
-  --content-home-muted: rgba(17, 17, 17, 0.4);
-  --content-primary: #20201e;
-  --content-secondary: #30302e;
-  --content-tertiary: #70706c;
   --content-quote: #62625e;
-
-  --outline-weak: #e7e7e2;
-  --outline-home-row: #f2f2f2;
+  --outline-weak: #e7e7e2;    /* same hex as the Figma screen-frame stroke (unbound) */
   --outline-strong: #deded8;
-  --outline-link: #cececa;
-  --outline-link-hover: #111111;
-  --outline-focus: rgba(59, 130, 246, 0.55);
 
-  /* Foundations · Highlight palette (raquezha.net v6.3–v7.7) */
-  --mark-sand: #eadbb4;
-  --mark-mint: #bde8cf;
-  --mark-sky: #bfddf0;
-  --mark-lilac: #dccbeb;
-  --mark-peach: #f5cdbf;
-  --mark-lemon: #f8ec9c;
+  /* Color · Marks (Figma collection "Marks" 30:526) */
+  --mark-default: #ebd38f;    /* mark/default VariableID:30:527 */
+  --mark-ink: #2a2a28;        /* mark/ink     VariableID:30:528 */
+  --mark-mint: #bde8cf;       /* mark/mint    VariableID:36:22 */
+  --mark-sky: #bfddf0;        /* mark/sky     VariableID:36:23 */
+  --mark-lilac: #dccbeb;      /* mark/lilac   VariableID:36:24 */
+  --mark-peach: #f5cdbf;      /* mark/peach   VariableID:36:25 */
+  --mark-lemon: #f8ec9c;      /* mark/lemon   VariableID:36:26 */
 
-  /* Foundations · Spacing · UI 4/8pt grid */
+  /* State (Figma Screens (v2) "Home" hover 59:1548: non-hovered row titles at 60%) */
+  --state-row-dim-opacity: 0.6;
+
+  /* Type · Figma text styles (Inter; tracking in px, -0.6434% of 14px = -0.09px).
+     Wired now where the site already uses the same size and line height;
+     the rest are wired by the slice that owns the element (noted per rule). */
+  --type-home-name-size: 16px;   --type-home-name-lh: 24px;   --type-home-name-weight: 600; --type-home-name-tracking: -0.1px;  /* home/name S:43cb7669… */
+  --type-home-body-size: 14px;   --type-home-body-lh: 20px;   --type-home-body-weight: 400; --type-home-body-tracking: -0.09px; /* home/body S:ffe491df…, post/body S:ed5d6613… */
+  --type-home-writing-size: 14px; --type-home-writing-lh: 17px; --type-home-writing-tracking: -0.09px;                            /* home/writing S:4d911652… */
+  --type-home-footer-size: 12px; --type-home-footer-lh: 18px; --type-home-footer-tracking: 0;                                     /* home/footer S:44dc0817… */
+  --type-post-title-size: 14px;  --type-post-title-lh: 20px;  --type-post-title-weight: 500; --type-post-title-tracking: -0.09px; /* typography/title/large S:f1fd0b78… */
+  --type-post-body-size: 14px;   --type-post-body-lh: 20px;   --type-post-body-tracking: -0.09px;                                 /* post/body S:ed5d6613… */
+  --type-post-h2-size: 14px;     --type-post-h2-lh: 20px;     --type-post-h2-weight: 600;    --type-post-h2-tracking: -0.09px;    /* post/h2 S:a4e297f8… */
+  --type-post-h3-size: 13px;     --type-post-h3-lh: 18px;     --type-post-h3-weight: 600;    --type-post-h3-tracking: -0.05px;    /* post/h3 S:69d3ad5b… */
+  --type-post-list-number-size: 12px; --type-post-list-number-lh: 20px;                                                         /* post/list-number S:7abeff19… */
+  --type-post-caption-size: 12px; --type-post-caption-lh: 16px;                                                                  /* post/caption S:f8571081… */
+  --type-post-code-size: 13px;   --type-post-code-lh: 20px;                                                                      /* post/code S:ea06a98e… (JetBrains Mono) */
+  --type-post-code-inline-size: 12px; --type-post-code-inline-lh: 16px;                                                          /* post/code-inline S:e6a098fe… */
+  --type-nav-index-size: 13px;   --type-nav-index-lh: 20px;                                                                      /* nav/index S:d1e93ae8… (mobile) */
+  --type-nav-index-desktop-size: 14px; --type-nav-index-desktop-lh: 20px; --type-nav-index-desktop-tracking: -0.09px;           /* nav/index/desktop S:b140958e… */
+  --type-nav-toc-heading-size: 13px; --type-nav-toc-heading-lh: 16px; --type-nav-toc-heading-weight: 500; --type-nav-toc-heading-tracking: -0.04px; /* nav/toc-heading S:68881a62… */
+  --type-nav-toc-item-size: 13px; --type-nav-toc-item-lh: 15.6px; --type-nav-toc-item-tracking: -0.04px;                        /* nav/toc-item S:976eb71a… */
+
+  /* Spacing · 4/8 grid. Figma has no spacing variables; every auto-layout gap and
+     padding on Home/Post desktop+mobile is one of: 4 8 10 12 14 16 22 24 32 36 48 64 80 96 108 11.76. */
   --layout-spacing-xxs: 2px;
   --layout-spacing-xs: 4px;
   --layout-spacing-s: 8px;
+  --layout-spacing-10: 10px;
   --layout-spacing-12: 12px;
+  --layout-spacing-14: 14px;
   --layout-spacing-m: 16px;
   --layout-spacing-l: 24px;
   --layout-spacing-xl: 32px;
@@ -40,14 +90,17 @@
   --layout-spacing-xxl: 48px;
   --layout-spacing-3xl: 64px;
   --layout-spacing-home-top: 80px;
+  --layout-spacing-96: 96px;
+  --layout-home-row-pad: 11.76px;  /* Figma Home row padding-block (wired in Slice 3) */
+  --layout-year-rail: 108px;       /* Figma Home row padding-left / title column */
 
-  /* Foundations · Layout columns (raquezha.net v7.2–v7.7) */
+  /* Layout columns (site values; column changes belong to Slices 6 and 9) */
   --layout-home-column: 550px;
   --layout-post-column: 680px;
   --layout-toc-width: 160px;
   --layout-toc-gap: 48px;
 
-  /* Foundations · Post rhythm · Medium (raquezha.net v7.2–v7.7) */
+  /* Post rhythm · Medium (site values, replaced in Slices 6-7 by --type-post-*) */
   --post-title-size: 2.625rem; /* 42px */
   --post-title-size-mobile: 2rem; /* 32px */
   --post-date-gap: 8px;
@@ -63,7 +116,7 @@
   --post-figure-mt: 47px;
   --post-figure-mb: 43px;
 
-  color: var(--content-secondary);
+  color: var(--content-primary);
   background: var(--surface-background);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-synthesis: none;
@@ -73,7 +126,7 @@
 html { min-height: 100%; }
 body {
   margin: 0;
-  color: var(--content-secondary);
+  color: var(--content-primary);
   background: var(--surface-background);
   font-size: 0.875rem; /* 14px base */
   line-height: 1.25rem; /* 20px */
@@ -81,7 +134,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 ::selection {
-  color: var(--content-home);
+  color: var(--content-selection);
   background: var(--surface-selection);
 }
 
@@ -107,7 +160,7 @@ body {
    Screen/Home (v7.5–v7.7 · Benji.org-inspired 14/20 typography & states)
    ========================================================================== */
 .homepage {
-  color: var(--content-home);
+  color: var(--content-primary);
   font-size: 0.875rem; /* 14px */
   line-height: 1.25rem; /* 20px */
 }
@@ -119,24 +172,29 @@ body {
 }
 .homepage > header h1 {
   margin: 0;
-  color: var(--content-home);
-  font-size: 0.875rem; /* 14px Medium */
+  color: var(--content-name);
+  font-size: 0.875rem; /* 14px Medium; Figma home/name 16/24 600 -> Slice 2 */
   font-weight: 500;
   line-height: 1.25rem; /* 20px */
   letter-spacing: -0.01em;
 }
 .homepage .article-date {
-  color: var(--content-home-muted); /* 40% black */
-  font-size: 0.875rem; /* 14px Regular */
-  font-weight: 400;
-  line-height: 1.25rem; /* 20px */
+  color: var(--content-subtle);
+  font-size: var(--type-home-body-size);
+  font-weight: var(--type-home-body-weight);
+  line-height: var(--type-home-body-lh);
+  letter-spacing: var(--type-home-body-tracking);
 }
 .homepage p {
   margin: 0 0 var(--layout-spacing-m); /* 16px */
-  color: var(--content-home);
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.25rem; /* 20px */
+  color: var(--content-muted); /* Figma bio-paragraph 59:1525 */
+  font-size: var(--type-home-body-size);
+  line-height: var(--type-home-body-lh);
+  letter-spacing: var(--type-home-body-tracking);
   text-wrap: pretty;
+}
+.homepage > header + p {
+  color: var(--content-lead); /* Figma first paragraph 59:1524 */
 }
 .homepage > :last-child { margin-bottom: 0; }
 
@@ -157,7 +215,7 @@ body {
   border-radius: 0;
 }
 
-/* Home Writing list (v7.5–v7.7: year left, title indented 108px, day/month right, #F2F2F2 dividers, 30% hover dim) */
+/* Home Writing list (v7.5–v7.7: year left, title indented 108px, day/month right, outline/subtle dividers, hover dim via --state-row-dim-opacity) */
 .writing {
   margin-top: var(--layout-spacing-40); /* 40px */
   font-size: 0.875rem; /* 14px */
@@ -165,7 +223,7 @@ body {
 }
 .writing h2 {
   margin: 0 0 var(--layout-spacing-12); /* 12px */
-  color: var(--content-home-muted);
+  color: var(--content-muted); /* type home/writing 14/17 -> Slice 3 */
   font-size: 0.875rem; /* 14px */
   font-weight: 400;
   line-height: 1.25rem; /* 20px */
@@ -174,32 +232,32 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--outline-home-row);
+  border-top: 1px solid var(--outline-subtle);
 }
 .writing li {
-  border-bottom: 1px solid var(--outline-home-row);
+  border-bottom: 1px solid var(--outline-subtle);
   transition: opacity 160ms ease;
 }
 .writing ul:hover li:not(:hover) {
-  opacity: 0.3;
+  opacity: var(--state-row-dim-opacity); /* Figma dims the title only -> Slice 4 */
 }
 .writing a {
   display: grid;
-  grid-template-columns: 108px minmax(0, 1fr) auto;
+  grid-template-columns: var(--layout-year-rail) minmax(0, 1fr) auto;
   align-items: baseline;
   padding-block: 10px;
   text-decoration: none;
-  color: var(--content-home);
+  color: var(--content-primary);
 }
 .writing .post-year {
-  color: var(--content-home-muted);
+  color: var(--content-muted);
   font-size: 0.875rem; /* 14px */
   line-height: 1.25rem; /* 20px */
   font-variant-numeric: tabular-nums;
 }
 .writing .title {
   min-width: 0;
-  color: var(--content-home);
+  color: var(--content-primary);
   font-size: 0.875rem; /* 14px */
   line-height: 1.25rem; /* 20px */
   white-space: nowrap;
@@ -211,7 +269,7 @@ body {
 }
 .writing .post-date {
   padding-left: var(--layout-spacing-m);
-  color: var(--content-home-muted);
+  color: var(--content-muted);
   font-size: 0.875rem; /* 14px */
   line-height: 1.25rem; /* 20px */
   font-variant-numeric: tabular-nums;
@@ -224,7 +282,7 @@ body {
   align-items: center;
   gap: var(--layout-spacing-s);
   margin-top: var(--layout-spacing-xxl); /* 48px */
-  color: var(--content-home-muted);
+  color: var(--content-subtle); /* type home/footer 12/18 -> Slice 5 */
   font-size: 0.875rem; /* 14px */
   line-height: 1.25rem; /* 20px */
 }
@@ -245,13 +303,13 @@ a {
 }
 .article a {
   text-decoration: underline;
-  text-decoration-color: var(--outline-link);
+  text-decoration-color: var(--outline-link-underline);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.22em;
 }
 .article a:hover {
-  color: var(--content-home);
-  text-decoration-color: var(--outline-link-hover);
+  color: var(--content-link-hover);
+  text-decoration-color: var(--outline-link-underline-hover);
 }
 a:focus-visible {
   border-radius: 2px;
@@ -263,7 +321,7 @@ a:focus-visible {
    Screen/Post · Desktop & Mobile (v7.1–v7.7 · Medium Article Spacing)
    ========================================================================== */
 .post {
-  color: var(--content-secondary);
+  color: var(--content-primary); /* type post/body 14/20 -> Slice 6 */
   font-size: var(--post-body-size); /* 20px */
   line-height: var(--post-body-lh); /* 32px */
 }
@@ -277,16 +335,17 @@ a:focus-visible {
 .post > header h1 {
   margin: 0;
   color: var(--content-primary);
-  font-size: var(--post-title-size); /* 42px Medium */
+  font-size: var(--post-title-size); /* 42px Medium; Figma typography/title/large 14/20 -> Slice 6 */
   font-weight: 500;
   line-height: 1.18;
   letter-spacing: -0.025em;
   text-wrap: balance;
 }
 .post > header .article-date {
-  color: var(--content-tertiary);
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.25rem; /* 20px */
+  color: var(--content-muted);
+  font-size: var(--type-post-body-size);
+  line-height: var(--type-post-body-lh);
+  letter-spacing: var(--type-post-body-tracking);
 }
 .post p {
   margin: 0 0 var(--post-p-gap); /* 34px between paragraphs */
@@ -320,6 +379,7 @@ a:focus-visible {
   margin: 0 0 var(--post-p-gap);
 }
 .post li {
+  color: var(--content-lead); /* Figma list item text (unbound #30302E) */
   margin-block: 10px;
   padding-left: 0.25rem;
 }
@@ -336,7 +396,7 @@ a:focus-visible {
 .post hr {
   margin-block: 40px;
   border: 0;
-  border-top: 1px solid var(--outline-weak);
+  border-top: 1px solid var(--outline-rule);
 }
 
 .article code {
@@ -346,7 +406,7 @@ a:focus-visible {
 .article :not(pre) > code {
   padding: 0.12em 0.34em;
   border-radius: 4px;
-  background: var(--surface-code);
+  background: var(--surface-code-inline);
   color: var(--content-primary);
 }
 .article pre {
@@ -390,7 +450,7 @@ a:focus-visible {
   display: inline-block;
   vertical-align: middle;
   margin-left: var(--layout-spacing-12);
-  color: var(--content-tertiary);
+  color: var(--content-caption);
   font-size: 0.6875rem;
   font-weight: 400;
   line-height: 1.3;
@@ -424,7 +484,7 @@ a:focus-visible {
    covering the full word height from above ascenders to below descenders.
    ========================================================================== */
 .article mark {
-  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M3 7 C20 3, 74 2, 134 3 C186 4, 224 5, 236 8 C239 10, 234 14, 238 17 C240 20, 233 24, 237 28 C239 32, 231 37, 235 40 C216 42, 162 43, 98 42 C44 41, 12 40, 2 37 C0 32, 4 25, 1 18 C-1 12, 2 9, 3 7 Z' fill='%23EADBB4'/%3E%3Cpath d='M214 13 L237 14 M218 25 L236 26 M210 35 L234 36' stroke='%23FDFDFC' stroke-width='1.4' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M3 7 C20 3, 74 2, 134 3 C186 4, 224 5, 236 8 C239 10, 234 14, 238 17 C240 20, 233 24, 237 28 C239 32, 231 37, 235 40 C216 42, 162 43, 98 42 C44 41, 12 40, 2 37 C0 32, 4 25, 1 18 C-1 12, 2 9, 3 7 Z' fill='%23EBD38F'/%3E%3Cpath d='M214 13 L237 14 M218 25 L236 26 M210 35 L234 36' stroke='%23FDFDFC' stroke-width='1.4' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
   color: var(--content-primary);
   background-color: transparent;
   background-image: var(--mark-bg);
@@ -453,17 +513,17 @@ a:focus-visible {
   --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M3 7 C20 3, 74 2, 134 3 C186 4, 224 5, 236 8 C239 10, 234 14, 238 17 C240 20, 233 24, 237 28 C239 32, 231 37, 235 40 C216 42, 162 43, 98 42 C44 41, 12 40, 2 37 C0 32, 4 25, 1 18 C-1 12, 2 9, 3 7 Z' fill='%23F8EC9C'/%3E%3Cpath d='M214 13 L237 14 M218 25 L236 26 M210 35 L234 36' stroke='%23FDFDFC' stroke-width='1.4' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
 }
 .article mark.torn {
-  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpolygon points='4,5 236,3 239,14 234,24 238,39 2,41 5,27 1,15' fill='%23EADBB4'/%3E%3C/svg%3E");
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpolygon points='4,5 236,3 239,14 234,24 238,39 2,41 5,27 1,15' fill='%23EBD38F'/%3E%3C/svg%3E");
 }
 .article mark.loose {
-  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M2 9 C60 4, 180 5, 237 9 L235 28 C178 25, 58 26, 3 29 Z' fill='%23EADBB4' opacity='0.85'/%3E%3Cpath d='M5 18 C66 15, 182 14, 239 19 L236 40 C176 38, 62 39, 2 39 Z' fill='%23EADBB4' opacity='0.85'/%3E%3C/svg%3E");
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M2 9 C60 4, 180 5, 237 9 L235 28 C178 25, 58 26, 3 29 Z' fill='%23EBD38F' opacity='0.85'/%3E%3Cpath d='M5 18 C66 15, 182 14, 239 19 L236 40 C176 38, 62 39, 2 39 Z' fill='%23EBD38F' opacity='0.85'/%3E%3C/svg%3E");
 }
 
 /* Hand-drawn underlines, strikethroughs & scratch-outs (Foundations · Marks v6.1) */
 .article .mark-underline,
 .article u {
   text-decoration: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.5 Q 32 2.5, 64 4.8 T 119 3.8' fill='none' stroke='%2330302E' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.5 Q 32 2.5, 64 4.8 T 119 3.8' fill='none' stroke='%232A2A28' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-position: 0 100%;
   background-size: 120px 6px;
@@ -471,7 +531,7 @@ a:focus-visible {
 }
 .article .mark-wavy {
   text-decoration: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 6' preserveAspectRatio='none'%3E%3Cpath d='M0 3 Q 6 0, 12 3 T 24 3' fill='none' stroke='%2330302E' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 6' preserveAspectRatio='none'%3E%3Cpath d='M0 3 Q 6 0, 12 3 T 24 3' fill='none' stroke='%232A2A28' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-position: 0 100%;
   background-size: 18px 5px;
@@ -481,16 +541,16 @@ a:focus-visible {
 .article s,
 .article .mark-strike {
   text-decoration: none;
-  color: var(--content-tertiary);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M1 7 C 38 4, 82 8, 119 5' fill='none' stroke='%2330302E' stroke-width='1.75' stroke-linecap='round'/%3E%3C/svg%3E");
+  color: var(--content-muted);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M1 7 C 38 4, 82 8, 119 5' fill='none' stroke='%232A2A28' stroke-width='1.75' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 0 54%;
   background-size: 100% 10px;
 }
 .article .mark-scratch {
   text-decoration: none;
-  color: var(--content-tertiary);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 16' preserveAspectRatio='none'%3E%3Cpath d='M2 11 L118 4 L6 13 L115 8 L10 5 L117 12' fill='none' stroke='%2330302E' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  color: var(--content-muted);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 16' preserveAspectRatio='none'%3E%3Cpath d='M2 11 L118 4 L6 13 L115 8 L10 5 L117 12' fill='none' stroke='%232A2A28' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 0 52%;
   background-size: 100% 14px;
@@ -507,13 +567,13 @@ a:focus-visible {
   align-items: center;
   gap: var(--layout-spacing-s); /* 8px */
   margin-bottom: var(--layout-spacing-xl); /* 32px */
-  color: var(--content-tertiary);
+  color: var(--content-nav-default); /* type nav/index -> Slice 8 */
   font-size: 0.8125rem; /* 13px */
   line-height: 1.5;
   text-decoration: none;
 }
 .back-link:hover {
-  color: var(--content-home);
+  color: var(--content-nav-active);
   font-weight: 500;
 }
 .back-link:hover .back-icon path {
@@ -535,7 +595,7 @@ a:focus-visible {
 .post-toc-title {
   display: block;
   margin-bottom: var(--layout-spacing-s); /* 8px */
-  color: var(--content-tertiary);
+  color: var(--content-muted); /* type nav/toc-heading -> Slice 8 */
   font-size: 0.6875rem; /* 11px Medium */
   font-weight: 500;
   line-height: 1.4;
@@ -550,14 +610,14 @@ a:focus-visible {
 }
 .post-toc-link {
   display: block;
-  color: var(--content-tertiary);
+  color: var(--content-muted); /* type nav/toc-item -> Slice 8 */
   font-size: 0.75rem; /* 12px */
   line-height: 1.45;
   text-decoration: none;
 }
 .post-toc-link:hover,
 .post-toc-link.is-active {
-  color: var(--content-primary);
+  color: var(--content-nav-active);
   font-weight: 500;
 }
 
