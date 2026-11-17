@@ -21,8 +21,8 @@
   --outline-focus: #0066cc;                   /* outline/focus           VariableID:39:154 */
   --content-selection: #111111;               /* content/selection       VariableID:39:155 */
   --surface-selection: #ededed;               /* surface/selection       VariableID:39:156 */
-  --content-nav-default: rgba(0, 0, 0, 0.55); /* content/nav-default     VariableID:39:157 */
-  --content-nav-active: #111111;              /* content/nav-active      VariableID:39:158 */
+  --content-nav-default: rgba(18, 18, 18, 0.4); /* content/nav-default VariableID:39:157 (benji.org 40%) */
+  --content-nav-active: rgba(18, 18, 18, 0.8);  /* content/nav-active  VariableID:39:158 (benji.org 80%) */
   --surface-code: #f8f8f8;                    /* surface/code            VariableID:51:1250 */
   --content-link-styled: #1a68d1;             /* content/link-styled     VariableID:58:1183 */
   --surface-code-inline: rgba(0, 0, 0, 0.04); /* surface/code-inline     VariableID:58:1184 */
@@ -72,7 +72,7 @@
   --type-post-code-inline-size: 12px; --type-post-code-inline-lh: 16px;                                                          /* post/code-inline S:e6a098fe… */
   --type-nav-index-size: 13px;   --type-nav-index-lh: 20px;                                                                      /* nav/index S:d1e93ae8… (mobile) */
   --type-nav-index-desktop-size: 14px; --type-nav-index-desktop-lh: 20px; --type-nav-index-desktop-tracking: -0.09px;           /* nav/index/desktop S:b140958e… */
-  --type-nav-toc-heading-size: 13px; --type-nav-toc-heading-lh: 16px; --type-nav-toc-heading-weight: 500; --type-nav-toc-heading-tracking: -0.04px; /* nav/toc-heading S:68881a62… */
+  --type-nav-toc-heading-size: 13px; --type-nav-toc-heading-lh: 16px; --type-nav-toc-heading-weight: 460; --type-nav-toc-heading-tracking: -0.04px; /* nav/toc-heading S:68881a62… */
   --type-nav-toc-item-size: 13px; --type-nav-toc-item-lh: 15.6px; --type-nav-toc-item-tracking: -0.04px;                        /* nav/toc-item S:976eb71a… */
 
   /* Spacing · 4/8 grid. Figma has no spacing variables; every auto-layout gap and
@@ -983,15 +983,12 @@ a:focus-visible {
   margin-bottom: var(--layout-spacing-xl); /* 32px */
   color: var(--content-nav-default);
   font-size: var(--type-nav-index-size); /* 13px (Slice 08) */
+  font-weight: 460;
   line-height: var(--type-nav-index-lh); /* 20px */
   text-decoration: none;
 }
 .back-link:hover {
   color: var(--content-nav-active);
-  font-weight: 500;
-}
-.back-link:hover .back-icon path {
-  stroke-width: 1.9;
 }
 .back-icon {
   display: block;
@@ -1015,9 +1012,9 @@ a:focus-visible {
 .post-toc-post-title {
   display: block;
   margin-bottom: var(--layout-spacing-s); /* 8px */
-  color: var(--content-muted);
+  color: var(--content-nav-default);
   font-size: var(--type-nav-toc-heading-size); /* 13px */
-  font-weight: var(--type-nav-toc-heading-weight); /* 500 */
+  font-weight: var(--type-nav-toc-heading-weight); /* 460 */
   line-height: var(--type-nav-toc-heading-lh); /* 16px */
   letter-spacing: var(--type-nav-toc-heading-tracking); /* -0.04px */
   text-decoration: none;
@@ -1046,8 +1043,9 @@ a:focus-visible {
 }
 .post-toc-link {
   display: block;
-  color: var(--content-muted);
+  color: var(--content-nav-default);
   font-size: var(--type-nav-toc-item-size); /* 13px (Slice 08) */
+  font-weight: 460;
   line-height: var(--type-nav-toc-item-lh); /* 15.6px */
   letter-spacing: var(--type-nav-toc-item-tracking); /* -0.04px */
   text-decoration: none;
@@ -1063,7 +1061,6 @@ a:focus-visible {
 .post-toc-link:hover,
 .post-toc-link.is-active {
   color: var(--content-nav-active);
-  font-weight: 500;
 }
 
 /* Unify desktop TOC & right-rail annotation breakpoint at Figma 42:1507's 1120px

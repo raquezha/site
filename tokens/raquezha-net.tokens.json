@@ -253,6 +253,40 @@
           }
         }
       }
+    },
+    "nav-default": {
+      "$type": "color",
+      "$value": "rgba(18, 18, 18, 0.4)",
+      "$description": "Navigation default and inactive link ink (benji.org/stageshow#cursors)",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["TEXT_FILL", "STROKE_COLOR", "SHAPE_FILL"],
+          "codeSyntax": {
+            "WEB": "--content-nav-default",
+            "ANDROID": "AppColors.contentNavDefault",
+            "iOS": "AppColors.contentNavDefault"
+          }
+        }
+      }
+    },
+    "nav-active": {
+      "$type": "color",
+      "$value": "rgba(18, 18, 18, 0.8)",
+      "$description": "Navigation active and hover link ink (benji.org/stageshow#cursors)",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["TEXT_FILL", "STROKE_COLOR", "SHAPE_FILL"],
+          "codeSyntax": {
+            "WEB": "--content-nav-active",
+            "ANDROID": "AppColors.contentNavActive",
+            "iOS": "AppColors.contentNavActive"
+          }
+        }
+      }
     }
   },
   "outline": {

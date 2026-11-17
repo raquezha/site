@@ -1,0 +1,11 @@
+{
+  "name": "raquezha.net Navigation Color Sync (benji.org)",
+  "id": "raquezha-net-nav-color-sync",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
+}

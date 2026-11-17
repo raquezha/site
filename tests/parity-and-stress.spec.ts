@@ -67,8 +67,19 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
     await page.goto("/writing/_ui-kitchen-sink");
 
     await expect(page.locator(".footer")).toHaveCount(0);
+    const backLink = page.locator(".post-toc .back-link");
     const tocTitle = page.locator(".post-toc-post-title");
+    const activeTocLink = page.locator(".post-toc-link.is-active");
+    const inactiveTocLink = page.locator(".post-toc-link:not(.is-active)").first();
+    await expect(backLink).toHaveCSS("color", "rgba(18, 18, 18, 0.4)");
+    await expect(backLink).toHaveCSS("font-weight", "460");
     await expect(tocTitle).toHaveCSS("opacity", "0");
+    await expect(tocTitle).toHaveCSS("color", "rgba(18, 18, 18, 0.4)");
+    await expect(tocTitle).toHaveCSS("font-weight", "460");
+    await expect(activeTocLink).toHaveCSS("color", "rgba(18, 18, 18, 0.8)");
+    await expect(activeTocLink).toHaveCSS("font-weight", "460");
+    await expect(inactiveTocLink).toHaveCSS("color", "rgba(18, 18, 18, 0.4)");
+    await expect(inactiveTocLink).toHaveCSS("font-weight", "460");
 
     // Scroll past H1 -> TOC title appears softly
     await page.evaluate(() => window.scrollTo(0, 600));
