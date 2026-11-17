@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "node scripts/verify-ui.mjs",
+    "test": "playwright test",
+    "test:update": "playwright test --update-snapshots",
     "clean:drafts": "rm -rf src/content/writing/drafts"
   },
   "dependencies": {
@@ -16,6 +17,7 @@
     "astro": "^5.5.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "typescript": "^5.8.2"
   }
 }
