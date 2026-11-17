@@ -1066,14 +1066,20 @@ a:focus-visible {
   font-weight: 500;
 }
 
-@media (min-width: 1080px) {
+/* Unify desktop TOC & right-rail annotation breakpoint at Figma 42:1507's 1120px
+   threshold so 1080px–1119px (e.g. 150% browser zoom) never clips the left TOC
+   off-screen while the right rail is stacked. */
+@media (min-width: 1120px) {
   .post-layout--with-toc {
     display: grid;
     grid-template-columns: var(--layout-toc-width) minmax(0, var(--layout-post-column));
     column-gap: var(--layout-toc-gap); /* 48px */
     align-items: start;
     width: fit-content;
-    margin-left: calc(-1 * (var(--layout-toc-width) + var(--layout-toc-gap)));
+    margin-left: max(
+      calc(-1 * (var(--layout-toc-width) + var(--layout-toc-gap))),
+      calc(var(--layout-spacing-l) + (var(--layout-post-column) / 2) - 50vw)
+    );
   }
   .post-layout--with-toc .post-toc {
     display: block;

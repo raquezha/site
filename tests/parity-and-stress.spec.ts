@@ -121,7 +121,7 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
     }
   });
 
-  for (const width of [1440, 768, 390]) {
+  for (const width of [1440, 1120, 1090, 768, 390]) {
     test(`Absurd stress test layout & responsiveness at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto("/writing/_absurd-stress-test");
@@ -134,6 +134,9 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
 
       const res = await page.evaluate(() => {
         const postRect = document.querySelector(".post")!.getBoundingClientRect();
+        const toc = document.querySelector(".post-toc") as HTMLElement;
+        const tocCs = getComputedStyle(toc);
+        const tocRect = toc.getBoundingClientRect();
         const fn = document.querySelector(".post .footnotes")!.getBoundingClientRect();
         const ack = document.querySelector(".post .acknowledgements")!.getBoundingClientRect();
         const rail = document.querySelector(".post .annotation")!.getBoundingClientRect();
@@ -147,6 +150,8 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
           footnotesCount: document.querySelectorAll(".post .footnotes li").length,
           footnotesBeforeAck: fn.bottom <= ack.top + 1,
           inRightRail: rail.left >= postRect.right + 28,
+          tocDisplay: tocCs.display,
+          tocLeft: tocRect.left,
           arrowDisplay: arrow.display,
           arrowTag: arrowEl!.tagName.toLowerCase(),
           arrowRect: { w: Math.round(arrowRect.width), h: Math.round(arrowRect.height) },
@@ -162,10 +167,13 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
       expect(res.thHeight).toBeLessThanOrEqual(40);
       expect(res.arrowTag).toBe("img");
       if (width >= 1120) {
+        expect(res.tocDisplay).toBe("block");
+        expect(res.tocLeft).toBeGreaterThanOrEqual(8);
         expect(res.inRightRail).toBe(true);
         expect(res.arrowDisplay).toBe("block");
         expect(res.arrowRect).toEqual({ w: 48, h: 28 });
       } else {
+        expect(res.tocDisplay).toBe("none");
         expect(res.inRightRail).toBe(false);
         expect(res.arrowDisplay).toBe("none");
       }
