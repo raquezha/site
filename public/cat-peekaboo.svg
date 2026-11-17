@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="22 22 553 305" width="22" height="12" role="img" aria-label="Peekaboo tabby">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 12 574 326" width="22" height="12" role="img" aria-label="Peekaboo tabby">
   <title>Peekaboo tabby</title>
   <style>
     .cat {
       fill: var(--cat, #70706c);
       stroke: var(--cat, #70706c);
-      stroke-width: 8px;
+      stroke-width: 12px;
       stroke-linejoin: round;
       paint-order: stroke fill;
     }

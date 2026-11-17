@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="22 22 686 438" width="22" height="14" role="img" aria-label="Lounging tabby">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 712 462" width="22" height="14" role="img" aria-label="Lounging tabby">
   <title>Lounging tabby</title>
   <style>
     .cat {
       fill: var(--cat, #20201e);
       stroke: var(--cat, #20201e);
-      stroke-width: 9px;
+      stroke-width: 14px;
       stroke-linejoin: round;
       paint-order: stroke fill;
     }
