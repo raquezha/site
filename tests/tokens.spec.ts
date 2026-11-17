@@ -25,6 +25,9 @@ test.describe("Unit: NoDesign Tokens & Static Assets", () => {
           const webVar = ext.codeSyntax?.WEB;
           if (webVar) {
             expect(css).toContain(`${webVar}:`);
+            if (val.$type === "color" && typeof val.$value === "string" && !val.$value.startsWith("{")) {
+              expect(css).toContain(`${webVar}: ${val.$value};`);
+            }
             checkedWebVars++;
           }
         } else if (val && typeof val === "object") {
