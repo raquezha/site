@@ -424,17 +424,20 @@ a:focus-visible {
 }
 .article pre {
   max-width: 100%;
-  overflow-x: auto;
-  margin-block: var(--post-p-gap); /* 34px */
-  padding: 20px 24px;
+  margin-block: var(--post-p-gap);
+  padding: 0;
   border-radius: 8px;
-  background: var(--surface-code-block) !important;
-  color: #f3f3f0 !important;
+  overflow: hidden !important;
+  background: var(--surface-terminal) !important;
+  color: #e6edf3 !important;
   border: 1px solid #2e2e2b;
-  font-size: 0.9375rem; /* 15px */
-  line-height: 1.6;
+  font-size: var(--type-post-code-size); /* 13px */
+  line-height: var(--type-post-code-lh); /* 20px */
 }
 .article pre code {
+  display: block;
+  overflow-x: auto;
+  padding: 20px 24px;
   font-size: inherit;
   overflow-wrap: normal;
 }
@@ -594,8 +597,8 @@ a:focus-visible {
 }
 .back-icon {
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   flex: none;
 }
 
