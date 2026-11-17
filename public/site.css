@@ -107,8 +107,9 @@
   --post-figure-mt: 47px;
   --post-figure-mb: 43px;
 
-  /* Motion · Soft ease-out curve (Zero-JS View Transitions + subtle micro-motion) */
-  --motion-duration: 180ms;
+  /* Motion · Compositor-only ease-out (Zero-JS View Transitions + micro-motion) */
+  --motion-duration: 240ms;
+  --motion-micro: 180ms;
   --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
   color: var(--content-primary);
@@ -117,19 +118,43 @@
   font-synthesis: none;
 }
 
-@view-transition {
-  navigation: auto;
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+  ::view-transition-old(root) {
+    animation: var(--motion-duration) var(--motion-ease) both softPageOut;
+  }
+  ::view-transition-new(root) {
+    animation: var(--motion-duration) var(--motion-ease) both softPageIn;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
 }
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: var(--motion-duration);
-  animation-timing-function: var(--motion-ease);
+
+@keyframes softPageOut {
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.996);
+  }
+}
+
+@keyframes softPageIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes softEnter {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -138,10 +163,7 @@
 }
 
 * { box-sizing: border-box; }
-html {
-  min-height: 100%;
-  scroll-behavior: smooth;
-}
+html { min-height: 100%; }
 body {
   margin: 0;
   color: var(--content-primary);
@@ -160,7 +182,29 @@ body {
 .container {
   margin-inline: auto;
   padding-block: var(--layout-spacing-3xl);
-  animation: softEnter 220ms var(--motion-ease) both;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .container--home .homepage > header {
+    animation: 300ms var(--motion-ease) 0ms both softEnter;
+  }
+  .container--home .homepage > p:nth-of-type(1) {
+    animation: 300ms var(--motion-ease) 40ms both softEnter;
+  }
+  .container--home .homepage > p:nth-of-type(2) {
+    animation: 300ms var(--motion-ease) 75ms both softEnter;
+  }
+  .container--home .writing {
+    animation: 320ms var(--motion-ease) 110ms both softEnter;
+  }
+  .container--home .footer {
+    animation: 320ms var(--motion-ease) 150ms both softEnter;
+  }
+  .container--post .post > header {
+    animation: 280ms var(--motion-ease) 0ms both softEnter;
+  }
+  .container--post .post > :not(header) {
+    animation: 320ms var(--motion-ease) 55ms both softEnter;
+  }
 }
 .container--home {
   width: min(calc(100% - 3rem), var(--layout-home-column));
@@ -294,7 +338,14 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: opacity 160ms ease, font-weight 160ms ease;
+  transition: opacity var(--motion-micro) var(--motion-ease),
+    transform var(--motion-micro) var(--motion-ease),
+    color var(--motion-micro) var(--motion-ease);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .writing li:hover .title {
+    transform: translateX(3px);
+  }
 }
 .writing li:hover .title {
   font-weight: 500;
@@ -832,6 +883,12 @@ a:focus-visible {
   width: 14px;
   height: 14px;
   flex: none;
+  transition: transform var(--motion-micro) var(--motion-ease);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .back-link:hover .back-icon {
+    transform: translateX(-3px);
+  }
 }
 
 .post-toc {
@@ -879,6 +936,14 @@ a:focus-visible {
   line-height: var(--type-nav-toc-item-lh); /* 15.6px */
   letter-spacing: var(--type-nav-toc-item-tracking); /* -0.04px */
   text-decoration: none;
+  transition: color var(--motion-micro) var(--motion-ease),
+    transform var(--motion-micro) var(--motion-ease);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .post-toc-link:hover,
+  .post-toc-link.is-active {
+    transform: translateX(2px);
+  }
 }
 .post-toc-link:hover,
 .post-toc-link.is-active {
@@ -927,21 +992,4 @@ a:focus-visible {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .container {
-    animation: none;
-  }
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 0.01ms;
-  }
-  a,
-  .writing li,
-  .writing .title,
-  .post-toc-post-title {
-    transition: none;
-  }
-}
+/* Reduced-motion spatial choreography is gated cleanly inside @media (prefers-reduced-motion: no-preference) */
