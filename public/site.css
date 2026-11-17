@@ -368,11 +368,20 @@ a:focus-visible {
   color: var(--content-primary);
 }
 .post h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--layout-spacing-12); /* 12px (Figma 48:876 Article / Section heading) */
   margin: var(--layout-spacing-xl) 0 var(--layout-spacing-12); /* 32px above, 12px below */
   font-size: var(--type-post-h2-size); /* 14px */
   font-weight: var(--type-post-h2-weight); /* 600 */
   line-height: var(--type-post-h2-lh); /* 20px */
   letter-spacing: var(--type-post-h2-tracking); /* -0.09px */
+}
+.post h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--outline-subtle); /* #f2f2f2 */
 }
 .post :is(h3, h4) {
   margin: var(--layout-spacing-l) 0 var(--layout-spacing-s); /* 24px above, 8px below */
@@ -453,9 +462,13 @@ a:focus-visible {
 }
 .post video {
   width: 100%;
+  aspect-ratio: 16 / 9;
   background: var(--surface-terminal);
 }
 .post figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-spacing-10); /* 10px (Figma 59:1711 Block / Video player) */
   margin: var(--layout-spacing-xl) 0;
 }
 .post figure > img:not(.post-doodle),
@@ -463,13 +476,14 @@ a:focus-visible {
   margin: 0;
 }
 .post figcaption {
-  margin-top: var(--layout-spacing-s); /* 8px */
+  margin: 0;
   color: var(--content-caption);
   font-size: var(--type-post-caption-size); /* 12px */
   line-height: var(--type-post-caption-lh); /* 16px */
   text-align: center;
 }
-.post .note {
+.post .note,
+.post .callout {
   margin-block: var(--layout-spacing-l); /* 24px */
   padding: 12px 16px;
   border-radius: 6px;
@@ -479,8 +493,89 @@ a:focus-visible {
   font-size: var(--type-post-body-size);
   line-height: var(--type-post-body-lh);
 }
-.post .note > :first-child { margin-top: 0; }
-.post .note > :last-child { margin-bottom: 0; }
+.post .callout {
+  /* Figma 59:2116 Block / Callout: 27px 32px pad with subtle hand-drawn outline */
+  padding: 27px 32px;
+  background: transparent;
+  border: 1.5px solid var(--content-muted);
+}
+.post .note > :first-child,
+.post .callout > :first-child { margin-top: 0; }
+.post .note > :last-child,
+.post .callout > :last-child { margin-bottom: 0; }
+
+/* Interactive task checkboxes (Figma 42:1899–42:3373 Article / Task item) */
+.post .contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.post .task-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--layout-spacing-s);
+  padding-left: 0;
+  margin-block: 6px;
+}
+.post .task-list-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  flex: none;
+  accent-color: var(--content-primary);
+  cursor: pointer;
+}
+
+/* Footnotes & Acknowledgements (Figma 57:629 Article references) */
+.post sup a {
+  font-size: 9px;
+  line-height: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--content-link-styled);
+  padding-inline: 1px;
+}
+.post .footnotes {
+  margin-top: var(--layout-spacing-40); /* 40px */
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--content-muted);
+}
+.post .footnotes::before {
+  content: "";
+  display: block;
+  width: 50px; /* Figma 57:666 50px divider */
+  height: 1px;
+  margin-bottom: var(--layout-spacing-m); /* 16px */
+  background: var(--outline-rule); /* #ededed */
+}
+.post .footnotes ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.post .footnotes li {
+  margin-block: 4px;
+  color: var(--content-muted);
+  font-size: 11px;
+  line-height: 15px;
+}
+.post .acknowledgements {
+  margin-top: var(--layout-spacing-xxl); /* 48px (Figma 57:685) */
+}
+.post .acknowledgements h3 {
+  margin: 0 0 var(--layout-spacing-m); /* 16px */
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--content-primary);
+}
+.post .acknowledgements p {
+  margin: 0 0 var(--layout-spacing-m);
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--content-muted);
+}
+.post .acknowledgements p:last-child { margin-bottom: 0; }
 
 /* Sparse side doodle on H2 (Figma: doodle/blue-cat, 28px high, 12px gap) */
 .article img.post-doodle {

@@ -275,8 +275,38 @@ try {
   );
   assert.equal(postMobileOverflow, false, "Post horizontal overflow at 390px");
 
+  // 4. Verify Figma Screens (v2) Canonical Sample Fixture (Footnotes, Acknowledgements, Callout, Task checkboxes)
+  const figmaSample = await inspect(`${BASE_URL}/writing/_figma-samples`, 1440, `(() => {
+    const h2After = getComputedStyle(document.querySelector('.post h2'), '::after');
+    const calloutS = getComputedStyle(document.querySelector('.post .callout'));
+    const footnoteS = getComputedStyle(document.querySelector('.post .footnotes'));
+    const footnoteRule = getComputedStyle(document.querySelector('.post .footnotes'), '::before');
+    const ackH3 = getComputedStyle(document.querySelector('.post .acknowledgements h3'));
+    const ackP = getComputedStyle(document.querySelector('.post .acknowledgements p'));
+    const checkbox = document.querySelector('.post input[type="checkbox"]');
+    return {
+      overflowX: document.documentElement.scrollWidth > window.innerWidth,
+      h2HasDivider: h2After.height === '1px' && h2After.backgroundColor === 'rgb(242, 242, 242)',
+      calloutPad: calloutS.paddingTop,
+      footnoteFont: footnoteS.fontSize,
+      footnoteRuleWidth: footnoteRule.width,
+      ackH3Size: ackH3.fontSize,
+      ackPSize: ackP.fontSize,
+      hasCheckbox: Boolean(checkbox),
+    };
+  })()`);
+
+  assert.equal(figmaSample.overflowX, false, "Figma sample horizontal overflow at 1440px");
+  assert.equal(figmaSample.h2HasDivider, true, "H2 must render 1px #f2f2f2 divider via ::after");
+  assert.equal(figmaSample.calloutPad, "27px");
+  assert.equal(figmaSample.footnoteFont, "11px");
+  assert.equal(figmaSample.footnoteRuleWidth, "50px");
+  assert.equal(figmaSample.ackH3Size, "11px");
+  assert.equal(figmaSample.ackPSize, "11px");
+  assert.equal(figmaSample.hasCheckbox, true, "Figma sample must render task checkboxes");
+
   ws.close();
-  console.log(`site UI parity ok (${tokenCount} tokens, Home + Kitchen-Sink 1440px/390px, contrast >= 3.0, TOC scroll state)`);
+  console.log(`site UI parity ok (${tokenCount} tokens, Home + Kitchen-Sink + Figma Samples 1440px/390px, contrast >= 3.0)`);
 } finally {
   chrome.kill();
   if (devProc) devProc.kill();
