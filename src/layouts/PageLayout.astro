@@ -45,19 +45,17 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   <body class:list={[{ "is-home": isHome, "is-post": !isHome }]}>
     <main class:list={["container", { "container--home": isHome, "container--post": !isHome }]}>
       <slot />
-      {isHome && (
-        <footer class="footer">
-          <span>Based in the Philippines.</span>
-          <img
-            src="/cat-peekaboo.svg"
-            width="22"
-            height="12"
-            alt=""
-            aria-hidden="true"
-            class="footer-cat"
-          />
-        </footer>
-      )}
+      <footer class="footer">
+        <span>Based in the Philippines.</span>
+        <img
+          src="/cat-peekaboo.svg"
+          width="22"
+          height="12"
+          alt=""
+          aria-hidden="true"
+          class="footer-cat"
+        />
+      </footer>
     </main>
   </body>
 </html>

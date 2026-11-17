@@ -442,14 +442,45 @@ a:focus-visible {
   overflow-wrap: normal;
 }
 
-.post img:not(.post-doodle) {
+.post img:not(.post-doodle),
+.post video {
   display: block;
   max-width: 100%;
   height: auto;
-  margin: var(--post-figure-mt) 0 var(--post-figure-mb); /* 47px above, 43px below */
+  margin: var(--layout-spacing-xl) 0;
   border: 1px solid var(--outline-weak);
   border-radius: 6px;
 }
+.post video {
+  width: 100%;
+  background: var(--surface-terminal);
+}
+.post figure {
+  margin: var(--layout-spacing-xl) 0;
+}
+.post figure > img:not(.post-doodle),
+.post figure > video {
+  margin: 0;
+}
+.post figcaption {
+  margin-top: var(--layout-spacing-s); /* 8px */
+  color: var(--content-caption);
+  font-size: var(--type-post-caption-size); /* 12px */
+  line-height: var(--type-post-caption-lh); /* 16px */
+  text-align: center;
+}
+.post .note {
+  margin-block: var(--layout-spacing-l); /* 24px */
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: var(--surface-code);
+  border: 1px solid var(--outline-subtle);
+  color: var(--content-lead);
+  font-size: var(--type-post-body-size);
+  line-height: var(--type-post-body-lh);
+}
+.post .note > :first-child { margin-top: 0; }
+.post .note > :last-child { margin-bottom: 0; }
 
 /* Sparse side doodle on H2 (Figma: doodle/blue-cat, 28px high, 12px gap) */
 .article img.post-doodle {

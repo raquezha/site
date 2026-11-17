@@ -198,6 +198,15 @@ try {
     const doodle = document.querySelector('.post-doodle')?.getBoundingClientRect();
     const table = document.querySelector('.article table');
     const mark = document.querySelector('.article mark');
+    const figcaption = document.querySelector('.post figcaption');
+    const figcaptionS = figcaption ? getComputedStyle(figcaption) : null;
+    const video = document.querySelector('.post video');
+    const videoS = video ? getComputedStyle(video) : null;
+    const note = document.querySelector('.post .note');
+    const noteS = note ? getComputedStyle(note) : null;
+    const ack = document.querySelector('#acknowledgements');
+    const postFooter = document.querySelector('.footer');
+    const postFooterS = postFooter ? getComputedStyle(postFooter) : null;
 
     return {
       overflowX: document.documentElement.scrollWidth > window.innerWidth,
@@ -217,6 +226,13 @@ try {
       doodleH: doodle ? Math.round(doodle.height) : null,
       hasTable: Boolean(table),
       hasMark: Boolean(mark),
+      figcaptionSize: figcaptionS?.fontSize,
+      figcaptionLh: figcaptionS?.lineHeight,
+      videoRadius: videoS?.borderRadius,
+      noteBg: noteS?.backgroundColor,
+      hasAck: Boolean(ack),
+      footerSize: postFooterS?.fontSize,
+      footerLh: postFooterS?.lineHeight,
     };
   })()`);
 
@@ -235,6 +251,13 @@ try {
   assert.equal(postDesktop.codeOverflowX, "auto");
   assert.equal(postDesktop.doodleH, 28);
   assert.ok(postDesktop.hasTable && postDesktop.hasMark, "Kitchen sink must render table and marks");
+  assert.equal(postDesktop.figcaptionSize, "12px");
+  assert.equal(postDesktop.figcaptionLh, "16px");
+  assert.equal(postDesktop.videoRadius, "6px");
+  assert.equal(postDesktop.noteBg, "rgb(248, 248, 248)");
+  assert.equal(postDesktop.hasAck, true, "Kitchen sink must render Acknowledgements heading");
+  assert.equal(postDesktop.footerSize, "12px");
+  assert.equal(postDesktop.footerLh, "18px");
 
   const bgRgb = parseRgb(postDesktop.preBg);
   assert.ok(postDesktop.spanColors.length > 0, "Expected Shiki syntax token spans");
