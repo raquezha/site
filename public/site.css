@@ -336,12 +336,14 @@ a:focus-visible {
 }
 
 /* ==========================================================================
-   Screen/Post · Desktop & Mobile (v7.1–v7.7 · Medium Article Spacing)
+   Slice 06 & 07: Screen/Post · Desktop & Mobile (Figma 14/20 Compact Scale)
    ========================================================================== */
 .post {
-  color: var(--content-primary); /* type post/body 14/20 -> Slice 6 */
-  font-size: var(--post-body-size); /* 20px */
-  line-height: var(--post-body-lh); /* 32px */
+  color: var(--content-primary);
+  font-size: var(--type-post-body-size); /* 14px */
+  font-weight: var(--type-post-body-weight); /* 400 */
+  line-height: var(--type-post-body-lh); /* 20px */
+  letter-spacing: var(--type-post-body-tracking); /* -0.09px */
 }
 .post > header {
   display: flex;
@@ -353,10 +355,10 @@ a:focus-visible {
 .post > header h1 {
   margin: 0;
   color: var(--content-primary);
-  font-size: var(--post-title-size); /* 42px Medium; Figma typography/title/large 14/20 -> Slice 6 */
-  font-weight: 500;
-  line-height: 1.18;
-  letter-spacing: -0.025em;
+  font-size: var(--type-post-title-size); /* 14px */
+  font-weight: var(--type-post-title-weight); /* 500 */
+  line-height: var(--type-post-title-lh); /* 20px */
+  letter-spacing: var(--type-post-title-tracking); /* -0.09px */
   text-wrap: balance;
 }
 .post > header .article-date {
@@ -366,25 +368,27 @@ a:focus-visible {
   letter-spacing: var(--type-post-body-tracking);
 }
 .post p {
-  margin: 0 0 var(--post-p-gap); /* 34px between paragraphs */
+  margin: 0 0 var(--layout-spacing-m); /* 16px between paragraphs */
   text-wrap: pretty;
 }
 .post > :last-child { margin-bottom: 0; }
 
 .post :is(h2, h3, h4) {
   color: var(--content-primary);
-  font-weight: 500;
-  letter-spacing: -0.02em;
 }
 .post h2 {
-  margin: var(--post-h2-mt) 0 var(--post-h2-mb); /* 38px above, 12px below */
-  font-size: var(--post-h2-size); /* 24px */
-  line-height: 1.3;
+  margin: var(--layout-spacing-xl) 0 var(--layout-spacing-12); /* 32px above, 12px below */
+  font-size: var(--type-post-h2-size); /* 14px */
+  font-weight: var(--type-post-h2-weight); /* 600 */
+  line-height: var(--type-post-h2-lh); /* 20px */
+  letter-spacing: var(--type-post-h2-tracking); /* -0.09px */
 }
 .post :is(h3, h4) {
-  margin: 32px 0 8px;
-  font-size: 1.25rem; /* 20px */
-  line-height: 1.35;
+  margin: var(--layout-spacing-l) 0 var(--layout-spacing-s); /* 24px above, 8px below */
+  font-size: var(--type-post-h3-size); /* 13px */
+  font-weight: var(--type-post-h3-weight); /* 600 */
+  line-height: var(--type-post-h3-lh); /* 18px */
+  letter-spacing: var(--type-post-h3-tracking); /* -0.05px */
 }
 
 .post strong {
@@ -585,9 +589,9 @@ a:focus-visible {
   align-items: center;
   gap: var(--layout-spacing-s); /* 8px */
   margin-bottom: var(--layout-spacing-xl); /* 32px */
-  color: var(--content-nav-default); /* type nav/index -> Slice 8 */
-  font-size: 0.8125rem; /* 13px */
-  line-height: 1.5;
+  color: var(--content-nav-default);
+  font-size: var(--type-nav-index-size); /* 13px (Slice 08) */
+  line-height: var(--type-nav-index-lh); /* 20px */
   text-decoration: none;
 }
 .back-link:hover {
@@ -613,10 +617,11 @@ a:focus-visible {
 .post-toc-title {
   display: block;
   margin-bottom: var(--layout-spacing-s); /* 8px */
-  color: var(--content-muted); /* type nav/toc-heading -> Slice 8 */
-  font-size: 0.6875rem; /* 11px Medium */
-  font-weight: 500;
-  line-height: 1.4;
+  color: var(--content-muted);
+  font-size: var(--type-nav-toc-heading-size); /* 13px (Slice 08) */
+  font-weight: var(--type-nav-toc-heading-weight); /* 500 */
+  line-height: var(--type-nav-toc-heading-lh); /* 16px */
+  letter-spacing: var(--type-nav-toc-heading-tracking); /* -0.04px */
 }
 .post-toc ul {
   margin: 0;
@@ -628,9 +633,10 @@ a:focus-visible {
 }
 .post-toc-link {
   display: block;
-  color: var(--content-muted); /* type nav/toc-item -> Slice 8 */
-  font-size: 0.75rem; /* 12px */
-  line-height: 1.45;
+  color: var(--content-muted);
+  font-size: var(--type-nav-toc-item-size); /* 13px (Slice 08) */
+  line-height: var(--type-nav-toc-item-lh); /* 15.6px */
+  letter-spacing: var(--type-nav-toc-item-tracking); /* -0.04px */
   text-decoration: none;
 }
 .post-toc-link:hover,
@@ -656,10 +662,15 @@ a:focus-visible {
   .post-layout--with-toc .back-link--main {
     display: none;
   }
+  .back-link {
+    font-size: var(--type-nav-index-desktop-size); /* 14px (Slice 08) */
+    line-height: var(--type-nav-index-desktop-lh); /* 20px */
+    letter-spacing: var(--type-nav-index-desktop-tracking); /* -0.09px */
+  }
 }
 
 /* ==========================================================================
-   Responsive Breakpoints (Tablet 768px & Mobile 390px)
+   Slice 09: Responsive Breakpoints (Tablet 768px & Mobile 390px)
    ========================================================================== */
 @media (max-width: 640px) {
   .container--home {
@@ -672,14 +683,6 @@ a:focus-visible {
   }
   .writing a {
     grid-template-columns: 56px minmax(0, 1fr) auto;
-  }
-  .post {
-    font-size: var(--post-body-size-mobile); /* 18px */
-    line-height: var(--post-body-lh-mobile); /* 28px */
-  }
-  .post > header h1 {
-    font-size: var(--post-title-size-mobile); /* 32px */
-    line-height: 1.2;
   }
 }
 
