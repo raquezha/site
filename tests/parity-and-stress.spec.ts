@@ -70,9 +70,10 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
     const tocTitle = page.locator(".post-toc-post-title");
     await expect(tocTitle).toHaveCSS("opacity", "0");
 
-    // Scroll past H1 -> TOC title appears
+    // Scroll past H1 -> TOC title appears softly
     await page.evaluate(() => window.scrollTo(0, 600));
     await expect(tocTitle).toHaveCSS("opacity", "1");
+    await expect(tocTitle).toHaveCSS("transform", "matrix(1, 0, 0, 1, 0, 0)");
 
     const metrics = await page.evaluate(() => {
       const icon = document.querySelector(".post-toc .back-icon")!.getBoundingClientRect();
