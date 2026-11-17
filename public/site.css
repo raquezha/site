@@ -100,19 +100,10 @@
   --layout-toc-width: 160px;
   --layout-toc-gap: 48px;
 
-  /* Post rhythm · Medium (site values, replaced in Slices 6-7 by --type-post-*) */
-  --post-title-size: 2.625rem; /* 42px */
-  --post-title-size-mobile: 2rem; /* 32px */
+  /* Post header rhythm */
   --post-date-gap: 8px;
   --post-header-bottom: 32px;
-  --post-body-size: 1.25rem; /* 20px */
-  --post-body-lh: 2rem; /* 32px */
-  --post-body-size-mobile: 1.125rem; /* 18px */
-  --post-body-lh-mobile: 1.75rem; /* 28px */
-  --post-p-gap: 34px;
-  --post-h2-size: 1.5rem; /* 24px */
-  --post-h2-mt: 38px;
-  --post-h2-mb: 12px;
+  --post-p-gap: 16px;
   --post-figure-mt: 47px;
   --post-figure-mb: 43px;
 
