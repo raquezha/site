@@ -222,18 +222,20 @@ body {
   border-radius: 0;
 }
 
-/* Home Writing list (v7.5–v7.7: year left, title indented 108px, day/month right, outline/subtle dividers, hover dim via --state-row-dim-opacity) */
+/* ==========================================================================
+   Slice 03 & 04: Home Writing list (v7.5–v7.7: year left, title indented 108px,
+   day/month right, outline/subtle dividers, row padding 11.76px, hover dim)
+   ========================================================================== */
 .writing {
   margin-top: var(--layout-spacing-40); /* 40px */
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.25rem; /* 20px */
 }
 .writing h2 {
   margin: 0 0 var(--layout-spacing-12); /* 12px */
-  color: var(--content-muted); /* type home/writing 14/17 -> Slice 3 */
-  font-size: 0.875rem; /* 14px */
-  font-weight: 400;
-  line-height: 1.25rem; /* 20px */
+  color: var(--content-muted);
+  font-size: var(--type-home-writing-size); /* 14px */
+  font-weight: var(--type-home-writing-weight); /* 460 */
+  line-height: var(--type-home-writing-lh); /* 17px */
+  letter-spacing: var(--type-home-writing-tracking); /* -0.09px */
 }
 .writing ul {
   margin: 0;
@@ -245,31 +247,35 @@ body {
   border-bottom: 1px solid var(--outline-subtle);
   transition: opacity 160ms ease;
 }
-.writing ul:hover li:not(:hover) {
-  opacity: var(--state-row-dim-opacity); /* Figma dims the title only -> Slice 4 */
+.writing ul:hover li:not(:hover) .title {
+  opacity: var(--state-row-dim-opacity); /* Slice 04: 0.3 dimming on non-hovered titles */
 }
 .writing a {
   display: grid;
   grid-template-columns: var(--layout-year-rail) minmax(0, 1fr) auto;
   align-items: baseline;
-  padding-block: 10px;
+  padding-block: var(--layout-home-row-pad); /* 11.76px (Slice 03) */
   text-decoration: none;
   color: var(--content-primary);
 }
 .writing .post-year {
   color: var(--content-muted);
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.25rem; /* 20px */
+  font-size: var(--type-home-writing-size); /* 14px */
+  line-height: var(--type-home-writing-lh); /* 17px */
+  letter-spacing: var(--type-home-writing-tracking); /* -0.09px */
   font-variant-numeric: tabular-nums;
 }
 .writing .title {
   min-width: 0;
   color: var(--content-primary);
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.25rem; /* 20px */
+  font-size: var(--type-home-writing-size); /* 14px */
+  font-weight: var(--type-home-writing-weight); /* 460 */
+  line-height: var(--type-home-writing-lh); /* 17px */
+  letter-spacing: var(--type-home-writing-tracking); /* -0.09px */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: opacity 160ms ease, font-weight 160ms ease;
 }
 .writing li:hover .title {
   font-weight: 500;
@@ -277,21 +283,26 @@ body {
 .writing .post-date {
   padding-left: var(--layout-spacing-m);
   color: var(--content-muted);
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.25rem; /* 20px */
+  font-size: var(--type-home-writing-size); /* 14px */
+  line-height: var(--type-home-writing-lh); /* 17px */
+  letter-spacing: var(--type-home-writing-tracking); /* -0.09px */
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
+/* ==========================================================================
+   Slice 05: Footer (home/footer 12/18, cat alignment, 48px top margin)
+   ========================================================================== */
 .footer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: var(--layout-spacing-s);
+  gap: var(--layout-spacing-s); /* 8px */
   margin-top: var(--layout-spacing-xxl); /* 48px */
-  color: var(--content-subtle); /* type home/footer 12/18 -> Slice 5 */
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.25rem; /* 20px */
+  color: var(--content-subtle);
+  font-size: var(--type-home-footer-size); /* 12px */
+  line-height: var(--type-home-footer-lh); /* 18px */
+  letter-spacing: var(--type-home-footer-tracking); /* 0 */
 }
 .footer img.footer-cat {
   display: block;
