@@ -71,7 +71,7 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
     await expect(tocTitle).toHaveCSS("opacity", "0");
 
     // Scroll past H1 -> TOC title appears
-    await page.locator("#typography--inline-marks").scrollIntoViewIfNeeded();
+    await page.evaluate(() => window.scrollTo(0, 600));
     await expect(tocTitle).toHaveCSS("opacity", "1");
 
     const metrics = await page.evaluate(() => {
