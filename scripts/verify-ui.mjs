@@ -206,7 +206,6 @@ try {
     const noteS = note ? getComputedStyle(note) : null;
     const ack = document.querySelector('#acknowledgements');
     const postFooter = document.querySelector('.footer');
-    const postFooterS = postFooter ? getComputedStyle(postFooter) : null;
 
     return {
       overflowX: document.documentElement.scrollWidth > window.innerWidth,
@@ -232,8 +231,7 @@ try {
       videoBorderColor: videoS?.borderTopColor,
       noteBg: noteS?.backgroundColor,
       hasAck: Boolean(ack),
-      footerSize: postFooterS?.fontSize,
-      footerLh: postFooterS?.lineHeight,
+      hasPostFooter: Boolean(postFooter),
     };
   })()`);
 
@@ -258,8 +256,7 @@ try {
   assert.equal(postDesktop.videoBorderColor, "rgb(51, 51, 51)", "Video player must match Figma #333333 border");
   assert.equal(postDesktop.noteBg, "rgb(248, 248, 248)");
   assert.equal(postDesktop.hasAck, true, "Kitchen sink must render Acknowledgements heading");
-  assert.equal(postDesktop.footerSize, "12px");
-  assert.equal(postDesktop.footerLh, "18px");
+  assert.equal(postDesktop.hasPostFooter, false, "Post pages must not render the Home-only footer");
 
   const bgRgb = parseRgb(postDesktop.preBg);
   assert.ok(postDesktop.spanColors.length > 0, "Expected Shiki syntax token spans");
