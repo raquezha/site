@@ -122,11 +122,27 @@
   @view-transition {
     navigation: auto;
   }
+  ::view-transition-group(root) {
+    animation-duration: var(--motion-duration);
+    animation-timing-function: var(--motion-ease);
+  }
   ::view-transition-old(root) {
     animation: var(--motion-duration) var(--motion-ease) both softPageOut;
   }
   ::view-transition-new(root) {
     animation: var(--motion-duration) var(--motion-ease) both softPageIn;
+  }
+  html:active-view-transition-type(forward)::view-transition-old(root) {
+    animation-name: slideLeftOut;
+  }
+  html:active-view-transition-type(forward)::view-transition-new(root) {
+    animation-name: slideLeftIn;
+  }
+  html:active-view-transition-type(backward)::view-transition-old(root) {
+    animation-name: slideRightOut;
+  }
+  html:active-view-transition-type(backward)::view-transition-new(root) {
+    animation-name: slideRightIn;
   }
   html {
     scroll-behavior: smooth;
@@ -139,15 +155,55 @@
     transform: translateY(-4px) scale(0.996);
   }
 }
-
 @keyframes softPageIn {
   from {
     opacity: 0;
     transform: translateY(6px);
   }
+}
+@keyframes slideLeftOut {
   to {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+}
+@keyframes slideLeftIn {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+}
+@keyframes slideRightOut {
+  to {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+}
+@keyframes slideRightIn {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes scrollFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .post figure,
+    .post pre {
+      animation: scrollFadeUp auto linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
   }
 }
 
@@ -514,6 +570,7 @@ a:focus-visible {
 }
 .article pre {
   /* Figma 59:1826 Block / Code block: #f8f8f8, 8px radius, no stroke, 14x16 pad */
+  position: relative;
   max-width: 100%;
   margin-block: var(--post-p-gap);
   padding: 0;
@@ -524,6 +581,52 @@ a:focus-visible {
   border: 0;
   font-size: var(--type-post-code-size); /* 13px */
   line-height: var(--type-post-code-lh); /* 20px */
+}
+.article .code-copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--content-muted);
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity var(--motion-micro) var(--motion-ease),
+    color var(--motion-micro) var(--motion-ease),
+    background-color var(--motion-micro) var(--motion-ease),
+    transform var(--motion-micro) var(--motion-ease);
+}
+.article .code-copy-btn:hover {
+  opacity: 1;
+  color: var(--content-primary);
+  background: rgba(0, 0, 0, 0.05);
+}
+.article .code-copy-btn.is-copied {
+  opacity: 1;
+  color: var(--content-terminal-prompt);
+  transform: scale(1.06);
+}
+.article pre[data-language="bash"] .code-copy-btn,
+.article pre[data-language="sh"] .code-copy-btn,
+.article pre[data-language="shell"] .code-copy-btn,
+.article pre[data-language="console"] .code-copy-btn,
+.article pre[data-language="zsh"] .code-copy-btn {
+  color: rgba(255, 255, 255, 0.55);
+}
+.article pre[data-language="bash"] .code-copy-btn:hover,
+.article pre[data-language="sh"] .code-copy-btn:hover,
+.article pre[data-language="shell"] .code-copy-btn:hover,
+.article pre[data-language="console"] .code-copy-btn:hover,
+.article pre[data-language="zsh"] .code-copy-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
 }
 .article pre code {
   display: block;

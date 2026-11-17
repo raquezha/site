@@ -59,5 +59,19 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         </footer>
       )}
     </main>
+    <script is:inline>
+      window.addEventListener("pagereveal", (e) => {
+        if (!e.viewTransition || !window.navigation?.activation) return;
+        const fromUrl = window.navigation.activation.from?.url;
+        if (!fromUrl) return;
+        const fromPath = new URL(fromUrl).pathname;
+        const toPath = location.pathname;
+        if (fromPath.startsWith("/writing/") && toPath === "/") {
+          e.viewTransition.types.add("backward");
+        } else if (toPath.startsWith("/writing/")) {
+          e.viewTransition.types.add("forward");
+        }
+      });
+    </script>
   </body>
 </html>
