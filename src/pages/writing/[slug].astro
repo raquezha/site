@@ -133,22 +133,31 @@ const showToc = h2Headings.length >= 3;
             link.classList.toggle("is-active", link.getAttribute("data-toc-slug") === id);
           }
         };
-        const observer = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (entry.isIntersecting) {
-                setActive(entry.target.id);
-                break;
-              }
-            }
-          },
-          { rootMargin: "0px 0px -75% 0px", threshold: 0 }
-        );
-        for (const target of targets) observer.observe(target);
+        const syncScrollActive = () => {
+          if (window.scrollY < 40) {
+            setActive(targets[0].id);
+            return;
+          }
+          if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) {
+            setActive(targets[targets.length - 1].id);
+            return;
+          }
+          let current = targets[0].id;
+          for (const target of targets) {
+            if (target.getBoundingClientRect().top <= 140) current = target.id;
+          }
+          setActive(current);
+        };
+        window.addEventListener("scroll", syncScrollActive, { passive: true });
+        syncScrollActive();
 
         const tocTitle = document.querySelector(".post-toc-post-title");
         const postH1 = document.querySelector(".post > header h1");
         if (tocTitle && postH1) {
+          tocTitle.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
           const titleObserver = new IntersectionObserver(
             ([entry]) => {
               const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
@@ -160,41 +169,44 @@ const showToc = h2Headings.length >= 3;
           );
           titleObserver.observe(postH1);
         }
-
-        // Enable interactive task checkboxes per Figma 42:1899 (GFM marks them disabled by default)
-        for (const cb of document.querySelectorAll('.post .task-list-item input[type="checkbox"]')) {
-          cb.removeAttribute("disabled");
-        }
-
-        // Copy button morph on Code & Terminal blocks (Figma 59:1826 / 63:3517 Action / Copy)
-        const COPY_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-        const CHECK_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
-        for (const pre of document.querySelectorAll(".article pre")) {
-          const code = pre.querySelector("code");
-          if (!code) continue;
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "code-copy-btn";
-          btn.setAttribute("aria-label", "Copy code");
-          btn.innerHTML = COPY_SVG;
-          let timer;
-          btn.addEventListener("click", async () => {
-            try {
-              await navigator.clipboard?.writeText(code.innerText);
-            } catch {}
-            btn.classList.add("is-copied");
-            btn.setAttribute("aria-label", "Copied");
-            btn.innerHTML = CHECK_SVG;
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-              btn.classList.remove("is-copied");
-              btn.setAttribute("aria-label", "Copy code");
-              btn.innerHTML = COPY_SVG;
-            }, 1500);
-          });
-          pre.appendChild(btn);
-        }
       })();
     </script>
   )}
+  <script is:inline>
+    (() => {
+      // Enable interactive task checkboxes on every post (GFM marks them disabled by default)
+      for (const cb of document.querySelectorAll('.post .task-list-item input[type="checkbox"]')) {
+        cb.removeAttribute("disabled");
+      }
+
+      // Copy button morph on Code & Terminal blocks (Figma 59:1826 / 63:3517 Action / Copy)
+      const COPY_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+      const CHECK_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+      for (const pre of document.querySelectorAll(".article pre")) {
+        const code = pre.querySelector("code");
+        if (!code || pre.querySelector(".code-copy-btn")) continue;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "code-copy-btn";
+        btn.setAttribute("aria-label", "Copy code");
+        btn.innerHTML = COPY_SVG;
+        let timer;
+        btn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard?.writeText(code.innerText);
+          } catch {}
+          btn.classList.add("is-copied");
+          btn.setAttribute("aria-label", "Copied");
+          btn.innerHTML = CHECK_SVG;
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            btn.classList.remove("is-copied");
+            btn.setAttribute("aria-label", "Copy code");
+            btn.innerHTML = COPY_SVG;
+          }, 1500);
+        });
+        pre.appendChild(btn);
+      }
+    })();
+  </script>
 </PageLayout>

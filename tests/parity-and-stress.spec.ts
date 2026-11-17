@@ -86,6 +86,11 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
     await expect(tocTitle).toHaveCSS("opacity", "1");
     await expect(tocTitle).toHaveCSS("transform", "matrix(1, 0, 0, 1, 0, 0)");
 
+    // Scroll back to top -> first TOC item stays/returns active
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await expect(activeTocLink).toBeVisible();
+    await expect(page.locator(".post-toc-link").first()).toHaveClass(/is-active/);
+
     // Verify code block copy button morphs into copied state
     const copyBtn = page.locator(".article .code-copy-btn").first();
     await expect(copyBtn).toHaveAttribute("aria-label", "Copy code");
