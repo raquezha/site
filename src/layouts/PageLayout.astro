@@ -41,6 +41,28 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <link rel="stylesheet" href="/site.css" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title={NAME} href="/rss.xml" />
+    <script is:inline>
+      // Prevent entrance blur-cascade from doubling on MPA view-transitions or back/forward history
+      const navType = performance.getEntriesByType?.("navigation")?.[0]?.type;
+      if (navType === "back_forward") {
+        document.documentElement.classList.add("home-visited", "is-view-transition");
+      }
+      window.addEventListener("pagereveal", (e) => {
+        if (!e.viewTransition) return;
+        document.documentElement.classList.add("is-view-transition");
+        if (!window.navigation?.activation) return;
+        const fromUrl = window.navigation.activation.from?.url;
+        if (!fromUrl) return;
+        const fromPath = new URL(fromUrl).pathname;
+        const toPath = location.pathname;
+        if (fromPath.startsWith("/writing/") && toPath === "/") {
+          document.documentElement.classList.add("home-visited");
+          e.viewTransition.types.add("backward");
+        } else if (toPath.startsWith("/writing/")) {
+          e.viewTransition.types.add("forward");
+        }
+      });
+    </script>
   </head>
   <body class:list={[{ "is-home": isHome, "is-post": !isHome }]}>
     <main class:list={["container", { "container--home": isHome, "container--post": !isHome }]}>
@@ -59,19 +81,5 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         </footer>
       )}
     </main>
-    <script is:inline>
-      window.addEventListener("pagereveal", (e) => {
-        if (!e.viewTransition || !window.navigation?.activation) return;
-        const fromUrl = window.navigation.activation.from?.url;
-        if (!fromUrl) return;
-        const fromPath = new URL(fromUrl).pathname;
-        const toPath = location.pathname;
-        if (fromPath.startsWith("/writing/") && toPath === "/") {
-          e.viewTransition.types.add("backward");
-        } else if (toPath.startsWith("/writing/")) {
-          e.viewTransition.types.add("forward");
-        }
-      });
-    </script>
   </body>
 </html>

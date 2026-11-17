@@ -7,6 +7,14 @@ const tokens = JSON.parse(fs.readFileSync(path.join(root, "tokens/raquezha-net.t
 const css = fs.readFileSync(path.join(root, "public/site.css"), "utf8");
 const SEGMENT_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
+function resolveValue(rootObj: Record<string, any>, raw: unknown): unknown {
+  if (typeof raw !== "string" || !raw.startsWith("{") || !raw.endsWith("}")) return raw;
+  const parts = raw.slice(1, -1).split(".");
+  let cur: any = rootObj;
+  for (const part of parts) cur = cur?.[part];
+  return cur && typeof cur === "object" && "$value" in cur ? resolveValue(rootObj, cur.$value) : raw;
+}
+
 test.describe("Unit: NoDesign Tokens & Static Assets", () => {
   test("every token follows NoDesign DTCG grammar and matches public/site.css", () => {
     let checkedWebVars = 0;
@@ -25,8 +33,9 @@ test.describe("Unit: NoDesign Tokens & Static Assets", () => {
           const webVar = ext.codeSyntax?.WEB;
           if (webVar) {
             expect(css).toContain(`${webVar}:`);
-            if (val.$type === "color" && typeof val.$value === "string" && !val.$value.startsWith("{")) {
-              expect(css).toContain(`${webVar}: ${val.$value};`);
+            const resolved = resolveValue(tokens, val.$value);
+            if ((val.$type === "color" || val.$type === "dimension") && typeof resolved === "string") {
+              expect(css).toContain(`${webVar}: ${resolved};`);
             }
             checkedWebVars++;
           }

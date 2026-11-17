@@ -29,6 +29,8 @@
   --marker-bullet: #b3b3b3;                   /* marker/bullet           VariableID:58:1185 */
   --content-on-inverse: #cccccc;              /* content/on-inverse      VariableID:59:2466 */
   --surface-terminal: #141414;                /* surface/terminal        VariableID:63:3462 */
+  --outline-inverse: #333333;                 /* dark terminal/video 1px frame border */
+  --surface-target: rgb(255, 255, 170);       /* benji.org-style :target highlight wash */
   --content-terminal-prompt: #14a647;         /* content/terminal-prompt VariableID:63:3463 */
 
   /* Color · Unbound fills used on Screens (v2) (hex in Figma, no variable yet).
@@ -219,6 +221,22 @@
     filter: blur(0);
   }
 }
+@keyframes catIdle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1px) rotate(-0.8deg);
+  }
+}
+@keyframes targetFade {
+  0%, 100% {
+    opacity: 0;
+  }
+  12%, 30% {
+    opacity: 1;
+  }
+}
 
 * { box-sizing: border-box; }
 html { min-height: 100%; }
@@ -242,32 +260,36 @@ body {
   padding-block: var(--layout-spacing-3xl);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .container--home .homepage > header {
+  html:not(.home-visited) .container--home .homepage > header {
     animation: 440ms var(--motion-ease) 0ms both softEnter;
   }
-  .container--home .homepage > p:nth-of-type(1) {
+  html:not(.home-visited) .container--home .homepage > p:nth-of-type(1) {
     animation: 440ms var(--motion-ease) 45ms both softEnter;
   }
-  .container--home .homepage > p:nth-of-type(2) {
+  html:not(.home-visited) .container--home .homepage > p:nth-of-type(2) {
     animation: 440ms var(--motion-ease) 90ms both softEnter;
   }
-  .container--home .writing h2 {
+  html:not(.home-visited) .container--home .writing h2 {
     animation: 440ms var(--motion-ease) 130ms both softEnter;
   }
-  .container--home .writing li {
+  html:not(.home-visited) .container--home .writing li {
     animation: 440ms var(--motion-ease) calc(160ms + var(--stagger, 0) * 40ms) both softEnter;
   }
-  .container--home .footer {
+  html:not(.home-visited) .container--home .footer {
     animation: 440ms var(--motion-ease) 380ms both softEnter;
   }
-  .container--post .post > header {
+  html:not(.is-view-transition) .container--post .post > header {
     animation: 440ms var(--motion-ease) 0ms both softEnter;
   }
-  .container--post .post-toc {
+  html:not(.is-view-transition) .container--post .post-toc {
     animation: 440ms var(--motion-ease) 45ms both softEnter;
   }
-  .container--post .post > :not(header) {
+  html:not(.is-view-transition) .container--post .post > :not(header) {
     animation: 460ms var(--motion-ease) 80ms both softEnter;
+  }
+  .footer img.footer-cat {
+    animation: 5s ease-in-out infinite catIdle;
+    transform-origin: center bottom;
   }
 }
 .container--home {
@@ -406,13 +428,15 @@ body {
     transform var(--motion-micro) var(--motion-ease),
     color var(--motion-micro) var(--motion-ease);
 }
-@media (prefers-reduced-motion: no-preference) {
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .writing li:hover .title {
     transform: translateX(3px);
   }
 }
-.writing li:hover .title {
-  font-weight: 500;
+@media (hover: hover) {
+  .writing li:hover .title {
+    font-weight: 500;
+  }
 }
 .writing .post-date {
   padding-left: var(--layout-spacing-m);
@@ -509,6 +533,22 @@ a:focus-visible {
 
 .post :is(h2, h3, h4) {
   color: var(--content-primary);
+  scroll-margin-top: 48px;
+}
+.post :is(h2, h3, h4, .footnotes li):target {
+  position: relative;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .post :is(h2, h3, h4, .footnotes li):target::before {
+    content: "";
+    position: absolute;
+    inset: -3px -6px;
+    border-radius: 4px;
+    background: var(--surface-target);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    animation: 3.5s ease both targetFade;
+  }
 }
 .post h2 {
   display: flex;
@@ -660,7 +700,7 @@ a:focus-visible {
 .article pre[data-language="zsh"] {
   background: var(--surface-terminal) !important;
   color: var(--content-on-inverse) !important;
-  border: 1px solid #333333;
+  border: 1px solid var(--outline-inverse);
 }
 .article pre[data-language="bash"] span,
 .article pre[data-language="sh"] span,
@@ -687,7 +727,7 @@ a:focus-visible {
   aspect-ratio: 16 / 9;
   margin: var(--layout-spacing-xl) 0;
   background: var(--surface-terminal);
-  border: 1px solid #333333;
+  border: 1px solid var(--outline-inverse);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -723,7 +763,7 @@ a:focus-visible {
   /* Figma 59:2116 Block / Callout: 27px 32px pad with subtle hand-drawn outline */
   padding: 27px 32px;
   background: transparent;
-  border: 1.5px solid var(--content-muted);
+  border: 1.5px solid var(--mark-ink);
 }
 .post .note > :first-child,
 .post .callout > :first-child { margin-top: 0; }
@@ -750,6 +790,11 @@ a:focus-visible {
   margin: 0;
   accent-color: var(--content-primary);
   cursor: pointer;
+}
+.post .task-list-item input[type="checkbox"]:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--outline-focus);
+  outline-offset: 2px;
 }
 
 /* Footnotes & Acknowledgements (Figma 57:629 Article references) */
@@ -1006,7 +1051,7 @@ a:focus-visible {
   flex: none;
   transition: transform var(--motion-micro) var(--motion-ease);
 }
-@media (prefers-reduced-motion: no-preference) {
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .back-link:hover .back-icon {
     transform: translateX(-3px);
   }
@@ -1061,8 +1106,13 @@ a:focus-visible {
   transition: color var(--motion-micro) var(--motion-ease),
     transform var(--motion-micro) var(--motion-ease);
 }
-@media (prefers-reduced-motion: no-preference) {
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .post-toc-link:hover,
+  .post-toc-link.is-active {
+    transform: translateX(2px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
   .post-toc-link.is-active {
     transform: translateX(2px);
   }

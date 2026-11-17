@@ -1,22 +1,20 @@
 ---
-import { getCollection } from "astro:content";
 import PageLayout from "../layouts/PageLayout.astro";
-import { formatDayMonth, formatYear, isPublished, resolveDate, resolveSlug } from "../utils/dates";
+import { formatDayMonth, formatYear, resolveDate, resolveSlug } from "../utils/dates";
+import { getSortedPublishedWriting } from "../utils/writing";
 
-const entries = await getCollection("writing", isPublished);
-const sorted = entries
-  .map((entry) => {
-    const date = resolveDate(entry);
-    return {
-      title: entry.data.title,
-      shortTitle: entry.data.shortTitle ?? entry.data.title,
-      date,
-      year: formatYear(date),
-      dayMonth: formatDayMonth(date),
-      route: `/writing/${resolveSlug(entry.id, entry.data.routeOverride)}`,
-    };
-  })
-  .sort((a, b) => b.date.localeCompare(a.date));
+const entries = await getSortedPublishedWriting();
+const sorted = entries.map((entry) => {
+  const date = resolveDate(entry);
+  return {
+    title: entry.data.title,
+    shortTitle: entry.data.shortTitle ?? entry.data.title,
+    date,
+    year: formatYear(date),
+    dayMonth: formatDayMonth(date),
+    route: `/writing/${resolveSlug(entry.id, entry.data.routeOverride)}`,
+  };
+});
 
 let seenYear = "";
 const posts = sorted.map((post) => {

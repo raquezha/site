@@ -73,6 +73,9 @@ test.describe("UX & Accessibility Checks", () => {
     await expect.poll(async () => page.evaluate(() => window.scrollY)).toBeLessThan(40);
     await expect(page.locator(".post-toc-link").first()).toHaveClass(/is-active/);
 
+    // Verify heading scroll-margin-top prevents top clipping on deep links
+    await expect(page.locator(".post h2").first()).toHaveCSS("scroll-margin-top", "48px");
+
     // Footnote ref jump -> backref jump works cleanly
     const fnRef = page.locator(".post a[data-footnote-ref]").first();
     await fnRef.click();
@@ -86,6 +89,11 @@ test.describe("UX & Accessibility Checks", () => {
     await page.keyboard.press("Enter");
     await expect(copyBtn).toHaveAttribute("aria-label", "Copied");
     await expect(copyBtn).toHaveClass(/is-copied/);
+
+    // Checkbox focus uses tokenized focus outline
+    const checkbox = page.locator('.post .task-list-item input[type="checkbox"]').first();
+    await checkbox.focus();
+    await expect(checkbox).toHaveCSS("outline-width", "2px");
   });
 
   test("Reduced motion preference + zero console/network errors across all key routes", async ({ page }) => {

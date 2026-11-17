@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import BackLink from "../../components/BackLink.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
 import { formatLongDate, isPublished, resolveDate, resolveSlug } from "../../utils/dates";
 
@@ -23,34 +24,7 @@ const showToc = h2Headings.length >= 3;
   <div class:list={["post-layout", { "post-layout--with-toc": showToc }]}>
     {showToc && (
       <aside class="post-toc" aria-label="On this page">
-        <a href="/" class="back-link back-link--toc">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="14"
-            height="14"
-            aria-hidden="true"
-            class="back-icon"
-          >
-            <path
-              d="M10 15 L4 9 L10 3"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M4 9 H13 Q23 9 20 22"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-          Index
-        </a>
+        <BackLink variant="toc" />
         <a href="#" class="post-toc-post-title" aria-hidden="true" tabindex="-1">
           {entry.data.shortTitle ?? title}
         </a>
@@ -72,34 +46,7 @@ const showToc = h2Headings.length >= 3;
       </aside>
     )}
     <div class="post-main">
-      <a href="/" class:list={["back-link", "back-link--main"]}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="14"
-          height="14"
-          aria-hidden="true"
-          class="back-icon"
-        >
-          <path
-            d="M10 15 L4 9 L10 3"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M4 9 H13 Q23 9 20 22"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        Index
-      </a>
+      <BackLink variant="main" />
       <article class="article post">
         <header>
           <h1>{title}</h1>
@@ -119,20 +66,22 @@ const showToc = h2Headings.length >= 3;
       </article>
     </div>
   </div>
-  {showToc && (
-    <script is:inline>
-      (() => {
+  <script is:inline>
+    (() => {
+      function initTocScrollSpy() {
         const links = Array.from(document.querySelectorAll(".post-toc-link"));
         if (!links.length) return;
         const targets = links
           .map((link) => document.getElementById(link.getAttribute("data-toc-slug") || ""))
           .filter(Boolean);
         if (!targets.length) return;
+
         const setActive = (id) => {
           for (const link of links) {
             link.classList.toggle("is-active", link.getAttribute("data-toc-slug") === id);
           }
         };
+
         const syncScrollActive = () => {
           if (window.scrollY < 40) {
             setActive(targets[0].id);
@@ -148,65 +97,69 @@ const showToc = h2Headings.length >= 3;
           }
           setActive(current);
         };
+
         window.addEventListener("scroll", syncScrollActive, { passive: true });
         syncScrollActive();
 
         const tocTitle = document.querySelector(".post-toc-post-title");
         const postH1 = document.querySelector(".post > header h1");
-        if (tocTitle && postH1) {
-          tocTitle.addEventListener("click", (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          });
-          const titleObserver = new IntersectionObserver(
-            ([entry]) => {
-              const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
-              tocTitle.classList.toggle("is-visible", scrolledPast);
-              tocTitle.setAttribute("aria-hidden", String(!scrolledPast));
-              tocTitle.setAttribute("tabindex", scrolledPast ? "0" : "-1");
-            },
-            { threshold: 0 }
-          );
-          titleObserver.observe(postH1);
-        }
-      })();
-    </script>
-  )}
-  <script is:inline>
-    (() => {
-      // Enable interactive task checkboxes on every post (GFM marks them disabled by default)
-      for (const cb of document.querySelectorAll('.post .task-list-item input[type="checkbox"]')) {
-        cb.removeAttribute("disabled");
+        if (!tocTitle || !postH1) return;
+
+        tocTitle.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        const titleObserver = new IntersectionObserver(
+          ([entry]) => {
+            const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+            tocTitle.classList.toggle("is-visible", scrolledPast);
+            tocTitle.setAttribute("aria-hidden", String(!scrolledPast));
+            tocTitle.setAttribute("tabindex", scrolledPast ? "0" : "-1");
+          },
+          { threshold: 0 }
+        );
+        titleObserver.observe(postH1);
       }
 
-      // Copy button morph on Code & Terminal blocks (Figma 59:1826 / 63:3517 Action / Copy)
-      const COPY_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-      const CHECK_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
-      for (const pre of document.querySelectorAll(".article pre")) {
-        const code = pre.querySelector("code");
-        if (!code || pre.querySelector(".code-copy-btn")) continue;
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "code-copy-btn";
-        btn.setAttribute("aria-label", "Copy code");
-        btn.innerHTML = COPY_SVG;
-        let timer;
-        btn.addEventListener("click", async () => {
-          try {
-            await navigator.clipboard?.writeText(code.innerText);
-          } catch {}
-          btn.classList.add("is-copied");
-          btn.setAttribute("aria-label", "Copied");
-          btn.innerHTML = CHECK_SVG;
-          clearTimeout(timer);
-          timer = setTimeout(() => {
-            btn.classList.remove("is-copied");
-            btn.setAttribute("aria-label", "Copy code");
-            btn.innerHTML = COPY_SVG;
-          }, 1500);
-        });
-        pre.appendChild(btn);
+      function enableTaskCheckboxes() {
+        for (const cb of document.querySelectorAll('.post .task-list-item input[type="checkbox"]')) {
+          cb.removeAttribute("disabled");
+        }
       }
+
+      function initCodeCopyButtons() {
+        const COPY_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+        const CHECK_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+        for (const pre of document.querySelectorAll(".article pre")) {
+          const code = pre.querySelector("code");
+          if (!code || pre.querySelector(".code-copy-btn")) continue;
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "code-copy-btn";
+          btn.setAttribute("aria-label", "Copy code");
+          btn.innerHTML = COPY_SVG;
+          let timer;
+          btn.addEventListener("click", async () => {
+            try {
+              await navigator.clipboard?.writeText(code.innerText);
+            } catch {}
+            btn.classList.add("is-copied");
+            btn.setAttribute("aria-label", "Copied");
+            btn.innerHTML = CHECK_SVG;
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+              btn.classList.remove("is-copied");
+              btn.setAttribute("aria-label", "Copy code");
+              btn.innerHTML = COPY_SVG;
+            }, 1500);
+          });
+          pre.appendChild(btn);
+        }
+      }
+
+      initTocScrollSpy();
+      enableTaskCheckboxes();
+      initCodeCopyButtons();
     })();
   </script>
 </PageLayout>
