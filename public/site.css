@@ -605,6 +605,49 @@ a:focus-visible {
 }
 .post .acknowledgements p:last-child { margin-bottom: 0; }
 
+/* Margin Annotations (Figma 42:1507 Article annotations: 160px right rail >=1120px, stacked <1120px) */
+.post .annotated-block {
+  position: relative;
+  margin: 0 0 var(--layout-spacing-m);
+}
+.post .annotated-block > p {
+  margin-bottom: 0;
+}
+.post .annotation {
+  margin-top: var(--layout-spacing-m); /* 16px compact gap below paragraph */
+  color: var(--content-primary);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 460;
+  letter-spacing: -0.04px;
+}
+.post .annotation-arrow,
+.post .annotation--decorative {
+  display: none; /* Hidden below 1120px per Figma 42:1548 */
+}
+@media (min-width: 1120px) {
+  .post .annotation {
+    position: absolute;
+    left: calc(100% + var(--layout-spacing-xl)); /* 32px gutter (Figma 42:1547) */
+    top: 2px;
+    width: var(--layout-toc-width); /* 160px */
+    margin-top: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--layout-spacing-s); /* 8px */
+  }
+  .post .annotation--decorative {
+    display: flex;
+  }
+  .post .annotation-arrow {
+    display: block;
+    width: 44px;
+    height: 23px;
+    flex: none;
+    color: var(--content-primary);
+  }
+}
+
 /* Sparse side doodle on H2 (Figma: doodle/blue-cat, 28px high, 12px gap) */
 .article img.post-doodle {
   display: inline-block;

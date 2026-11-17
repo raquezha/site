@@ -307,10 +307,13 @@ try {
   // 5. Stress test absurd fixture on both Desktop 1440px and Mobile 390px
   for (const [w, mobile] of [[1440, false], [390, true]]) {
     const stress = await inspect(`${BASE_URL}/writing/_absurd-stress-test`, w, `(() => {
+      const postRect = document.querySelector('.post')?.getBoundingClientRect();
       const fn = document.querySelector('.post .footnotes')?.getBoundingClientRect();
       const ack = document.querySelector('.post .acknowledgements')?.getBoundingClientRect();
       const taskItem = document.querySelector('.post .task-list-item');
       const th = document.querySelector('.article th')?.getBoundingClientRect();
+      const noteRail = document.querySelector('.post .annotation')?.getBoundingClientRect();
+      const arrow = document.querySelector('.post .annotation-arrow');
       return {
         overflowX: document.documentElement.scrollWidth > window.innerWidth,
         tableRect: document.querySelector('.article table')?.getBoundingClientRect()?.width ?? 0,
@@ -320,6 +323,8 @@ try {
         footnotesBeforeAck: Boolean(fn && ack && fn.bottom <= ack.top + 1),
         taskDisplay: taskItem ? getComputedStyle(taskItem).display : null,
         thHeight: th ? Math.round(th.height) : 0,
+        annotationInRightRail: Boolean(postRect && noteRail && noteRail.left >= postRect.right + 28),
+        arrowDisplay: arrow ? getComputedStyle(arrow).display : null,
       };
     })()`, mobile);
     assert.equal(stress.overflowX, false, `Absurd stress test overflowed horizontally at ${w}px (table=${stress.tableRect}px)`);
@@ -329,6 +334,13 @@ try {
     assert.equal(stress.footnotesBeforeAck, true, "Footnotes must render above Acknowledgements");
     assert.equal(stress.taskDisplay, "block", "Task list items must use block flow so inline code doesn't become flex columns");
     assert.ok(stress.thHeight <= 40, `Table header wrapped vertically too tall (${stress.thHeight}px)`);
+    if (w >= 1120) {
+      assert.equal(stress.annotationInRightRail, true, "Margin annotation must sit in right rail at >=1120px");
+      assert.equal(stress.arrowDisplay, "block", "Annotation arrow must show at >=1120px");
+    } else {
+      assert.equal(stress.annotationInRightRail, false, "Annotation must stack inline below 1120px");
+      assert.equal(stress.arrowDisplay, "none", "Annotation arrow must hide below 1120px per Figma 42:1548");
+    }
   }
 
   ws.close();
