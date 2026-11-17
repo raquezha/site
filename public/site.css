@@ -210,11 +210,13 @@
 @keyframes softEnter {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
+    filter: blur(3px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
@@ -241,25 +243,31 @@ body {
 }
 @media (prefers-reduced-motion: no-preference) {
   .container--home .homepage > header {
-    animation: 300ms var(--motion-ease) 0ms both softEnter;
+    animation: 440ms var(--motion-ease) 0ms both softEnter;
   }
   .container--home .homepage > p:nth-of-type(1) {
-    animation: 300ms var(--motion-ease) 40ms both softEnter;
+    animation: 440ms var(--motion-ease) 45ms both softEnter;
   }
   .container--home .homepage > p:nth-of-type(2) {
-    animation: 300ms var(--motion-ease) 75ms both softEnter;
+    animation: 440ms var(--motion-ease) 90ms both softEnter;
   }
-  .container--home .writing {
-    animation: 320ms var(--motion-ease) 110ms both softEnter;
+  .container--home .writing h2 {
+    animation: 440ms var(--motion-ease) 130ms both softEnter;
+  }
+  .container--home .writing li {
+    animation: 440ms var(--motion-ease) calc(160ms + var(--stagger, 0) * 40ms) both softEnter;
   }
   .container--home .footer {
-    animation: 320ms var(--motion-ease) 150ms both softEnter;
+    animation: 440ms var(--motion-ease) 380ms both softEnter;
   }
   .container--post .post > header {
-    animation: 280ms var(--motion-ease) 0ms both softEnter;
+    animation: 440ms var(--motion-ease) 0ms both softEnter;
+  }
+  .container--post .post-toc {
+    animation: 440ms var(--motion-ease) 45ms both softEnter;
   }
   .container--post .post > :not(header) {
-    animation: 320ms var(--motion-ease) 55ms both softEnter;
+    animation: 460ms var(--motion-ease) 80ms both softEnter;
   }
 }
 .container--home {

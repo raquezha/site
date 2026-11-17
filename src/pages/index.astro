@@ -54,8 +54,8 @@ const posts = sorted.map((post) => {
     <section class="writing">
       <h2>Writing</h2>
       <ul>
-        {posts.map((post) => (
-          <li>
+        {posts.map((post, idx) => (
+          <li style={`--stagger: ${idx}`}>
             <a href={post.route} title={post.title}>
               <span class="post-year" aria-hidden={!post.showYear}>
                 {post.showYear ? post.year : ""}
