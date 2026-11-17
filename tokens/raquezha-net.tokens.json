@@ -1,0 +1,448 @@
+{
+  "$schema": "https://www.designtokens.org/tr/2025.10/format/",
+  "$description": "raquezha.net v7.7 Design Tokens — NoDesign Standard Proposal (com.nodesign)",
+  "colors": {
+    "solid": {
+      "paper": {
+        "100": {
+          "$type": "color",
+          "$value": "#fdfdfc",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "200": {
+          "$type": "color",
+          "$value": "#f8f8f8",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "300": {
+          "$type": "color",
+          "$value": "#f2f2f2",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "400": {
+          "$type": "color",
+          "$value": "#ededed",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#d9d9d9",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        }
+      },
+      "ink": {
+        "500": {
+          "$type": "color",
+          "$value": "#70706c",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#666666",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "700": {
+          "$type": "color",
+          "$value": "#30302e",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "800": {
+          "$type": "color",
+          "$value": "#20201e",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "900": {
+          "$type": "color",
+          "$value": "#111111",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        }
+      },
+      "blue": {
+        "500": {
+          "$type": "color",
+          "$value": "#1a68d1",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#0066cc",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        }
+      },
+      "mark": {
+        "gold": {
+          "$type": "color",
+          "$value": "#ebd38f",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "mint": {
+          "$type": "color",
+          "$value": "#bde8cf",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "sky": {
+          "$type": "color",
+          "$value": "#bfddf0",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "lilac": {
+          "$type": "color",
+          "$value": "#dccbeb",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "peach": {
+          "$type": "color",
+          "$value": "#f5cdbf",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        },
+        "lemon": {
+          "$type": "color",
+          "$value": "#f8ec9c",
+          "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } }
+        }
+      }
+    }
+  },
+  "pixels": {
+    "2": { "$type": "dimension", "$value": "2px", "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } } },
+    "4": { "$type": "dimension", "$value": "4px", "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } } },
+    "8": { "$type": "dimension", "$value": "8px", "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } } },
+    "16": { "$type": "dimension", "$value": "16px", "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } } },
+    "24": { "$type": "dimension", "$value": "24px", "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } } },
+    "32": { "$type": "dimension", "$value": "32px", "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } } },
+    "48": { "$type": "dimension", "$value": "48px", "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } } },
+    "64": { "$type": "dimension", "$value": "64px", "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } } },
+    "550": { "$type": "dimension", "$value": "550px", "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } } },
+    "680": { "$type": "dimension", "$value": "680px", "$extensions": { "com.nodesign": { "collection": "Tokens: Primitive", "mode": "Value", "scopes": [] } } }
+  },
+  "surface": {
+    "background": {
+      "$type": "color",
+      "$value": "{colors.solid.paper.100}",
+      "$description": "Primary page canvas background",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["FRAME_FILL", "SHAPE_FILL"],
+          "codeSyntax": {
+            "WEB": "--surface-background",
+            "ANDROID": "AppColors.surfaceBackground",
+            "iOS": "AppColors.surfaceBackground"
+          }
+        }
+      }
+    },
+    "code": {
+      "$type": "color",
+      "$value": "{colors.solid.paper.200}",
+      "$description": "Code surface fill",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["FRAME_FILL", "SHAPE_FILL"],
+          "codeSyntax": {
+            "WEB": "--surface-code",
+            "ANDROID": "AppColors.surfaceCode",
+            "iOS": "AppColors.surfaceCode"
+          }
+        }
+      }
+    },
+    "selection": {
+      "$type": "color",
+      "$value": "{colors.solid.paper.400}",
+      "$description": "Text selection highlight surface",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["FRAME_FILL", "SHAPE_FILL"],
+          "codeSyntax": {
+            "WEB": "--surface-selection",
+            "ANDROID": "AppColors.surfaceSelection",
+            "iOS": "AppColors.surfaceSelection"
+          }
+        }
+      }
+    }
+  },
+  "content": {
+    "primary": {
+      "$type": "color",
+      "$value": "{colors.solid.ink.900}",
+      "$description": "Primary body and heading ink",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["TEXT_FILL", "SHAPE_FILL"],
+          "codeSyntax": {
+            "WEB": "--content-primary",
+            "ANDROID": "AppColors.contentPrimary",
+            "iOS": "AppColors.contentPrimary"
+          }
+        }
+      }
+    },
+    "name": {
+      "$type": "color",
+      "$value": "{colors.solid.ink.800}",
+      "$description": "Home header name ink",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["TEXT_FILL", "SHAPE_FILL"],
+          "codeSyntax": {
+            "WEB": "--content-name",
+            "ANDROID": "AppColors.contentName",
+            "iOS": "AppColors.contentName"
+          }
+        }
+      }
+    },
+    "lead": {
+      "$type": "color",
+      "$value": "{colors.solid.ink.700}",
+      "$description": "Lead paragraph and list item ink",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["TEXT_FILL", "SHAPE_FILL"],
+          "codeSyntax": {
+            "WEB": "--content-lead",
+            "ANDROID": "AppColors.contentLead",
+            "iOS": "AppColors.contentLead"
+          }
+        }
+      }
+    },
+    "subtle": {
+      "$type": "color",
+      "$value": "{colors.solid.ink.500}",
+      "$description": "Subtle metadata and footer ink",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["TEXT_FILL", "SHAPE_FILL"],
+          "codeSyntax": {
+            "WEB": "--content-subtle",
+            "ANDROID": "AppColors.contentSubtle",
+            "iOS": "AppColors.contentSubtle"
+          }
+        }
+      }
+    },
+    "link-styled": {
+      "$type": "color",
+      "$value": "{colors.solid.blue.500}",
+      "$description": "Styled prose link accent",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["TEXT_FILL", "SHAPE_FILL"],
+          "codeSyntax": {
+            "WEB": "--content-link-styled",
+            "ANDROID": "AppColors.contentLinkStyled",
+            "iOS": "AppColors.contentLinkStyled"
+          }
+        }
+      }
+    }
+  },
+  "outline": {
+    "subtle": {
+      "$type": "color",
+      "$value": "{colors.solid.paper.300}",
+      "$description": "Subtle row divider rule",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["STROKE_COLOR"],
+          "codeSyntax": {
+            "WEB": "--outline-subtle",
+            "ANDROID": "AppColors.outlineSubtle",
+            "iOS": "AppColors.outlineSubtle"
+          }
+        }
+      }
+    },
+    "rule": {
+      "$type": "color",
+      "$value": "{colors.solid.paper.400}",
+      "$description": "Section horizontal rule",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["STROKE_COLOR"],
+          "codeSyntax": {
+            "WEB": "--outline-rule",
+            "ANDROID": "AppColors.outlineRule",
+            "iOS": "AppColors.outlineRule"
+          }
+        }
+      }
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "{colors.solid.blue.600}",
+      "$description": "Keyboard focus ring outline",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Color: Semantic",
+          "mode": "Light",
+          "scopes": ["STROKE_COLOR"],
+          "codeSyntax": {
+            "WEB": "--outline-focus",
+            "ANDROID": "AppColors.outlineFocus",
+            "iOS": "AppColors.outlineFocus"
+          }
+        }
+      }
+    }
+  },
+  "layout": {
+    "spacing": {
+      "xxs": {
+        "$type": "dimension",
+        "$value": "{pixels.2}",
+        "$description": "2px micro spacing",
+        "$extensions": {
+          "com.nodesign": {
+            "collection": "Breakpoints: Semantic",
+            "mode": "Web",
+            "scopes": ["GAP", "WIDTH_HEIGHT"],
+            "codeSyntax": { "WEB": "--layout-spacing-xxs", "ANDROID": "AppLayout.layoutSpacingXxs", "iOS": "AppLayout.layoutSpacingXxs" }
+          }
+        }
+      },
+      "xs": {
+        "$type": "dimension",
+        "$value": "{pixels.4}",
+        "$description": "4px extra-small spacing",
+        "$extensions": {
+          "com.nodesign": {
+            "collection": "Breakpoints: Semantic",
+            "mode": "Web",
+            "scopes": ["GAP", "WIDTH_HEIGHT"],
+            "codeSyntax": { "WEB": "--layout-spacing-xs", "ANDROID": "AppLayout.layoutSpacingXs", "iOS": "AppLayout.layoutSpacingXs" }
+          }
+        }
+      },
+      "s": {
+        "$type": "dimension",
+        "$value": "{pixels.8}",
+        "$description": "8px small spacing",
+        "$extensions": {
+          "com.nodesign": {
+            "collection": "Breakpoints: Semantic",
+            "mode": "Web",
+            "scopes": ["GAP", "WIDTH_HEIGHT"],
+            "codeSyntax": { "WEB": "--layout-spacing-s", "ANDROID": "AppLayout.layoutSpacingS", "iOS": "AppLayout.layoutSpacingS" }
+          }
+        }
+      },
+      "m": {
+        "$type": "dimension",
+        "$value": "{pixels.16}",
+        "$description": "16px medium spacing",
+        "$extensions": {
+          "com.nodesign": {
+            "collection": "Breakpoints: Semantic",
+            "mode": "Web",
+            "scopes": ["GAP", "WIDTH_HEIGHT"],
+            "codeSyntax": { "WEB": "--layout-spacing-m", "ANDROID": "AppLayout.layoutSpacingM", "iOS": "AppLayout.layoutSpacingM" }
+          }
+        }
+      },
+      "l": {
+        "$type": "dimension",
+        "$value": "{pixels.24}",
+        "$description": "24px large spacing",
+        "$extensions": {
+          "com.nodesign": {
+            "collection": "Breakpoints: Semantic",
+            "mode": "Web",
+            "scopes": ["GAP", "WIDTH_HEIGHT"],
+            "codeSyntax": { "WEB": "--layout-spacing-l", "ANDROID": "AppLayout.layoutSpacingL", "iOS": "AppLayout.layoutSpacingL" }
+          }
+        }
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{pixels.32}",
+        "$description": "32px extra-large spacing",
+        "$extensions": {
+          "com.nodesign": {
+            "collection": "Breakpoints: Semantic",
+            "mode": "Web",
+            "scopes": ["GAP", "WIDTH_HEIGHT"],
+            "codeSyntax": { "WEB": "--layout-spacing-xl", "ANDROID": "AppLayout.layoutSpacingXl", "iOS": "AppLayout.layoutSpacingXl" }
+          }
+        }
+      },
+      "xxl": {
+        "$type": "dimension",
+        "$value": "{pixels.48}",
+        "$description": "48px 2x-extra-large spacing",
+        "$extensions": {
+          "com.nodesign": {
+            "collection": "Breakpoints: Semantic",
+            "mode": "Web",
+            "scopes": ["GAP", "WIDTH_HEIGHT"],
+            "codeSyntax": { "WEB": "--layout-spacing-xxl", "ANDROID": "AppLayout.layoutSpacingXxl", "iOS": "AppLayout.layoutSpacingXxl" }
+          }
+        }
+      }
+    },
+    "breakpoint": {
+      "home-column": {
+        "$type": "dimension",
+        "$value": "{pixels.550}",
+        "$description": "Home reading column width",
+        "$extensions": {
+          "com.nodesign": {
+            "collection": "Breakpoints: Semantic",
+            "mode": "Web",
+            "scopes": ["WIDTH_HEIGHT"],
+            "codeSyntax": { "WEB": "--layout-home-column", "ANDROID": "AppLayout.layoutBreakpointHomeColumn", "iOS": "AppLayout.layoutBreakpointHomeColumn" }
+          }
+        }
+      },
+      "post-column": {
+        "$type": "dimension",
+        "$value": "{pixels.680}",
+        "$description": "Post reading column width",
+        "$extensions": {
+          "com.nodesign": {
+            "collection": "Breakpoints: Semantic",
+            "mode": "Web",
+            "scopes": ["WIDTH_HEIGHT"],
+            "codeSyntax": { "WEB": "--layout-post-column", "ANDROID": "AppLayout.layoutBreakpointPostColumn", "iOS": "AppLayout.layoutBreakpointPostColumn" }
+          }
+        }
+      }
+    }
+  },
+  "nav": {
+    "index": {
+      "$type": "string",
+      "$value": "Index",
+      "$description": "Back link label on article pages",
+      "$extensions": {
+        "com.nodesign": {
+          "collection": "Localization: Semantic",
+          "mode": "English",
+          "codeSyntax": { "ANDROID": "Res.string.nav_index", "iOS": "String(localized: \"nav_index\")" }
+        }
+      }
+    }
+  }
+}

@@ -433,7 +433,7 @@ a:focus-visible {
   overflow-wrap: normal;
 }
 
-.post img {
+.post img:not(.post-doodle) {
   display: block;
   max-width: 100%;
   height: auto;
