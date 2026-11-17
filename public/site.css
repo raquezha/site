@@ -608,14 +608,25 @@ a:focus-visible {
 .post-toc .back-link--toc {
   margin-bottom: 28px;
 }
-.post-toc-title {
+.post-toc-post-title {
   display: block;
   margin-bottom: var(--layout-spacing-s); /* 8px */
   color: var(--content-muted);
-  font-size: var(--type-nav-toc-heading-size); /* 13px (Slice 08) */
+  font-size: var(--type-nav-toc-heading-size); /* 13px */
   font-weight: var(--type-nav-toc-heading-weight); /* 500 */
   line-height: var(--type-nav-toc-heading-lh); /* 16px */
   letter-spacing: var(--type-nav-toc-heading-tracking); /* -0.04px */
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, color 160ms ease;
+}
+.post-toc-post-title.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.post-toc-post-title:hover {
+  color: var(--content-nav-active);
 }
 .post-toc ul {
   margin: 0;

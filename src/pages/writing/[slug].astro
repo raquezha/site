@@ -51,7 +51,9 @@ const showToc = h2Headings.length >= 3;
           </svg>
           Index
         </a>
-        <span class="post-toc-title">On this page</span>
+        <a href="#" class="post-toc-post-title" aria-hidden="true" tabindex="-1">
+          {entry.data.shortTitle ?? title}
+        </a>
         <nav>
           <ul>
             {h2Headings.map((heading, idx) => (
@@ -135,6 +137,21 @@ const showToc = h2Headings.length >= 3;
           { rootMargin: "0px 0px -75% 0px", threshold: 0 }
         );
         for (const target of targets) observer.observe(target);
+
+        const tocTitle = document.querySelector(".post-toc-post-title");
+        const postH1 = document.querySelector(".post > header h1");
+        if (tocTitle && postH1) {
+          const titleObserver = new IntersectionObserver(
+            ([entry]) => {
+              const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+              tocTitle.classList.toggle("is-visible", scrolledPast);
+              tocTitle.setAttribute("aria-hidden", String(!scrolledPast));
+              tocTitle.setAttribute("tabindex", scrolledPast ? "0" : "-1");
+            },
+            { threshold: 0 }
+          );
+          titleObserver.observe(postH1);
+        }
       })();
     </script>
   )}
