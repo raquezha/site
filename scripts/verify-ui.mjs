@@ -229,6 +229,7 @@ try {
       figcaptionSize: figcaptionS?.fontSize,
       figcaptionLh: figcaptionS?.lineHeight,
       videoRadius: videoS?.borderRadius,
+      videoBorderColor: videoS?.borderTopColor,
       noteBg: noteS?.backgroundColor,
       hasAck: Boolean(ack),
       footerSize: postFooterS?.fontSize,
@@ -247,13 +248,14 @@ try {
   assert.equal(postDesktop.scrolledOpacity, "1", "TOC post title must appear when scrolled past H1");
   assert.equal(postDesktop.preOverflow, "hidden");
   assert.equal(postDesktop.preRadius, "8px");
-  assert.equal(postDesktop.preBg, "rgb(20, 20, 20)");
+  assert.equal(postDesktop.preBg, "rgb(248, 248, 248)", "Code block must match Figma surface/code (#f8f8f8)");
   assert.equal(postDesktop.codeOverflowX, "auto");
   assert.equal(postDesktop.doodleH, 28);
   assert.ok(postDesktop.hasTable && postDesktop.hasMark, "Kitchen sink must render table and marks");
   assert.equal(postDesktop.figcaptionSize, "12px");
   assert.equal(postDesktop.figcaptionLh, "16px");
-  assert.equal(postDesktop.videoRadius, "6px");
+  assert.equal(postDesktop.videoRadius, "8px", "Video player must match Figma 8px radius");
+  assert.equal(postDesktop.videoBorderColor, "rgb(51, 51, 51)", "Video player must match Figma #333333 border");
   assert.equal(postDesktop.noteBg, "rgb(248, 248, 248)");
   assert.equal(postDesktop.hasAck, true, "Kitchen sink must render Acknowledgements heading");
   assert.equal(postDesktop.footerSize, "12px");
