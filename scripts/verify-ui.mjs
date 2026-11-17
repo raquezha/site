@@ -304,8 +304,35 @@ try {
   assert.equal(figmaSample.ackPSize, "11px");
   assert.equal(figmaSample.hasCheckbox, true, "Figma sample must render task checkboxes");
 
+  // 5. Stress test absurd fixture on both Desktop 1440px and Mobile 390px
+  for (const [w, mobile] of [[1440, false], [390, true]]) {
+    const stress = await inspect(`${BASE_URL}/writing/_absurd-stress-test`, w, `(() => {
+      const fn = document.querySelector('.post .footnotes')?.getBoundingClientRect();
+      const ack = document.querySelector('.post .acknowledgements')?.getBoundingClientRect();
+      const taskItem = document.querySelector('.post .task-list-item');
+      const th = document.querySelector('.article th')?.getBoundingClientRect();
+      return {
+        overflowX: document.documentElement.scrollWidth > window.innerWidth,
+        tableRect: document.querySelector('.article table')?.getBoundingClientRect()?.width ?? 0,
+        footnotesCount: document.querySelectorAll('.post .footnotes li').length,
+        ackCount: document.querySelectorAll('.post .acknowledgements p').length,
+        noteCount: document.querySelectorAll('.post .note').length,
+        footnotesBeforeAck: Boolean(fn && ack && fn.bottom <= ack.top + 1),
+        taskDisplay: taskItem ? getComputedStyle(taskItem).display : null,
+        thHeight: th ? Math.round(th.height) : 0,
+      };
+    })()`, mobile);
+    assert.equal(stress.overflowX, false, `Absurd stress test overflowed horizontally at ${w}px (table=${stress.tableRect}px)`);
+    assert.equal(stress.footnotesCount, 10, "Expected 10 footnotes in absurd stress test");
+    assert.equal(stress.ackCount, 2, "Expected 2 acknowledgement paragraphs");
+    assert.equal(stress.noteCount, 2, "Expected 2 consecutive note callouts");
+    assert.equal(stress.footnotesBeforeAck, true, "Footnotes must render above Acknowledgements");
+    assert.equal(stress.taskDisplay, "block", "Task list items must use block flow so inline code doesn't become flex columns");
+    assert.ok(stress.thHeight <= 40, `Table header wrapped vertically too tall (${stress.thHeight}px)`);
+  }
+
   ws.close();
-  console.log(`site UI parity ok (${tokenCount} tokens, Home + Kitchen-Sink + Figma Samples 1440px/390px, contrast >= 3.0)`);
+  console.log(`site UI parity ok (${tokenCount} tokens, Home + Kitchen-Sink + Figma Samples + Absurd Stress 1440px/390px)`);
 } finally {
   chrome.kill();
   if (devProc) devProc.kill();

@@ -13,6 +13,7 @@ const writing = defineCollection({
       routeOverride: z.string().optional(),
       draft: z.boolean().optional(),
       status: z.string().optional(),
+      acknowledgements: z.array(z.string()).optional(),
     })
     .passthrough()
     .refine((data) => Boolean(data.date || data.created), {

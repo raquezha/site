@@ -537,17 +537,18 @@ a:focus-visible {
   padding-left: 0;
 }
 .post .task-list-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--layout-spacing-s);
-  padding-left: 0;
+  display: block;
+  position: relative;
+  padding-left: 24px;
   margin-block: 6px;
 }
 .post .task-list-item input[type="checkbox"] {
+  position: absolute;
+  left: 0;
+  top: 2px;
   width: 16px;
   height: 16px;
-  margin-top: 2px;
-  flex: none;
+  margin: 0;
   accent-color: var(--content-primary);
   cursor: pointer;
 }
@@ -626,25 +627,32 @@ a:focus-visible {
   letter-spacing: 0;
 }
 
-/* Tables */
+/* Tables (Figma 63:5330 Block / Table: 14/20, #ededed header rule, #f2f2f2 row rule, 6px/7px pad) */
 .article table {
+  display: block;
   width: 100%;
+  overflow-x: auto;
+  overflow-wrap: normal;
   border-collapse: collapse;
   margin-block: var(--post-p-gap);
-  font-size: 0.9375rem;
-  line-height: 1.55;
+  font-size: var(--type-post-body-size);
+  line-height: var(--type-post-body-lh);
 }
 .article th,
 .article td {
   text-align: left;
   vertical-align: top;
-  padding: 10px 14px 10px 0;
-  border-bottom: 1px solid var(--outline-weak);
+  padding: 6px 14px 7px 0;
+  border-bottom: 1px solid var(--outline-subtle);
 }
 .article th {
   color: var(--content-primary);
   font-weight: 500;
-  border-bottom-color: var(--outline-strong);
+  white-space: nowrap;
+  border-bottom-color: var(--outline-rule);
+}
+.article td {
+  min-width: 110px;
 }
 
 /* ==========================================================================
