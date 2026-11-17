@@ -42,6 +42,7 @@ test.describe("Unit: NoDesign Tokens & Static Assets", () => {
       "public/demo-placeholder.mp4",
       "public/cat-lounging.svg",
       "public/cat-peekaboo.svg",
+      "public/doodle-arrow.svg",
       "public/doodle-blue-cat.svg",
       "public/images/2026-11-10-site-fixed-home.png",
       "public/images/2026-11-17-post-compact-parity.png",

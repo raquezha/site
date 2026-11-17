@@ -137,7 +137,9 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
         const fn = document.querySelector(".post .footnotes")!.getBoundingClientRect();
         const ack = document.querySelector(".post .acknowledgements")!.getBoundingClientRect();
         const rail = document.querySelector(".post .annotation")!.getBoundingClientRect();
-        const arrow = getComputedStyle(document.querySelector(".post .annotation-arrow")!);
+        const arrowEl = document.querySelector(".post .annotation-arrow") as HTMLImageElement | SVGElement | null;
+        const arrow = getComputedStyle(arrowEl!);
+        const arrowRect = arrowEl!.getBoundingClientRect();
         const taskLi = getComputedStyle(document.querySelector(".post .task-list-item")!);
         const th = document.querySelector(".article th")!.getBoundingClientRect();
         return {
@@ -146,6 +148,8 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
           footnotesBeforeAck: fn.bottom <= ack.top + 1,
           inRightRail: rail.left >= postRect.right + 28,
           arrowDisplay: arrow.display,
+          arrowTag: arrowEl!.tagName.toLowerCase(),
+          arrowRect: { w: Math.round(arrowRect.width), h: Math.round(arrowRect.height) },
           taskDisplay: taskLi.display,
           thHeight: Math.round(th.height),
         };
@@ -156,9 +160,11 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
       expect(res.footnotesBeforeAck).toBe(true);
       expect(res.taskDisplay).toBe("block");
       expect(res.thHeight).toBeLessThanOrEqual(40);
+      expect(res.arrowTag).toBe("img");
       if (width >= 1120) {
         expect(res.inRightRail).toBe(true);
         expect(res.arrowDisplay).toBe("block");
+        expect(res.arrowRect).toEqual({ w: 48, h: 28 });
       } else {
         expect(res.inRightRail).toBe(false);
         expect(res.arrowDisplay).toBe("none");
