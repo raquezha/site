@@ -1,27 +1,19 @@
-# General ignores
+dist/
+.astro/
+node_modules/
+npm-debug.log*
 .DS_Store
-build
-out
-kotlin-js-store
+.env
+.env.*
+.idea/
+.vscode/
 
-# IntelliJ ignores
-*.iml
-/*.ipr
+# Local-only article drafts & draft media (never push)
+src/content/writing/drafts/
+public/images/
+public/demo-placeholder.mp4
 
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/gradle.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-/.idea/artifacts
-/.idea/compiler.xml
-/.idea/jarRepositories.xml
-/.idea/*.iml
-/.idea/modules
-/.idea/libraries-with-intellij-classes.xml
-
-# Gradle ignores
-.gradle
-
+# Playwright artifacts & local visual snapshots
+test-results/
+playwright-report/
+tests/__screenshots__/

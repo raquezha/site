@@ -1,53 +1,40 @@
-This is a [Kobweb](https://github.com/varabyte/kobweb) project bootstrapped with the `app/empty` template.
+# raquezha.net
 
-This template is useful if you already know what you're doing and just want a clean slate. By default, it
-just creates a blank home page (which prints to the console so you can confirm it's working)
+Personal site built with [Astro](https://astro.build). Typography and layout inspired by [Benji Taylor](https://benji.org).
 
-If you are still learning, consider instantiating the `app` template (or one of the examples) to see actual,
-working projects.
+## Write
 
-## Getting Started
+Add a file in `src/content/writing/`:
 
-First, run the development server by typing the following command in a terminal under the `site` folder:
+```md
+---
+title: "Post title"
+date: "YYYY-MM-DD"
+description: "Short summary for search and sharing."
+---
 
-```bash
-$ cd site
-$ kobweb run
+Your article in Markdown.
 ```
 
-Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
+The build automatically adds it to the home page, sorted newest first. The Markdown becomes a static page at `/writing/<slug>` (or `routeOverride` if set).
 
-You can use any editor you want for the project, but we recommend using **IntelliJ IDEA Community Edition** downloaded
-using the [Toolbox App](https://www.jetbrains.com/toolbox-app/).
+## Run locally
 
-Press `Q` in the terminal to gracefully stop the server.
-
-### Live Reload
-
-Feel free to edit / add / delete new components, pages, and API endpoints! When you make any changes, the site will
-indicate the status of the build and automatically reload when ready.
-
-## Exporting the Project
-
-When you are ready to ship, you should shutdown the development server and then export the project using:
-
-```bash
-kobweb export
+```sh
+npm install
+npm run dev
 ```
 
-When finished, you can run a Kobweb server in production mode:
+Open <http://localhost:4321>.
 
-```bash
-kobweb run --env prod
+## Build the static site
+
+```sh
+npm run build
 ```
 
-If you want to run this command in the Cloud provider of your choice, consider disabling interactive mode since nobody
-is sitting around watching the console in that case anyway. To do that, use:
+The output is `dist/`.
 
-```bash
-kobweb run --env prod --notty
-```
+## Deploy
 
-Kobweb also supports exporting to a static layout which is compatible with static hosting providers, such as GitHub
-Pages, Netlify, Firebase, any presumably all the others. You can read more about that approach here:
-https://bitspittle.dev/blog/2022/staticdeploy
+The GitHub Actions workflow deploys every push to `main`. In GitHub, set **Settings > Pages > Source** to **GitHub Actions**. The committed `public/CNAME` file requests `raquezha.net`; configure its DNS records at your domain provider, then enable HTTPS in GitHub Pages.

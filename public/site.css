@@ -1,0 +1,1231 @@
+:root {
+  /* ==========================================================================
+     Foundations · Tokens (Slice 01, 2026-11-15)
+     Source of truth: Figma tNpJxNOZLyt2s2wiXiWDD2 · Screens (v2) 59:1507,
+     local variables (collection "Color: Semantic" 39:144, "Marks" 30:526)
+     and local text styles. Names follow the Figma variable names
+     (slash -> dash). Values equal the Figma values.
+     ========================================================================== */
+
+  /* Color · Semantic (Figma variables, mode Light) */
+  --surface-background: #fdfdfc;              /* surface/background      VariableID:39:147 */
+  --content-primary: #111111;                 /* content/primary         VariableID:39:145 */
+  --content-muted: rgba(0, 0, 0, 0.55);       /* content/muted           VariableID:39:146  (= #727271 on background, 4.76:1) */
+  --content-caption: var(--content-muted);    /* content/caption         VariableID:63:5326 (alias) */
+  --outline-subtle: #f2f2f2;                  /* outline/subtle          VariableID:39:148 */
+  --outline-rule: #ededed;                    /* outline/rule            VariableID:39:149 */
+  --content-link: #111111;                    /* content/link            VariableID:39:150 */
+  --content-link-hover: #111111;              /* content/link-hover      VariableID:39:151 */
+  --outline-link-underline: #d9d9d9;          /* outline/link-underline  VariableID:39:152 */
+  --outline-link-underline-hover: #666666;    /* outline/link-underline-hover VariableID:39:153 */
+  --outline-focus: #0066cc;                   /* outline/focus           VariableID:39:154 */
+  --content-selection: #111111;               /* content/selection       VariableID:39:155 */
+  --surface-selection: #ededed;               /* surface/selection       VariableID:39:156 */
+  --content-nav-default: rgba(18, 18, 18, 0.4); /* content/nav-default VariableID:39:157 (benji.org 40%) */
+  --content-nav-active: rgba(18, 18, 18, 0.8);  /* content/nav-active  VariableID:39:158 (benji.org 80%) */
+  --surface-code: #f8f8f8;                    /* surface/code            VariableID:51:1250 */
+  --content-link-styled: #1a68d1;             /* content/link-styled     VariableID:58:1183 */
+  --surface-code-inline: rgba(0, 0, 0, 0.04); /* surface/code-inline     VariableID:58:1184 */
+  --marker-bullet: #b3b3b3;                   /* marker/bullet           VariableID:58:1185 */
+  --content-on-inverse: #cccccc;              /* content/on-inverse      VariableID:59:2466 */
+  --surface-terminal: #141414;                /* surface/terminal        VariableID:63:3462 */
+  --outline-inverse: #333333;                 /* dark terminal/video 1px frame border */
+  --surface-target: rgb(255, 255, 170);       /* benji.org-style :target highlight wash */
+  --content-terminal-prompt: #14a647;         /* content/terminal-prompt VariableID:63:3463 */
+
+  /* Color · Unbound fills used on Screens (v2) (hex in Figma, no variable yet).
+     Logged as a Figma gap in Slice 01; values copied exactly. */
+  --content-name: #20201e;    /* Home name "Jan Celada" 59:1520 */
+  --content-lead: #30302e;    /* Home first paragraph 59:1524, post list item text */
+  --content-subtle: #70706c;  /* Home subtitle 59:1523, footer 59:1574 */
+
+  /* Color · Site-only (no Figma variable or node yet; kept as-is, unverified) */
+  --surface-code-block: #1e1e1c;
+  --content-quote: #62625e;
+  --outline-weak: #e7e7e2;    /* same hex as the Figma screen-frame stroke (unbound) */
+  --outline-strong: #deded8;
+
+  /* Color · Marks (Figma collection "Marks" 30:526) */
+  --mark-default: #ebd38f;    /* mark/default VariableID:30:527 */
+  --mark-ink: #2a2a28;        /* mark/ink     VariableID:30:528 */
+  --mark-mint: #bde8cf;       /* mark/mint    VariableID:36:22 */
+  --mark-sky: #bfddf0;        /* mark/sky     VariableID:36:23 */
+  --mark-lilac: #dccbeb;      /* mark/lilac   VariableID:36:24 */
+  --mark-peach: #f5cdbf;      /* mark/peach   VariableID:36:25 */
+  --mark-lemon: #f8ec9c;      /* mark/lemon   VariableID:36:26 */
+
+  /* State (Figma Screens (v2) "Home" hover 59:1548: non-hovered row titles at 60%) */
+  --state-row-dim-opacity: 0.3;
+
+  /* Type · Figma text styles (Inter; tracking in px, -0.6434% of 14px = -0.09px).
+     Wired now where the site already uses the same size and line height;
+     the rest are wired by the slice that owns the element (noted per rule). */
+  --type-home-name-size: 16px;   --type-home-name-lh: 24px;   --type-home-name-weight: 600; --type-home-name-tracking: -0.1px;  /* home/name S:43cb7669… */
+  --type-home-body-size: 14px;   --type-home-body-lh: 20px;   --type-home-body-weight: 460; --type-home-body-tracking: -0.09px; /* home/body S:ffe491df… (Inter Regular, wght 460; corrected in Slice 02) */
+  --type-home-writing-size: 14px; --type-home-writing-lh: 17px; --type-home-writing-weight: 460; --type-home-writing-tracking: -0.09px; /* home/writing S:4d911652… (wght 460, wired in Slice 3) */
+  --type-home-footer-size: 12px; --type-home-footer-lh: 18px; --type-home-footer-tracking: 0;                                     /* home/footer S:44dc0817… */
+  --type-post-title-size: 14px;  --type-post-title-lh: 20px;  --type-post-title-weight: 500; --type-post-title-tracking: -0.09px; /* typography/title/large S:f1fd0b78… */
+  --type-post-body-size: 14px;   --type-post-body-lh: 20px;   --type-post-body-weight: 400; --type-post-body-tracking: -0.09px; /* post/body S:ed5d6613… (Home subtitle 59:1523, first paragraph 59:1524) */
+  --type-post-h2-size: 14px;     --type-post-h2-lh: 20px;     --type-post-h2-weight: 600;    --type-post-h2-tracking: -0.09px;    /* post/h2 S:a4e297f8… */
+  --type-post-h3-size: 13px;     --type-post-h3-lh: 18px;     --type-post-h3-weight: 600;    --type-post-h3-tracking: -0.05px;    /* post/h3 S:69d3ad5b… */
+  --type-post-list-number-size: 12px; --type-post-list-number-lh: 20px;                                                         /* post/list-number S:7abeff19… */
+  --type-post-caption-size: 12px; --type-post-caption-lh: 16px;                                                                  /* post/caption S:f8571081… */
+  --type-post-code-size: 13px;   --type-post-code-lh: 20px;                                                                      /* post/code S:ea06a98e… (JetBrains Mono) */
+  --type-post-code-inline-size: 12px; --type-post-code-inline-lh: 16px;                                                          /* post/code-inline S:e6a098fe… */
+  --type-nav-index-size: 13px;   --type-nav-index-lh: 20px;                                                                      /* nav/index S:d1e93ae8… (mobile) */
+  --type-nav-index-desktop-size: 14px; --type-nav-index-desktop-lh: 20px; --type-nav-index-desktop-tracking: -0.09px;           /* nav/index/desktop S:b140958e… */
+  --type-nav-toc-heading-size: 13px; --type-nav-toc-heading-lh: 16px; --type-nav-toc-heading-weight: 460; --type-nav-toc-heading-tracking: -0.04px; /* nav/toc-heading S:68881a62… */
+  --type-nav-toc-item-size: 13px; --type-nav-toc-item-lh: 15.6px; --type-nav-toc-item-tracking: -0.04px;                        /* nav/toc-item S:976eb71a… */
+
+  /* Spacing · 4/8 grid. Figma has no spacing variables; every auto-layout gap and
+     padding on Home/Post desktop+mobile is one of: 4 8 10 12 14 16 22 24 32 36 48 64 80 96 108 11.76. */
+  --layout-spacing-xxs: 2px;
+  --layout-spacing-xs: 4px;
+  --layout-spacing-s: 8px;
+  --layout-spacing-10: 10px;
+  --layout-spacing-12: 12px;
+  --layout-spacing-14: 14px;
+  --layout-spacing-m: 16px;
+  --layout-spacing-l: 24px;
+  --layout-spacing-xl: 32px;
+  --layout-spacing-40: 40px;
+  --layout-spacing-xxl: 48px;
+  --layout-spacing-3xl: 64px;
+  --layout-spacing-home-top: 80px;
+  --layout-spacing-96: 96px;
+  --layout-home-row-pad: 11.76px;  /* Figma Home row padding-block (wired in Slice 3) */
+  --layout-year-rail: 108px;       /* Figma Home row padding-left / title column */
+
+  /* Layout columns (site values; column changes belong to Slices 6 and 9) */
+  --layout-home-column: 550px;
+  --layout-post-column: 680px;
+  --layout-toc-width: 160px;
+  --layout-toc-gap: 48px;
+
+  /* Post header rhythm */
+  --post-date-gap: 8px;
+  --post-header-bottom: 32px;
+  --post-p-gap: 16px;
+  --post-figure-mt: 47px;
+  --post-figure-mb: 43px;
+
+  /* Motion · Compositor-only ease-out (Zero-JS View Transitions + micro-motion) */
+  --motion-duration: 240ms;
+  --motion-micro: 180ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color: var(--content-primary);
+  background: var(--surface-background);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+  ::view-transition-group(root) {
+    animation-duration: var(--motion-duration);
+    animation-timing-function: var(--motion-ease);
+  }
+  ::view-transition-old(root) {
+    animation: var(--motion-duration) var(--motion-ease) both softPageOut;
+  }
+  ::view-transition-new(root) {
+    animation: var(--motion-duration) var(--motion-ease) both softPageIn;
+  }
+  html:active-view-transition-type(forward)::view-transition-old(root) {
+    animation-name: slideLeftOut;
+  }
+  html:active-view-transition-type(forward)::view-transition-new(root) {
+    animation-name: slideLeftIn;
+  }
+  html:active-view-transition-type(backward)::view-transition-old(root) {
+    animation-name: slideRightOut;
+  }
+  html:active-view-transition-type(backward)::view-transition-new(root) {
+    animation-name: slideRightIn;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@keyframes softPageOut {
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.996);
+  }
+}
+@keyframes softPageIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes slideLeftOut {
+  to {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+}
+@keyframes slideLeftIn {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+}
+@keyframes slideRightOut {
+  to {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+}
+@keyframes slideRightIn {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes scrollFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .post figure,
+    .post pre {
+      animation: scrollFadeUp auto linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+
+@keyframes softEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+@keyframes catPeek {
+  0%, 30%, 86%, 100% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  50%, 66% {
+    transform: translate3d(0, 9px, 0);
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  78% {
+    transform: translate3d(0, -0.8px, 0);
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+  }
+}
+@keyframes targetFade {
+  0%, 100% {
+    opacity: 0;
+  }
+  12%, 30% {
+    opacity: 1;
+  }
+}
+
+* { box-sizing: border-box; }
+html { min-height: 100%; }
+body {
+  margin: 0;
+  color: var(--content-primary);
+  background: var(--surface-background);
+  font-size: 0.875rem; /* 14px base */
+  line-height: 1.25rem; /* 20px */
+  text-align: start;
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  color: var(--content-selection);
+  background: var(--surface-selection);
+}
+
+/* Containers: Home = 550px with 80px top pad; Post = 680px centered (x=380 on 1440px) */
+.container {
+  margin-inline: auto;
+  padding-block: var(--layout-spacing-3xl);
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.home-visited) .container--home .homepage > header {
+    animation: 440ms var(--motion-ease) 0ms both softEnter;
+  }
+  html:not(.home-visited) .container--home .homepage > p:nth-of-type(1) {
+    animation: 440ms var(--motion-ease) 45ms both softEnter;
+  }
+  html:not(.home-visited) .container--home .homepage > p:nth-of-type(2) {
+    animation: 440ms var(--motion-ease) 90ms both softEnter;
+  }
+  html:not(.home-visited) .container--home .homepage > p:nth-of-type(3) {
+    animation: 440ms var(--motion-ease) 130ms both softEnter;
+  }
+  html:not(.home-visited) .container--home .homepage > p:nth-of-type(4) {
+    animation: 440ms var(--motion-ease) 170ms both softEnter;
+  }
+  html:not(.home-visited) .container--home .homepage > p:nth-of-type(5) {
+    animation: 440ms var(--motion-ease) 205ms both softEnter;
+  }
+  html:not(.home-visited) .container--home .writing h2 {
+    animation: 440ms var(--motion-ease) 235ms both softEnter;
+  }
+  html:not(.home-visited) .container--home .writing li {
+    animation: 440ms var(--motion-ease) calc(265ms + var(--stagger, 0) * 40ms) both softEnter;
+  }
+  html:not(.home-visited) .container--home .footer {
+    animation: 440ms var(--motion-ease) 460ms both softEnter;
+  }
+  html:not(.home-visited) .container--home:not(:has(.writing)) .footer {
+    animation-delay: 245ms;
+  }
+  html:not(.is-view-transition) .container--post .post > header {
+    animation: 440ms var(--motion-ease) 0ms both softEnter;
+  }
+  html:not(.is-view-transition) .container--post .post-toc {
+    animation: 440ms var(--motion-ease) 45ms both softEnter;
+  }
+  html:not(.is-view-transition) .container--post .post > :not(header) {
+    animation: 460ms var(--motion-ease) 80ms both softEnter;
+  }
+  .footer .footer-cat {
+    will-change: transform;
+    animation: 3.6s infinite catPeek;
+  }
+  .footer-cat-slot:hover .footer-cat {
+    animation-play-state: paused;
+  }
+}
+.container--home {
+  width: min(calc(100% - 3rem), var(--layout-home-column));
+  padding-top: var(--layout-spacing-home-top); /* 80px */
+  padding-bottom: var(--layout-spacing-3xl);
+}
+.container--post {
+  width: min(calc(100% - 3rem), var(--layout-post-column));
+  padding-top: var(--layout-spacing-3xl);
+  padding-bottom: 5rem;
+}
+
+.article { overflow-wrap: anywhere; }
+
+/* ==========================================================================
+   Screen/Home (v7.5–v7.7 · Benji.org-inspired 14/20 typography & states)
+   ========================================================================== */
+.homepage {
+  color: var(--content-primary);
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+}
+.homepage > header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-spacing-xxs);         /* 2px name -> subtitle lockup */
+  margin-bottom: var(--layout-spacing-xl); /* 32px subtitle -> first bio paragraph */
+}
+.homepage > header h1 {
+  margin: 0;
+  color: var(--content-primary);
+  font-size: var(--type-home-name-size);           /* home/name 16 */
+  font-weight: var(--type-post-title-weight);      /* 500 Medium */
+  line-height: var(--type-home-name-lh);           /* 24 */
+  letter-spacing: var(--type-home-name-tracking);  /* -0.1px */
+}
+.homepage .article-date {
+  color: var(--content-nav-default);               /* muted slate rgba(18, 18, 18, 0.4) */
+  font-size: var(--type-post-body-size);
+  font-weight: var(--type-post-body-weight);
+  line-height: var(--type-post-body-lh);
+  letter-spacing: var(--type-post-body-tracking);
+}
+.homepage p {
+  margin: 0 0 var(--layout-spacing-m); /* 16px */
+  color: var(--content-primary);
+  font-size: var(--type-post-body-size);
+  font-weight: var(--type-post-body-weight);
+  line-height: var(--type-post-body-lh);
+  letter-spacing: var(--type-post-body-tracking);
+}
+.homepage > :last-child { margin-bottom: 0; }
+
+.home-name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--layout-spacing-xs); /* 4px, Figma Home/name 59:1519 itemSpacing */
+}
+.home-name h1 { margin: 0; }
+
+.article img.home-cat {
+  display: block;
+  height: 14px;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+/* ==========================================================================
+   Slice 03 & 04: Home Writing list (v7.5–v7.7: year left, title indented 108px,
+   day/month right, outline/subtle dividers, row padding 11.76px, hover dim)
+   ========================================================================== */
+.writing {
+  margin-top: var(--layout-spacing-40); /* 40px */
+}
+.writing h2 {
+  margin: 0 0 var(--layout-spacing-12); /* 12px */
+  color: var(--content-muted);
+  font-size: var(--type-home-writing-size); /* 14px */
+  font-weight: var(--type-home-writing-weight); /* 460 */
+  line-height: var(--type-home-writing-lh); /* 17px */
+  letter-spacing: var(--type-home-writing-tracking); /* -0.09px */
+}
+.writing ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--outline-subtle);
+}
+.writing li {
+  border-bottom: 1px solid var(--outline-subtle);
+  transition: opacity 160ms ease;
+}
+.writing ul:hover li:not(:hover) .title {
+  opacity: var(--state-row-dim-opacity); /* Slice 04: 0.3 dimming on non-hovered titles */
+}
+.writing a {
+  display: grid;
+  grid-template-columns: var(--layout-year-rail) minmax(0, 1fr) auto;
+  align-items: baseline;
+  padding-block: var(--layout-home-row-pad); /* 11.76px (Slice 03) */
+  text-decoration: none;
+  color: var(--content-primary);
+}
+.writing .post-year {
+  color: var(--content-muted);
+  font-size: var(--type-home-writing-size); /* 14px */
+  line-height: var(--type-home-writing-lh); /* 17px */
+  letter-spacing: var(--type-home-writing-tracking); /* -0.09px */
+  font-variant-numeric: tabular-nums;
+}
+.writing .title {
+  min-width: 0;
+  color: var(--content-primary);
+  font-size: var(--type-home-writing-size); /* 14px */
+  font-weight: var(--type-home-writing-weight); /* 460 */
+  line-height: var(--type-home-writing-lh); /* 17px */
+  letter-spacing: var(--type-home-writing-tracking); /* -0.09px */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity var(--motion-micro) var(--motion-ease),
+    transform var(--motion-micro) var(--motion-ease),
+    color var(--motion-micro) var(--motion-ease);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .writing li:hover .title {
+    transform: translateX(3px);
+  }
+}
+@media (hover: hover) {
+  .writing li:hover .title {
+    font-weight: 500;
+  }
+}
+.writing .post-date {
+  padding-left: var(--layout-spacing-m);
+  color: var(--content-muted);
+  font-size: var(--type-home-writing-size); /* 14px */
+  line-height: var(--type-home-writing-lh); /* 17px */
+  letter-spacing: var(--type-home-writing-tracking); /* -0.09px */
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Slice 05: Footer (home/footer 12/18, cat alignment, 48px top margin)
+   ========================================================================== */
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--layout-spacing-s); /* 8px */
+  margin-top: var(--layout-spacing-xxl); /* 48px */
+  color: var(--content-subtle);
+  font-size: var(--type-home-footer-size); /* 12px */
+  line-height: var(--type-home-footer-lh); /* 18px */
+  letter-spacing: var(--type-home-footer-tracking); /* 0 */
+}
+.footer-cat-slot {
+  display: inline-flex;
+  align-items: flex-end;
+  height: 12px;
+  overflow: hidden;
+}
+.footer-cat {
+  display: block;
+  width: 22px;
+  height: 12px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Links & Focus States (Foundations v7.5–v7.7)
+   ========================================================================== */
+a {
+  color: inherit;
+  transition: color 160ms ease, text-decoration-color 160ms ease, opacity 160ms ease;
+}
+.article a {
+  text-decoration: underline;
+  text-decoration-color: var(--outline-link-underline);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+.article a:hover {
+  color: var(--content-link-hover);
+  text-decoration-color: var(--outline-link-underline-hover);
+}
+a:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid var(--outline-focus);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Slice 06 & 07: Screen/Post · Desktop & Mobile (Figma 14/20 Compact Scale)
+   ========================================================================== */
+.post {
+  color: var(--content-primary);
+  font-size: var(--type-post-body-size); /* 14px */
+  font-weight: var(--type-post-body-weight); /* 400 */
+  line-height: var(--type-post-body-lh); /* 20px */
+  letter-spacing: var(--type-post-body-tracking); /* -0.09px */
+}
+.post > header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--post-date-gap); /* 8px between title and date */
+  margin-bottom: var(--post-header-bottom); /* 32px before body */
+}
+.post > header + h1 { display: none; }
+.post > header h1 {
+  margin: 0;
+  color: var(--content-primary);
+  font-size: var(--type-post-title-size); /* 14px */
+  font-weight: var(--type-post-title-weight); /* 500 */
+  line-height: var(--type-post-title-lh); /* 20px */
+  letter-spacing: var(--type-post-title-tracking); /* -0.09px */
+  text-wrap: balance;
+}
+.post > header .article-date {
+  color: var(--content-muted);
+  font-size: var(--type-post-body-size);
+  line-height: var(--type-post-body-lh);
+  letter-spacing: var(--type-post-body-tracking);
+}
+.post p {
+  margin: 0 0 var(--layout-spacing-m); /* 16px between paragraphs */
+  text-wrap: pretty;
+}
+.post--poetry p {
+  white-space: pre-line;
+  text-wrap: normal;
+  margin-bottom: var(--layout-spacing-l); /* 24px between poetry stanzas */
+}
+.post > :last-child { margin-bottom: 0; }
+
+.post :is(h2, h3, h4) {
+  color: var(--content-primary);
+  scroll-margin-top: 48px;
+}
+.post :is(h2, h3, h4, .footnotes li):target {
+  position: relative;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .post :is(h2, h3, h4, .footnotes li):target::before {
+    content: "";
+    position: absolute;
+    inset: -3px -6px;
+    border-radius: 4px;
+    background: var(--surface-target);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    animation: 3.5s ease both targetFade;
+  }
+}
+.post h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--layout-spacing-12); /* 12px (Figma 48:876 Article / Section heading) */
+  margin: var(--layout-spacing-xl) 0 var(--layout-spacing-12); /* 32px above, 12px below */
+  font-size: var(--type-post-h2-size); /* 14px */
+  font-weight: var(--type-post-h2-weight); /* 600 */
+  line-height: var(--type-post-h2-lh); /* 20px */
+  letter-spacing: var(--type-post-h2-tracking); /* -0.09px */
+}
+.post h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--outline-subtle); /* #f2f2f2 */
+}
+.post :is(h3, h4) {
+  margin: var(--layout-spacing-l) 0 var(--layout-spacing-s); /* 24px above, 8px below */
+  font-size: var(--type-post-h3-size); /* 13px */
+  font-weight: var(--type-post-h3-weight); /* 600 */
+  line-height: var(--type-post-h3-lh); /* 18px */
+  letter-spacing: var(--type-post-h3-tracking); /* -0.05px */
+}
+
+.post strong {
+  color: var(--content-primary);
+  font-weight: 600;
+}
+
+.post :is(ul, ol) {
+  padding-left: 1.4rem;
+  margin: 0 0 var(--post-p-gap);
+}
+.post li {
+  color: var(--content-lead); /* Figma list item text (unbound #30302E) */
+  margin-block: 10px;
+  padding-left: 0.25rem;
+}
+
+.post blockquote {
+  margin: var(--post-p-gap) 0;
+  padding-left: 14px;
+  border-left: 2px solid #e0e0e0; /* Figma 59:2239 Block / Quote */
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 13px;
+  line-height: 18px;
+  text-wrap: pretty;
+}
+.post blockquote p { margin: 0; }
+
+.post hr {
+  margin-block: 40px;
+  border: 0;
+  border-top: 1px solid var(--outline-rule);
+}
+
+.article code {
+  font-family: "JetBrains Mono", "SF Mono", SFMono-Regular, ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+}
+.article :not(pre) > code {
+  padding: 0.12em 0.34em;
+  border-radius: 4px;
+  background: var(--surface-code-inline);
+  color: var(--content-primary);
+}
+.article pre {
+  /* Figma 59:1826 Block / Code block: #f8f8f8, 8px radius, no stroke, 14x16 pad */
+  position: relative;
+  max-width: 100%;
+  margin-block: var(--post-p-gap);
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden !important;
+  background: var(--surface-code) !important;
+  color: #333333 !important;
+  border: 0;
+  font-size: var(--type-post-code-size); /* 13px */
+  line-height: var(--type-post-code-lh); /* 20px */
+}
+.article .code-copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: var(--surface-code);
+  box-shadow: -8px 0 8px var(--surface-code), 10px 0 0 var(--surface-code);
+  color: var(--content-nav-default);
+  cursor: pointer;
+  transition: color var(--motion-micro) var(--motion-ease),
+    background-color var(--motion-micro) var(--motion-ease),
+    transform var(--motion-micro) var(--motion-ease);
+}
+.article pre:hover .code-copy-btn,
+.article .code-copy-btn:focus-visible {
+  color: var(--content-muted);
+}
+.article .code-copy-btn:hover {
+  color: var(--content-primary);
+  background: var(--outline-subtle);
+}
+.article .code-copy-btn:focus-visible {
+  outline: 2px solid var(--outline-focus);
+  outline-offset: 2px;
+}
+.article .code-copy-btn .icon-check {
+  display: none;
+}
+.article .code-copy-btn.is-copied {
+  opacity: 1;
+  color: var(--content-terminal-prompt);
+  transform: scale(1.06);
+}
+.article .code-copy-btn.is-copied .icon-copy {
+  display: none;
+}
+.article .code-copy-btn.is-copied .icon-check {
+  display: block;
+}
+@media (pointer: coarse) {
+  .article .code-copy-btn {
+    top: 6px;
+    right: 6px;
+    width: 32px;
+    height: 32px;
+  }
+}
+.article pre[data-language="bash"] .code-copy-btn,
+.article pre[data-language="sh"] .code-copy-btn,
+.article pre[data-language="shell"] .code-copy-btn,
+.article pre[data-language="console"] .code-copy-btn,
+.article pre[data-language="zsh"] .code-copy-btn {
+  background: var(--surface-terminal);
+  box-shadow: -8px 0 8px var(--surface-terminal), 10px 0 0 var(--surface-terminal);
+  color: rgba(255, 255, 255, 0.55);
+}
+.article pre[data-language="bash"] .code-copy-btn:hover,
+.article pre[data-language="sh"] .code-copy-btn:hover,
+.article pre[data-language="shell"] .code-copy-btn:hover,
+.article pre[data-language="console"] .code-copy-btn:hover,
+.article pre[data-language="zsh"] .code-copy-btn:hover {
+  color: #ffffff;
+  background: #262626;
+}
+.article pre code {
+  display: block;
+  overflow-x: auto;
+  padding: 14px 44px 14px 16px;
+  font-size: inherit;
+  overflow-wrap: normal;
+  scrollbar-width: thin;
+}
+.article pre code:focus-visible {
+  border-radius: 8px;
+  outline: 2px solid var(--outline-focus);
+  outline-offset: -2px;
+}
+/* Figma 59:1816 Block / Terminal: #141414 surface, 1px solid #333333, 8px radius */
+.article pre[data-language="bash"],
+.article pre[data-language="sh"],
+.article pre[data-language="shell"],
+.article pre[data-language="console"],
+.article pre[data-language="zsh"] {
+  background: var(--surface-terminal) !important;
+  color: var(--content-on-inverse) !important;
+  border: 1px solid var(--outline-inverse);
+}
+.article pre[data-language="bash"] span,
+.article pre[data-language="sh"] span,
+.article pre[data-language="shell"] span,
+.article pre[data-language="console"] span,
+.article pre[data-language="zsh"] span {
+  color: var(--content-on-inverse) !important;
+}
+
+.post img:not(.post-doodle):not(.annotation-arrow) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: var(--layout-spacing-xl) 0;
+  border: 1px solid var(--outline-subtle);
+  border-radius: 8px;
+}
+.post video {
+  /* Figma 59:1711 Block / Video player: #141414, 1px solid #333333, 8px radius */
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin: var(--layout-spacing-xl) 0;
+  background: var(--surface-terminal);
+  border: 1px solid var(--outline-inverse);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.post figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-spacing-10); /* 10px (Figma 59:1711 Block / Video player) */
+  margin: var(--layout-spacing-xl) 0;
+}
+.post figure > img:not(.post-doodle):not(.annotation-arrow),
+.post figure > video {
+  margin: 0;
+}
+.post figcaption {
+  margin: 0;
+  color: var(--content-caption);
+  font-size: var(--type-post-caption-size); /* 12px */
+  line-height: var(--type-post-caption-lh); /* 16px */
+  text-align: center;
+}
+.post .note,
+.post .callout {
+  margin-block: var(--layout-spacing-l); /* 24px */
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: var(--surface-code);
+  border: 1px solid var(--outline-subtle);
+  color: var(--content-lead);
+  font-size: var(--type-post-body-size);
+  line-height: var(--type-post-body-lh);
+}
+.post .callout {
+  /* Figma 59:2116 Block / Callout: 27px 32px pad with subtle hand-drawn outline */
+  padding: 27px 32px;
+  background: transparent;
+  border: 1.5px solid var(--mark-ink);
+}
+.post .note > :first-child,
+.post .callout > :first-child { margin-top: 0; }
+.post .note > :last-child,
+.post .callout > :last-child { margin-bottom: 0; }
+
+/* Interactive task checkboxes (Figma 42:1899–42:3373 Article / Task item) */
+.post .contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.post .task-list-item {
+  display: block;
+  position: relative;
+  padding-left: 24px;
+  margin-block: 6px;
+}
+.post .task-list-item input[type="checkbox"] {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--content-primary);
+  cursor: pointer;
+}
+.post .task-list-item input[type="checkbox"]:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--outline-focus);
+  outline-offset: 2px;
+}
+
+/* Footnotes & Acknowledgements (Figma 57:629 Article references) */
+.post sup a {
+  font-size: 9px;
+  line-height: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--content-link-styled);
+  padding-inline: 1px;
+}
+.post .footnotes {
+  margin-top: var(--layout-spacing-40); /* 40px */
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--content-muted);
+}
+.post .footnotes::before {
+  content: "";
+  display: block;
+  width: 50px; /* Figma 57:666 50px divider */
+  height: 1px;
+  margin-bottom: var(--layout-spacing-m); /* 16px */
+  background: var(--outline-rule); /* #ededed */
+}
+.post .footnotes ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.post .footnotes li {
+  margin-block: 4px;
+  color: var(--content-muted);
+  font-size: 11px;
+  line-height: 15px;
+}
+.post .acknowledgements {
+  margin-top: var(--layout-spacing-xxl); /* 48px (Figma 57:685) */
+}
+.post .acknowledgements h3 {
+  margin: 0 0 var(--layout-spacing-m); /* 16px */
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--content-primary);
+}
+.post .acknowledgements p {
+  margin: 0 0 var(--layout-spacing-m);
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--content-muted);
+}
+.post .acknowledgements p:last-child { margin-bottom: 0; }
+
+/* Margin Annotations (Figma 42:1507 Article annotations: 160px right rail >=1120px, stacked <1120px) */
+.post .annotated-block {
+  position: relative;
+  margin: 0 0 var(--layout-spacing-m);
+}
+.post .annotated-block > p {
+  margin-bottom: 0;
+}
+.post .annotation {
+  margin-top: var(--layout-spacing-m); /* 16px compact gap below paragraph */
+  color: var(--content-primary);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 460;
+  letter-spacing: -0.04px;
+}
+.post .annotation-arrow,
+.post .annotation--decorative {
+  display: none; /* Hidden below 1120px per Figma 42:1548 */
+}
+@media (min-width: 1120px) {
+  .post .annotation {
+    position: absolute;
+    left: calc(100% + var(--layout-spacing-xl)); /* 32px gutter (Figma 42:1547) */
+    top: 2px;
+    width: var(--layout-toc-width); /* 160px */
+    margin-top: 0;
+    display: flex;
+    align-items: center; /* Figma 42:1533 items-center */
+    gap: var(--layout-spacing-s); /* 8px */
+  }
+  .post .annotation--decorative {
+    display: flex;
+  }
+  .post .annotation-arrow {
+    display: block;
+    width: 48px; /* Figma 42:1534 Doodle slot: 48x28 */
+    height: 28px;
+    max-width: none;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    flex: none;
+    color: var(--mark-ink);
+  }
+}
+
+/* Sparse side doodle on H2 (Figma: doodle/blue-cat, 28px high, 12px gap) */
+.article img.post-doodle {
+  display: inline-block;
+  vertical-align: middle;
+  height: 28px;
+  width: auto;
+  max-width: none;
+  margin: 0 0 0 var(--layout-spacing-12);
+  border: 0;
+  border-radius: 0;
+}
+.article .doodle-caption {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: var(--layout-spacing-12);
+  color: var(--content-caption);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+/* Tables (Figma 63:5330 Block / Table: 14/20, #ededed header rule, #f2f2f2 row rule, 6px/7px pad) */
+.article table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-wrap: normal;
+  border-collapse: collapse;
+  margin-block: var(--post-p-gap);
+  font-size: var(--type-post-body-size);
+  line-height: var(--type-post-body-lh);
+}
+.article th,
+.article td {
+  text-align: left;
+  vertical-align: top;
+  padding: 6px 14px 7px 0;
+  border-bottom: 1px solid var(--outline-subtle);
+}
+.article th {
+  color: var(--content-primary);
+  font-weight: 500;
+  white-space: nowrap;
+  border-bottom-color: var(--outline-rule);
+}
+.article td {
+  min-width: 110px;
+}
+
+/* ==========================================================================
+   Foundations · Marks & Hand-Drawn Brush Highlights (v6.0–v6.4)
+   Starts halfway into the first letter (~0.34em) and runs ~8px past the end,
+   covering the full word height from above ascenders to below descenders.
+   ========================================================================== */
+.article mark {
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M3 7 C20 3, 74 2, 134 3 C186 4, 224 5, 236 8 C239 10, 234 14, 238 17 C240 20, 233 24, 237 28 C239 32, 231 37, 235 40 C216 42, 162 43, 98 42 C44 41, 12 40, 2 37 C0 32, 4 25, 1 18 C-1 12, 2 9, 3 7 Z' fill='%23EBD38F'/%3E%3Cpath d='M214 13 L237 14 M218 25 L236 26 M210 35 L234 36' stroke='%23FDFDFC' stroke-width='1.4' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+  color: var(--content-primary);
+  background-color: transparent;
+  background-image: var(--mark-bg);
+  background-repeat: no-repeat;
+  background-position: 0.34em 0;
+  background-size: calc(100% - 0.34em) 100%;
+  padding: 0.08em 8px 0.12em 0;
+  margin-right: -4px;
+  border-radius: 0;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.article mark.mint {
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M3 7 C20 3, 74 2, 134 3 C186 4, 224 5, 236 8 C239 10, 234 14, 238 17 C240 20, 233 24, 237 28 C239 32, 231 37, 235 40 C216 42, 162 43, 98 42 C44 41, 12 40, 2 37 C0 32, 4 25, 1 18 C-1 12, 2 9, 3 7 Z' fill='%23BDE8CF'/%3E%3Cpath d='M214 13 L237 14 M218 25 L236 26 M210 35 L234 36' stroke='%23FDFDFC' stroke-width='1.4' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+}
+.article mark.sky {
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M3 7 C20 3, 74 2, 134 3 C186 4, 224 5, 236 8 C239 10, 234 14, 238 17 C240 20, 233 24, 237 28 C239 32, 231 37, 235 40 C216 42, 162 43, 98 42 C44 41, 12 40, 2 37 C0 32, 4 25, 1 18 C-1 12, 2 9, 3 7 Z' fill='%23BFDDF0'/%3E%3Cpath d='M214 13 L237 14 M218 25 L236 26 M210 35 L234 36' stroke='%23FDFDFC' stroke-width='1.4' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+}
+.article mark.lilac {
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M3 7 C20 3, 74 2, 134 3 C186 4, 224 5, 236 8 C239 10, 234 14, 238 17 C240 20, 233 24, 237 28 C239 32, 231 37, 235 40 C216 42, 162 43, 98 42 C44 41, 12 40, 2 37 C0 32, 4 25, 1 18 C-1 12, 2 9, 3 7 Z' fill='%23DCCBEB'/%3E%3Cpath d='M214 13 L237 14 M218 25 L236 26 M210 35 L234 36' stroke='%23FDFDFC' stroke-width='1.4' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+}
+.article mark.peach {
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M3 7 C20 3, 74 2, 134 3 C186 4, 224 5, 236 8 C239 10, 234 14, 238 17 C240 20, 233 24, 237 28 C239 32, 231 37, 235 40 C216 42, 162 43, 98 42 C44 41, 12 40, 2 37 C0 32, 4 25, 1 18 C-1 12, 2 9, 3 7 Z' fill='%23F5CDBF'/%3E%3Cpath d='M214 13 L237 14 M218 25 L236 26 M210 35 L234 36' stroke='%23FDFDFC' stroke-width='1.4' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+}
+.article mark.lemon {
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M3 7 C20 3, 74 2, 134 3 C186 4, 224 5, 236 8 C239 10, 234 14, 238 17 C240 20, 233 24, 237 28 C239 32, 231 37, 235 40 C216 42, 162 43, 98 42 C44 41, 12 40, 2 37 C0 32, 4 25, 1 18 C-1 12, 2 9, 3 7 Z' fill='%23F8EC9C'/%3E%3Cpath d='M214 13 L237 14 M218 25 L236 26 M210 35 L234 36' stroke='%23FDFDFC' stroke-width='1.4' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+}
+.article mark.torn {
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpolygon points='4,5 236,3 239,14 234,24 238,39 2,41 5,27 1,15' fill='%23EBD38F'/%3E%3C/svg%3E");
+}
+.article mark.loose {
+  --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M2 9 C60 4, 180 5, 237 9 L235 28 C178 25, 58 26, 3 29 Z' fill='%23EBD38F' opacity='0.85'/%3E%3Cpath d='M5 18 C66 15, 182 14, 239 19 L236 40 C176 38, 62 39, 2 39 Z' fill='%23EBD38F' opacity='0.85'/%3E%3C/svg%3E");
+}
+
+/* Hand-drawn underlines, strikethroughs & scratch-outs (Foundations · Marks v6.1) */
+.article .mark-underline,
+.article u {
+  text-decoration: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.5 Q 32 2.5, 64 4.8 T 119 3.8' fill='none' stroke='%232A2A28' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: 120px 6px;
+  padding-bottom: 3px;
+}
+.article .mark-wavy {
+  text-decoration: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 6' preserveAspectRatio='none'%3E%3Cpath d='M0 3 Q 6 0, 12 3 T 24 3' fill='none' stroke='%232A2A28' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: 18px 5px;
+  padding-bottom: 3px;
+}
+.article del,
+.article s,
+.article .mark-strike {
+  text-decoration: none;
+  color: var(--content-muted);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M1 7 C 38 4, 82 8, 119 5' fill='none' stroke='%232A2A28' stroke-width='1.75' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 54%;
+  background-size: 100% 10px;
+}
+.article .mark-scratch {
+  text-decoration: none;
+  color: var(--content-muted);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 16' preserveAspectRatio='none'%3E%3Cpath d='M2 11 L118 4 L6 13 L115 8 L10 5 L117 12' fill='none' stroke='%232A2A28' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 52%;
+  background-size: 100% 14px;
+}
+
+/* ==========================================================================
+   Navigation · Back link ("← Index") & Sticky Left TOC (v6.2–v7.7)
+   On screens with a TOC, "← Index" sits at the top of the left TOC column
+   above "On this page". On mobile or short posts without TOC, it sits at the
+   top of the main content column.
+   ========================================================================== */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--layout-spacing-s); /* 8px */
+  margin-bottom: var(--layout-spacing-xl); /* 32px */
+  color: var(--content-nav-default);
+  font-size: var(--type-nav-index-size); /* 13px (Slice 08) */
+  font-weight: 460;
+  line-height: var(--type-nav-index-lh); /* 20px */
+  text-decoration: none;
+}
+.back-link:hover {
+  color: var(--content-nav-active);
+}
+.back-icon {
+  display: block;
+  width: 14px;
+  height: 14px;
+  flex: none;
+  transition: transform var(--motion-micro) var(--motion-ease);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .back-link:hover .back-icon {
+    transform: translateX(-3px);
+  }
+}
+
+.post-toc {
+  display: none;
+}
+.post-toc .back-link--toc {
+  margin-bottom: 28px;
+}
+.post-toc-post-title {
+  display: block;
+  margin-bottom: var(--layout-spacing-s); /* 8px */
+  color: var(--content-nav-default);
+  font-size: var(--type-nav-toc-heading-size); /* 13px */
+  font-weight: var(--type-nav-toc-heading-weight); /* 460 */
+  line-height: var(--type-nav-toc-heading-lh); /* 16px */
+  letter-spacing: var(--type-nav-toc-heading-tracking); /* -0.04px */
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity var(--motion-duration) var(--motion-ease),
+    transform var(--motion-duration) var(--motion-ease),
+    color var(--motion-duration) var(--motion-ease);
+}
+.post-toc-post-title.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.post-toc-post-title:hover {
+  color: var(--content-nav-active);
+}
+.post-toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-spacing-s); /* 8px */
+}
+.post-toc-link {
+  display: block;
+  color: var(--content-nav-default);
+  font-size: var(--type-nav-toc-item-size); /* 13px (Slice 08) */
+  font-weight: 460;
+  line-height: var(--type-nav-toc-item-lh); /* 15.6px */
+  letter-spacing: var(--type-nav-toc-item-tracking); /* -0.04px */
+  text-decoration: none;
+  transition: color var(--motion-micro) var(--motion-ease),
+    transform var(--motion-micro) var(--motion-ease);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .post-toc-link:hover,
+  .post-toc-link.is-active {
+    transform: translateX(2px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .post-toc-link.is-active {
+    transform: translateX(2px);
+  }
+}
+.post-toc-link:hover,
+.post-toc-link.is-active {
+  color: var(--content-nav-active);
+}
+
+/* Unify desktop TOC & right-rail annotation breakpoint at Figma 42:1507's 1120px
+   threshold so 1080px–1119px (e.g. 150% browser zoom) never clips the left TOC
+   off-screen while the right rail is stacked. */
+@media (min-width: 1120px) {
+  .post-layout--with-toc {
+    display: grid;
+    grid-template-columns: var(--layout-toc-width) minmax(0, var(--layout-post-column));
+    column-gap: var(--layout-toc-gap); /* 48px */
+    align-items: start;
+    width: fit-content;
+    margin-left: max(
+      calc(-1 * (var(--layout-toc-width) + var(--layout-toc-gap))),
+      calc(var(--layout-spacing-l) + (var(--layout-post-column) / 2) - 50vw)
+    );
+  }
+  .post-layout--with-toc .post-toc {
+    display: block;
+    position: sticky;
+    top: 4rem;
+  }
+  .post-layout--with-toc .back-link--main {
+    display: none;
+  }
+  .back-link {
+    font-size: var(--type-nav-index-desktop-size); /* 14px (Slice 08) */
+    line-height: var(--type-nav-index-desktop-lh); /* 20px */
+    letter-spacing: var(--type-nav-index-desktop-tracking); /* -0.09px */
+  }
+}
+
+/* ==========================================================================
+   Slice 09: Responsive Breakpoints (Tablet 768px & Mobile 390px)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .container--home {
+    width: calc(100% - 2.5rem);
+    padding-top: 3.5rem;
+  }
+  .container--post {
+    width: calc(100% - 2.5rem);
+    padding-top: 3rem;
+  }
+  .writing a {
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+  }
+}
+
+@media (forced-colors: active) {
+  .article mark {
+    background-image: none;
+    background-color: Highlight;
+    color: HighlightText;
+  }
+  .article :is(u, .mark-underline, .mark-wavy) {
+    background-image: none;
+    text-decoration: underline;
+  }
+  .article :is(del, s, .mark-strike, .mark-scratch) {
+    background-image: none;
+    text-decoration: line-through;
+  }
+}
+
+/* Reduced-motion spatial choreography is gated cleanly inside @media (prefers-reduced-motion: no-preference) */

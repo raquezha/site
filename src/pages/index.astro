@@ -1,0 +1,62 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import WritingList from "../components/WritingList.astro";
+import { getSortedPublishedWriting, toSectionRows } from "../utils/writing";
+
+const entries = await getSortedPublishedWriting();
+const techPosts = toSectionRows(entries, "writing");
+const personalPosts = toSectionRows(entries, "personal");
+const hasPosts = entries.length > 0;
+---
+
+<PageLayout isHome={true}>
+  <article class="article homepage">
+    <header>
+      <div class="home-name">
+        <h1>Jan Celada</h1>
+        <img
+          src="/cat-lounging.svg"
+          width="22"
+          height="14"
+          alt=""
+          aria-hidden="true"
+          class="home-cat"
+        />
+      </div>
+      <span class="article-date">raquezha · Mobile Platform Head</span>
+    </header>
+    <p>
+      At{" "}
+      <a href="https://www.tindahangtapat.com.ph/" target="_blank" rel="noopener noreferrer">Nueca</a>,
+      I focus on developer experience for the mobile team.
+    </p>
+    <p>
+      I look after our shared Android toolboxes and CI/CD pipelines—automating
+      releases, shaping Jetpack Compose and Kotlin Multiplatform foundations,
+      and building practical AI workflows that take friction out of shipping.
+    </p>
+    <p>
+      On the side, I maintain open-source tools like{" "}
+      <a href="https://github.com/raquezha/nothing" target="_blank" rel="noopener noreferrer">nothing</a>,{" "}
+      <a href="https://github.com/raquezha/spaces" target="_blank" rel="noopener noreferrer">spaces</a>,
+      and{" "}
+      <a href="https://github.com/raquezha/kinsena" target="_blank" rel="noopener noreferrer">kinsena</a>.
+    </p>
+    <p>
+      Away from work, I spend time with my eight cats, write poetry and
+      non-technical essays, and release music as raquezha on{" "}
+      <a href="https://open.spotify.com/artist/4TUaz7cGMXnaUXpfADwvGD" target="_blank" rel="noopener noreferrer">Spotify</a>{" "}
+      and{" "}
+      <a href="https://soundcloud.com/raquezha" target="_blank" rel="noopener noreferrer">SoundCloud</a>.
+    </p>
+    <p>
+      You can explore my code on{" "}
+      <a href="https://github.com/raquezha" target="_blank" rel="noopener noreferrer">GitHub</a>{" "}
+      or reach out for engineering roles on{" "}
+      <a href="https://www.linkedin.com/in/jancelada/" target="_blank" rel="noopener noreferrer">LinkedIn</a>{hasPosts ? ", or read my writing below." : "."}
+    </p>
+  </article>
+
+  <WritingList title="Writing" posts={techPosts} />
+  <WritingList title="Personal" posts={personalPosts} offset={techPosts.length} />
+</PageLayout>

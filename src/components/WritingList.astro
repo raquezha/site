@@ -1,0 +1,33 @@
+---
+import type { PostRow } from "../utils/writing";
+
+interface Props {
+  title: string;
+  posts: PostRow[];
+  offset?: number;
+}
+
+const { title, posts, offset = 0 } = Astro.props;
+const headingId = `section-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+---
+
+{posts.length > 0 && (
+  <section class="writing" aria-labelledby={headingId}>
+    <h2 id={headingId}>{title}</h2>
+    <ul role="list">
+      {posts.map((post, idx) => (
+        <li style={`--stagger: ${offset + idx}`}>
+          <a href={post.route} title={post.shortTitle !== post.title ? post.title : undefined}>
+            <span class="post-year" aria-hidden={!post.showYear}>
+              {post.showYear ? post.year : ""}
+            </span>
+            <span class="title">{post.shortTitle}</span>
+            <time class="post-date" datetime={post.date} data-date={post.date}>
+              {post.dayMonth}
+            </time>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
