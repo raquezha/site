@@ -28,11 +28,13 @@ What I want is zero friction setup. <u>Just log in with your company email, boom
 Our docs were scattered everywhere: meeting notes in Microsoft Loop, SOP drafts in local Markdown files, and guides buried in different repos. We tried keeping docs in GitLab at first, but they went stale fast. Writing documentation isn't really our thing. We're developers. Storage wasn't the issue. <u>If writing and sharing a guide is annoying, people stop doing it.</u>
 
 <div class="annotated-block">
-  <p>For three years we settled for Microsoft Loop because <mark class="sky">it solved the access problem</mark>. Log in with your company email and drop things there. Not trying to call out Microsoft, I just never clicked with Loop's UX. It felt clunky and never really smooth.[^2] It solved access, but it still didn't fit.</p>
-  <aside class="annotation">
-    <img src="/doodle-arrow.svg" width="48" height="28" alt="" aria-hidden="true" class="annotation-arrow" />
-    <span>this is really my personal problem hahaha</span>
-  </aside>
+
+For three years we settled for Microsoft Loop because <mark class="sky">it solved the access problem</mark>. Log in with your company email and drop things there. Not trying to call out Microsoft, I just never clicked with Loop's UX. It felt clunky and never really smooth.[^2] It solved access, but it still didn't fit.
+
+<aside class="annotation">
+  <img src="/doodle-arrow.svg" width="48" height="28" alt="" aria-hidden="true" class="annotation-arrow" />
+  <span>this is really my personal problem hahaha</span>
+</aside>
 </div>
 
 I didn't want to <del>wait a year</del> wait for a company wide tool. Since I already had access to a Linux server we used, I spun up [Outline](https://www.getoutline.com/)[^1] as a small R&D experiment, and my colleagues started using it. I even wired up its MCP server[^4] to our company Claude and ChatGPT accounts.
