@@ -1,27 +1,12 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import { formatDayMonth, formatYear, resolveDate, resolveSlug } from "../utils/dates";
-import { getSortedPublishedWriting } from "../utils/writing";
+import WritingList from "../components/WritingList.astro";
+import { getSortedPublishedWriting, toSectionRows } from "../utils/writing";
 
 const entries = await getSortedPublishedWriting();
-const sorted = entries.map((entry) => {
-  const date = resolveDate(entry);
-  return {
-    title: entry.data.title,
-    shortTitle: entry.data.shortTitle ?? entry.data.title,
-    date,
-    year: formatYear(date),
-    dayMonth: formatDayMonth(date),
-    route: `/writing/${resolveSlug(entry.id, entry.data.routeOverride)}`,
-  };
-});
-
-let seenYear = "";
-const posts = sorted.map((post) => {
-  const showYear = post.year !== seenYear;
-  seenYear = post.year;
-  return { ...post, showYear };
-});
+const techPosts = toSectionRows(entries, "writing");
+const personalPosts = toSectionRows(entries, "personal");
+const hasPosts = entries.length > 0;
 ---
 
 <PageLayout isHome={true}>
@@ -53,31 +38,17 @@ const posts = sorted.map((post) => {
       <a href="https://github.com/raquezha/kinsena" target="_blank" rel="noopener noreferrer">kinsena</a>.
     </p>
     <p>
+      Away from work, I write poetry, non-technical essays, and release music as{" "}
+      <a href="https://open.spotify.com/artist/4TUaz7cGMXnaUXpfADwvGD" target="_blank" rel="noopener noreferrer">raquezha</a>.
+    </p>
+    <p>
       You can explore my code on{" "}
       <a href="https://github.com/raquezha" target="_blank" rel="noopener noreferrer">GitHub</a>{" "}
       or reach out for engineering roles on{" "}
-      <a href="https://www.linkedin.com/in/jancelada/" target="_blank" rel="noopener noreferrer">LinkedIn</a>{posts.length > 0 ? ", or read longer notes below." : "."}
+      <a href="https://www.linkedin.com/in/jancelada/" target="_blank" rel="noopener noreferrer">LinkedIn</a>{hasPosts ? ", or read my writing below." : "."}
     </p>
   </article>
 
-  {posts.length > 0 && (
-    <section class="writing">
-      <h2>Writing</h2>
-      <ul>
-        {posts.map((post, idx) => (
-          <li style={`--stagger: ${idx}`}>
-            <a href={post.route} title={post.title}>
-              <span class="post-year" aria-hidden={!post.showYear}>
-                {post.showYear ? post.year : ""}
-              </span>
-              <span class="title">{post.shortTitle}</span>
-              <time class="post-date" datetime={post.date} data-date={post.date}>
-                {post.dayMonth}
-              </time>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
+  <WritingList title="Writing" posts={techPosts} />
+  <WritingList title="Personal" posts={personalPosts} offset={techPosts.length} />
 </PageLayout>

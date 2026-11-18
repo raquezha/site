@@ -275,14 +275,17 @@ body {
   html:not(.home-visited) .container--home .homepage > p:nth-of-type(4) {
     animation: 440ms var(--motion-ease) 170ms both softEnter;
   }
+  html:not(.home-visited) .container--home .homepage > p:nth-of-type(5) {
+    animation: 440ms var(--motion-ease) 205ms both softEnter;
+  }
   html:not(.home-visited) .container--home .writing h2 {
-    animation: 440ms var(--motion-ease) 210ms both softEnter;
+    animation: 440ms var(--motion-ease) 235ms both softEnter;
   }
   html:not(.home-visited) .container--home .writing li {
-    animation: 440ms var(--motion-ease) calc(240ms + var(--stagger, 0) * 40ms) both softEnter;
+    animation: 440ms var(--motion-ease) calc(265ms + var(--stagger, 0) * 40ms) both softEnter;
   }
   html:not(.home-visited) .container--home .footer {
-    animation: 440ms var(--motion-ease) 440ms both softEnter;
+    animation: 440ms var(--motion-ease) 460ms both softEnter;
   }
   html:not(.is-view-transition) .container--post .post > header {
     animation: 440ms var(--motion-ease) 0ms both softEnter;
@@ -534,6 +537,11 @@ a:focus-visible {
 .post p {
   margin: 0 0 var(--layout-spacing-m); /* 16px between paragraphs */
   text-wrap: pretty;
+}
+.post--poetry p {
+  white-space: pre-line;
+  text-wrap: normal;
+  margin-bottom: var(--layout-spacing-l); /* 24px between poetry stanzas */
 }
 .post > :last-child { margin-bottom: 0; }
 

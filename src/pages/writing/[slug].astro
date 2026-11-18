@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const { title, description, acknowledgements = [] } = entry.data;
+const { title, description, format = "prose", acknowledgements = [] } = entry.data;
 const date = resolveDate(entry);
 const h2Headings = headings.filter((h) => h.depth === 2);
 const showToc = h2Headings.length >= 3;
@@ -47,7 +47,7 @@ const showToc = h2Headings.length >= 3;
     )}
     <div class="post-main">
       <BackLink variant="main" />
-      <article class="article post">
+      <article class:list={["article post", { "post--poetry": format === "poetry" }]}>
         <header>
           <h1>{title}</h1>
           <time class="article-date" datetime={date} data-date={date}>
