@@ -1186,19 +1186,7 @@ a:focus-visible {
   line-height: var(--type-nav-toc-item-lh); /* 15.6px */
   letter-spacing: var(--type-nav-toc-item-tracking); /* -0.04px */
   text-decoration: none;
-  transition: color var(--motion-micro) var(--motion-ease),
-    transform var(--motion-micro) var(--motion-ease);
-}
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .post-toc-link:hover,
-  .post-toc-link.is-active {
-    transform: translateX(2px);
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .post-toc-link.is-active {
-    transform: translateX(2px);
-  }
+  transition: color var(--motion-micro) var(--motion-ease);
 }
 .post-toc-link:hover,
 .post-toc-link.is-active {
