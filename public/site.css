@@ -222,17 +222,17 @@
   }
 }
 @keyframes catPeek {
-  0%, 34%, 86%, 100% {
+  0%, 30%, 86%, 100% {
     transform: translate3d(0, 0, 0);
     opacity: 1;
-    animation-timing-function: cubic-bezier(0.65, 0, 0.9, 0.45);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
-  50%, 68% {
-    transform: translate3d(0, 9px, 0);
-    opacity: 0.22;
+  50%, 66% {
+    transform: translate3d(0, 10px, 0);
+    opacity: 0;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
-  79% {
+  78% {
     transform: translate3d(0, -0.8px, 0);
     opacity: 1;
     animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
