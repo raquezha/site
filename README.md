@@ -1,6 +1,6 @@
 # raquezha.net
 
-Personal site built with [Astro](https://astro.build).
+Personal site built with [Astro](https://astro.build). Typography and layout inspired by [Benji Taylor](https://benji.org).
 
 ## Write
 
