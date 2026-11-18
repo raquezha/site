@@ -3,8 +3,8 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://raquezha.github.io",
-  base: "/site",
+  site: "https://raquezha.net",
+  base: "/",
   output: "static",
   integrations: [
     sitemap({
