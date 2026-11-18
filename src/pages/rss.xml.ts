@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: "Jan Celada",
-    description: "Android, Kotlin, and AI tooling.",
+    description: "Jan Celada (raquezha) — Kotlin, Android, mobile CI/CD, and AI tooling.",
     site: context.site!,
     items: sorted.map((entry) => {
       const date = resolveDate(entry);

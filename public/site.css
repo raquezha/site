@@ -269,14 +269,20 @@ body {
   html:not(.home-visited) .container--home .homepage > p:nth-of-type(2) {
     animation: 440ms var(--motion-ease) 90ms both softEnter;
   }
-  html:not(.home-visited) .container--home .writing h2 {
+  html:not(.home-visited) .container--home .homepage > p:nth-of-type(3) {
     animation: 440ms var(--motion-ease) 130ms both softEnter;
   }
+  html:not(.home-visited) .container--home .homepage > p:nth-of-type(4) {
+    animation: 440ms var(--motion-ease) 170ms both softEnter;
+  }
+  html:not(.home-visited) .container--home .writing h2 {
+    animation: 440ms var(--motion-ease) 210ms both softEnter;
+  }
   html:not(.home-visited) .container--home .writing li {
-    animation: 440ms var(--motion-ease) calc(160ms + var(--stagger, 0) * 40ms) both softEnter;
+    animation: 440ms var(--motion-ease) calc(240ms + var(--stagger, 0) * 40ms) both softEnter;
   }
   html:not(.home-visited) .container--home .footer {
-    animation: 440ms var(--motion-ease) 380ms both softEnter;
+    animation: 440ms var(--motion-ease) 440ms both softEnter;
   }
   html:not(.is-view-transition) .container--post .post > header {
     animation: 440ms var(--motion-ease) 0ms both softEnter;
