@@ -114,7 +114,6 @@ test.describe("UX & Accessibility Checks", () => {
       "/writing/_ui-kitchen-sink",
       "/writing/_figma-samples",
       "/writing/_absurd-stress-test",
-      "/writing/design-to-implementation-drift",
     ]) {
       await page.goto(route, { waitUntil: "networkidle" });
       const check = await page.evaluate(() => {

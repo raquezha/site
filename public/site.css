@@ -463,15 +463,26 @@ body {
    Slice 05: Footer (home/footer 12/18, cat alignment, 48px top margin)
    ========================================================================== */
 .footer {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: var(--layout-spacing-s); /* 8px */
   margin-top: var(--layout-spacing-xxl); /* 48px */
+  padding-top: var(--layout-spacing-xxl); /* 48px */
   color: var(--content-subtle);
   font-size: var(--type-home-footer-size); /* 12px */
   line-height: var(--type-home-footer-lh); /* 18px */
   letter-spacing: var(--type-home-footer-tracking); /* 0 */
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 1px;
+  background: var(--outline-rule);
 }
 .footer-cat-slot {
   display: inline-flex;
@@ -850,18 +861,29 @@ a:focus-visible {
   padding-inline: 1px;
 }
 .post .footnotes {
-  margin-top: var(--layout-spacing-40); /* 40px */
+  margin-top: var(--layout-spacing-xxl); /* 48px */
   font-size: 11px;
   line-height: 15px;
-  color: var(--content-muted);
+  color: var(--content-nav-default);
 }
 .post .footnotes::before {
   content: "";
   display: block;
   width: 50px; /* Figma 57:666 50px divider */
   height: 1px;
-  margin-bottom: var(--layout-spacing-m); /* 16px */
+  margin-bottom: var(--layout-spacing-xxl); /* 48px */
   background: var(--outline-rule); /* #ededed */
+}
+.post .footnotes > h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .post .footnotes ol {
   margin: 0;
@@ -869,9 +891,12 @@ a:focus-visible {
 }
 .post .footnotes li {
   margin-block: 4px;
-  color: var(--content-muted);
+  color: var(--content-nav-default);
   font-size: 11px;
   line-height: 15px;
+}
+.post .footnotes a {
+  color: var(--content-primary);
 }
 .post .acknowledgements {
   margin-top: var(--layout-spacing-xxl); /* 48px (Figma 57:685) */
