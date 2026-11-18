@@ -77,6 +77,8 @@ If you try this yourself, point your DNS record at the server before booting Cad
 
 I grouped collections by team: <mark class="lilac">Android, Cloud, iOS, and QA</mark>. You can keep a collection private to yourself or your team, and since everyone logs in with their company email, permissions stay simple.
 
+I chose to run one shared Outline instance for everyone instead of spinning up separate ones per team. Having one place makes cross team docs like API contracts, release checklists, and QA test plans easy to reference without switching workspaces. Each team still controls their own space for onboarding guides, SOPs, and internal playbooks.
+
 Most Notion features are already here anyway, so switching <mark class="loose">didn't feel like a downgrade</mark>. For weekly meetings, notes follow a simple tree:
 
 ```text
@@ -93,6 +95,8 @@ Weekly Meeting
     <span>Claude &amp; ChatGPT update docs directly via MCP</span>
   </aside>
 </div>
+
+We also use Outline as our publishing spot instead of building a custom docs site. Whenever we need to show something in a sprint demo or share a guide with another department, we just generate a share link and drop it in chat. No more exporting PDFs or worrying if someone opened an old attachment.
 
 I'm happy I found Outline. Maintaining it is easy anyway: just `docker compose pull`, bring it back up, done. The only thing I half worry about is the day uploads fill up the disk or the server gets overloaded. If that happens, I'll fix it then.
 
