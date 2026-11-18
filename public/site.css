@@ -222,11 +222,13 @@
   }
 }
 @keyframes catPeek {
-  0%, 100% {
+  0%, 34%, 90%, 100% {
     transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
   }
-  50% {
-    transform: translate3d(0, 7px, 0);
+  50%, 72% {
+    transform: translate3d(0, 8px, 0);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 @keyframes targetFade {
@@ -302,7 +304,8 @@ body {
   .footer img.footer-cat {
     will-change: transform;
     backface-visibility: hidden;
-    animation: 3.6s cubic-bezier(0.42, 0, 0.58, 1) infinite catPeek;
+    image-rendering: auto;
+    animation: 3.2s infinite catPeek;
   }
   .footer-cat-slot:hover img.footer-cat {
     animation-play-state: paused;
