@@ -1,5 +1,6 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import { formatDayMonth, formatYear, isPublished, resolveDate, resolveSlug } from "./dates";
+import { withBase } from "./paths";
 
 export const SITE_TITLE = "Jan Celada";
 export const SITE_DESCRIPTION =
@@ -42,7 +43,7 @@ export function toSectionRows(
         date,
         year,
         dayMonth: formatDayMonth(date),
-        route: `/writing/${resolveSlug(entry.id, entry.data.routeOverride)}`,
+        route: withBase(`/writing/${resolveSlug(entry.id, entry.data.routeOverride)}`),
         showYear,
       };
     });

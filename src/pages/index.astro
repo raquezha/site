@@ -1,6 +1,7 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import WritingList from "../components/WritingList.astro";
+import { withBase } from "../utils/paths";
 import { getSortedPublishedWriting, toSectionRows } from "../utils/writing";
 
 const entries = await getSortedPublishedWriting();
@@ -15,7 +16,7 @@ const hasPosts = entries.length > 0;
       <div class="home-name">
         <h1>Jan Celada</h1>
         <img
-          src="/cat-lounging.svg"
+          src={withBase("/cat-lounging.svg")}
           width="22"
           height="14"
           alt=""

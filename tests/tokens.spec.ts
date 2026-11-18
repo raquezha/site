@@ -58,7 +58,6 @@ test.describe("Unit: NoDesign Tokens & Static Assets", () => {
       "public/favicon.svg",
       "public/favicon.ico",
       "public/robots.txt",
-      "public/CNAME",
     ];
     const draftAssets = fs.existsSync(path.join(root, "src/content/writing/drafts"))
       ? [
@@ -83,20 +82,19 @@ test.describe("Unit: NoDesign Tokens & Static Assets", () => {
       "sitemap-index.xml",
       "sitemap-0.xml",
       "robots.txt",
-      "CNAME",
     ]) {
       expect(fs.existsSync(path.join(distDir, file)), `Missing dist/${file}`).toBe(true);
     }
 
     const robots = fs.readFileSync(path.join(distDir, "robots.txt"), "utf8");
-    expect(robots).toContain("Sitemap: https://raquezha.net/sitemap-index.xml");
+    expect(robots).toContain("Sitemap: https://raquezha.github.io/site/sitemap-index.xml");
 
     const sitemap = fs.readFileSync(path.join(distDir, "sitemap-0.xml"), "utf8");
-    expect(sitemap).toContain("<loc>https://raquezha.net/</loc>");
+    expect(sitemap).toContain("<loc>https://raquezha.github.io/site/</loc>");
     expect(sitemap).not.toContain("/404");
 
     const indexHtml = fs.readFileSync(path.join(distDir, "index.html"), "utf8");
-    expect(indexHtml).toContain('rel="sitemap" href="/sitemap-index.xml"');
+    expect(indexHtml).toContain('rel="sitemap" href="/site/sitemap-index.xml"');
     expect(indexHtml).toContain('name="referrer" content="strict-origin-when-cross-origin"');
 
     if (!fs.existsSync(path.join(distDir, "writing"))) {

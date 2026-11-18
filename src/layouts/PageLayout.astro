@@ -1,5 +1,6 @@
 ---
 import { SITE_DESCRIPTION, SITE_TITLE } from "../utils/writing";
+import { withBase } from "../utils/paths";
 
 interface Props {
   title?: string;
@@ -27,7 +28,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href={withBase("/sitemap-index.xml")} />
 
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
@@ -40,10 +41,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap"
     />
-    <link rel="stylesheet" href="/site.css" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
+    <link rel="stylesheet" href={withBase("/site.css")} />
+    <link rel="icon" href={withBase("/favicon.ico")} sizes="32x32" />
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={withBase("/rss.xml")} />
     <script is:inline>
       // Prevent entrance blur-cascade from doubling on MPA view-transitions or back/forward history
       const navType = performance.getEntriesByType?.("navigation")?.[0]?.type;
@@ -58,10 +59,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         if (!fromUrl) return;
         const fromPath = new URL(fromUrl).pathname;
         const toPath = location.pathname;
-        if (fromPath.startsWith("/writing/") && toPath === "/") {
+        if (fromPath.includes("/writing/") && (toPath === "/site/" || toPath === "/site" || toPath === "/")) {
           document.documentElement.classList.add("home-visited");
           e.viewTransition.types.add("backward");
-        } else if (toPath.startsWith("/writing/")) {
+        } else if (toPath.includes("/writing/")) {
           e.viewTransition.types.add("forward");
         }
       });

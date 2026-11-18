@@ -21,7 +21,7 @@ Here are three things that pushed me to set up our own wiki:
 
 What I want is zero friction setup. <u>Just log in with your company email, boom, that's it.</u> And one shared place where anyone can drop meeting notes without chasing files in chat.
 
-![Before and after sketch: local laptop files, Telegram ping pong, and Loop vs self hosted Outline with GitLab login and MCP](/outline-before-after.svg)
+![Before and after sketch: local laptop files, Telegram ping pong, and Loop vs self hosted Outline with GitLab login and MCP](/site/outline-before-after.svg)
 
 ## The problem was friction
 
@@ -45,7 +45,7 @@ For my team that meant:
 
 And because it lives on our own server, <u>nobody owns the workspace personally</u>. If anyone leaves, the docs stay put.
 
-## How I set it up <img src="/doodle-blue-cat.svg" width="44" height="28" alt="" aria-hidden="true" class="post-doodle" />
+## How I set it up <img src="/site/doodle-blue-cat.svg" width="44" height="28" alt="" aria-hidden="true" class="post-doodle" />
 
 Everything sits in Docker Compose on one small Linux box: Outline, PostgreSQL, Redis, and Caddy for HTTPS.[^3]
 

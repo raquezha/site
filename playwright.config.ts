@@ -13,12 +13,12 @@ export default defineConfig({
     },
   },
   use: {
-    baseURL: "http://localhost:4321",
+    baseURL: "http://localhost:4321/site/",
     trace: "off",
   },
   webServer: {
     command: "npm run dev -- --port 4321",
-    url: "http://localhost:4321",
+    url: "http://localhost:4321/site/",
     reuseExistingServer: true,
     timeout: 30_000,
   },
