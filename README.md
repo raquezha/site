@@ -1,6 +1,8 @@
 # raquezha.net
 
-Personal site built with [Astro](https://astro.build). Layout and typography inspired by [Benji Taylor](https://benji.org).
+[![Deploy GitHub Pages](https://github.com/raquezha/site/actions/workflows/deploy.yml/badge.svg)](https://github.com/raquezha/site/actions/workflows/deploy.yml)
+
+Personal site and essays at [raquezha.net](https://raquezha.net), built with [Astro](https://astro.build). Layout and typography inspired by [Benji Taylor](https://benji.org).
 
 ## Writing a post
 

@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 on:
   push:
-    branches: [main, benji-style-redesign]
+    branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:

@@ -4,7 +4,7 @@ import { withBase } from "./paths";
 
 export const SITE_TITLE = "Jan Celada";
 export const SITE_DESCRIPTION =
-  "Jan Celada (raquezha) — Mobile Platform Head. Kotlin, Android developer experience, Jetpack Compose, KMP, mobile CI/CD, and AI tooling.";
+  "Jan Celada (raquezha), Mobile Platform Head. Kotlin, Android developer experience, Jetpack Compose, KMP, mobile CI/CD, and AI tooling.";
 
 export type WritingSection = "writing" | "personal";
 
