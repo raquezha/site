@@ -1054,6 +1054,21 @@ a:focus-visible {
 .article mark.loose {
   --mark-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 44' preserveAspectRatio='none'%3E%3Cpath d='M2 9 C60 4, 180 5, 237 9 L235 28 C178 25, 58 26, 3 29 Z' fill='%23EBD38F' opacity='0.85'/%3E%3Cpath d='M5 18 C66 15, 182 14, 239 19 L236 40 C176 38, 62 39, 2 39 Z' fill='%23EBD38F' opacity='0.85'/%3E%3C/svg%3E");
 }
+.article mark.circle,
+.article .mark-circle {
+  display: inline-block;
+  color: var(--content-primary);
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 48' preserveAspectRatio='none'%3E%3Cpath d='M18 24 C 14 10, 44 4, 84 4 C 128 4, 155 11, 154 24 C 153 38, 122 44, 76 44 C 30 44, 6 36, 6 23 C 6 11, 40 5, 88 5' fill='none' stroke='%232A2A28' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  padding: 0.08em 0.35em;
+  margin: -0.08em -0.15em;
+  border-radius: 0;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
 
 /* Hand-drawn underlines, strikethroughs & scratch-outs (Foundations · Marks v6.1) */
 .article .mark-underline,
@@ -1250,6 +1265,10 @@ a:focus-visible {
   .article :is(del, s, .mark-strike, .mark-scratch) {
     background-image: none;
     text-decoration: line-through;
+  }
+  .article :is(.mark-circle, mark.circle) {
+    background-image: none;
+    outline: 2px solid CanvasText;
   }
 }
 
