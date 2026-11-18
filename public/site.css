@@ -487,13 +487,13 @@ body {
 .footer-cat-slot {
   display: inline-flex;
   align-items: flex-end;
-  height: 12px;
+  height: 13px;
   overflow: hidden;
 }
 .footer-cat {
   display: block;
   width: 22px;
-  height: 12px;
+  height: 13px;
   margin: 0;
 }
 
