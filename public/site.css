@@ -224,17 +224,14 @@
 @keyframes catPeek {
   0%, 30%, 86%, 100% {
     transform: translate3d(0, 0, 0);
-    opacity: 1;
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   50%, 66% {
-    transform: translate3d(0, 10px, 0);
-    opacity: 0;
+    transform: translate3d(0, 9px, 0);
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
   78% {
     transform: translate3d(0, -0.8px, 0);
-    opacity: 1;
     animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
   }
 }
@@ -309,7 +306,7 @@ body {
     animation: 460ms var(--motion-ease) 80ms both softEnter;
   }
   .footer .footer-cat {
-    will-change: transform, opacity;
+    will-change: transform;
     animation: 3.6s infinite catPeek;
   }
   .footer-cat-slot:hover .footer-cat {
