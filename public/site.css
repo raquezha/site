@@ -222,13 +222,20 @@
   }
 }
 @keyframes catPeek {
-  0%, 34%, 90%, 100% {
+  0%, 34%, 86%, 100% {
     transform: translate3d(0, 0, 0);
-    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.65, 0, 0.9, 0.45);
   }
-  50%, 72% {
-    transform: translate3d(0, 8px, 0);
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  50%, 68% {
+    transform: translate3d(0, 9px, 0);
+    opacity: 0.22;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  79% {
+    transform: translate3d(0, -0.8px, 0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
   }
 }
 @keyframes targetFade {
@@ -301,13 +308,11 @@ body {
   html:not(.is-view-transition) .container--post .post > :not(header) {
     animation: 460ms var(--motion-ease) 80ms both softEnter;
   }
-  .footer img.footer-cat {
-    will-change: transform;
-    backface-visibility: hidden;
-    image-rendering: auto;
-    animation: 3.2s infinite catPeek;
+  .footer .footer-cat {
+    will-change: transform, opacity;
+    animation: 3.6s infinite catPeek;
   }
-  .footer-cat-slot:hover img.footer-cat {
+  .footer-cat-slot:hover .footer-cat {
     animation-play-state: paused;
   }
 }
@@ -477,11 +482,10 @@ body {
   height: 12px;
   overflow: hidden;
 }
-.footer img.footer-cat {
+.footer-cat {
   display: block;
+  width: 22px;
   height: 12px;
-  width: auto;
-  max-width: none;
   margin: 0;
 }
 
