@@ -12,12 +12,15 @@
     "clean:drafts": "rm -rf src/content/writing/drafts"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.3.0",
-    "astro": "^5.5.0"
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.5",
+    "astro": "^7.4.12"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.1",
     "typescript": "^5.8.2"
+  },
+  "overrides": {
+    "picomatch": "^4.0.7"
   }
 }

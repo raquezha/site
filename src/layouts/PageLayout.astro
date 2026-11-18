@@ -1,20 +1,19 @@
 ---
+import { SITE_DESCRIPTION, SITE_TITLE } from "../utils/writing";
+
 interface Props {
   title?: string;
   description?: string;
   isHome?: boolean;
 }
 
-const NAME = "Jan Celada";
-const DEFAULT_DESCRIPTION = "Jan Celada (raquezha) — Senior Android Developer. Kotlin, Compose, Kotlin Multiplatform, mobile CI/CD, and AI tooling.";
-
 const {
   title,
-  description = DEFAULT_DESCRIPTION,
+  description = SITE_DESCRIPTION,
   isHome = false,
 } = Astro.props;
 
-const pageTitle = title ? `${title} - ${NAME}` : NAME;
+const pageTitle = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -23,9 +22,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
@@ -39,8 +41,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap"
     />
     <link rel="stylesheet" href="/site.css" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate" type="application/rss+xml" title={NAME} href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
     <script is:inline>
       // Prevent entrance blur-cascade from doubling on MPA view-transitions or back/forward history
       const navType = performance.getEntriesByType?.("navigation")?.[0]?.type;
@@ -76,6 +79,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
             height="12"
             alt=""
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
             class="footer-cat"
           />
         </footer>

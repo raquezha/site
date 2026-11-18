@@ -50,16 +50,59 @@ test.describe("Unit: NoDesign Tokens & Static Assets", () => {
   });
 
   test("media assets referenced by fixtures exist in public/", () => {
-    for (const rel of [
-      "public/demo-placeholder.mp4",
+    const coreAssets = [
       "public/cat-lounging.svg",
       "public/cat-peekaboo.svg",
       "public/doodle-arrow.svg",
       "public/doodle-blue-cat.svg",
-      "public/images/2026-11-10-site-fixed-home.png",
-      "public/images/2026-11-17-post-compact-parity.png",
-    ]) {
+      "public/favicon.svg",
+      "public/favicon.ico",
+      "public/robots.txt",
+      "public/CNAME",
+    ];
+    const draftAssets = fs.existsSync(path.join(root, "src/content/writing/drafts"))
+      ? [
+          "public/demo-placeholder.mp4",
+          "public/images/2026-11-10-site-fixed-home.png",
+          "public/images/2026-11-17-post-compact-parity.png",
+        ]
+      : [];
+    for (const rel of [...coreAssets, ...draftAssets]) {
       expect(fs.existsSync(path.join(root, rel)), `Missing asset: ${rel}`).toBe(true);
+    }
+  });
+
+  test("static build output (dist/) satisfies SEO, 404, sitemap, and OpSec constraints", () => {
+    const distDir = path.join(root, "dist");
+    if (!fs.existsSync(distDir)) return;
+
+    for (const file of [
+      "index.html",
+      "404.html",
+      "rss.xml",
+      "sitemap-index.xml",
+      "sitemap-0.xml",
+      "robots.txt",
+      "CNAME",
+    ]) {
+      expect(fs.existsSync(path.join(distDir, file)), `Missing dist/${file}`).toBe(true);
+    }
+
+    const robots = fs.readFileSync(path.join(distDir, "robots.txt"), "utf8");
+    expect(robots).toContain("Sitemap: https://raquezha.net/sitemap-index.xml");
+
+    const sitemap = fs.readFileSync(path.join(distDir, "sitemap-0.xml"), "utf8");
+    expect(sitemap).toContain("<loc>https://raquezha.net/</loc>");
+    expect(sitemap).not.toContain("/404");
+
+    const indexHtml = fs.readFileSync(path.join(distDir, "index.html"), "utf8");
+    expect(indexHtml).toContain('rel="sitemap" href="/sitemap-index.xml"');
+    expect(indexHtml).toContain('name="referrer" content="strict-origin-when-cross-origin"');
+
+    if (!fs.existsSync(path.join(distDir, "writing"))) {
+      expect(fs.existsSync(path.join(distDir, "images"))).toBe(false);
+      expect(fs.existsSync(path.join(distDir, "demo-placeholder.mp4"))).toBe(false);
+      expect(indexHtml).not.toContain('class="writing"');
     }
   });
 });

@@ -1,14 +1,14 @@
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { resolveDate, resolveSlug } from "../utils/dates";
-import { getSortedPublishedWriting } from "../utils/writing";
+import { getSortedPublishedWriting, SITE_DESCRIPTION, SITE_TITLE } from "../utils/writing";
 
 export async function GET(context: APIContext) {
   const sorted = await getSortedPublishedWriting();
 
   return rss({
-    title: "Jan Celada",
-    description: "Jan Celada (raquezha) — Kotlin, Android, mobile CI/CD, and AI tooling.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     site: context.site!,
     items: sorted.map((entry) => {
       const date = resolveDate(entry);

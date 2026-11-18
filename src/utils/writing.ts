@@ -1,6 +1,10 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import { formatDayMonth, formatYear, isPublished, resolveDate, resolveSlug } from "./dates";
 
+export const SITE_TITLE = "Jan Celada";
+export const SITE_DESCRIPTION =
+  "Jan Celada (raquezha) — Mobile Platform Head. Kotlin, Android developer experience, Jetpack Compose, KMP, mobile CI/CD, and AI tooling.";
+
 export type WritingSection = "writing" | "personal";
 
 export interface PostRow {

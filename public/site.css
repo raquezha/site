@@ -287,6 +287,9 @@ body {
   html:not(.home-visited) .container--home .footer {
     animation: 440ms var(--motion-ease) 460ms both softEnter;
   }
+  html:not(.home-visited) .container--home:not(:has(.writing)) .footer {
+    animation-delay: 245ms;
+  }
   html:not(.is-view-transition) .container--post .post > header {
     animation: 440ms var(--motion-ease) 0ms both softEnter;
   }
@@ -323,40 +326,30 @@ body {
   line-height: 1.25rem; /* 20px */
 }
 .homepage > header {
-  /* Slice 02: Figma Home/content 59:1518 is a vertical stack with a 16px gap
-     (name 59:1519 -> subtitle 59:1523 -> first paragraph 59:1524 -> bio 59:1525). */
   display: flex;
   flex-direction: column;
-  gap: var(--layout-spacing-m);           /* 16px name -> subtitle */
-  margin-bottom: var(--layout-spacing-m); /* 16px subtitle -> first paragraph */
+  gap: var(--layout-spacing-xxs);         /* 2px name -> subtitle lockup */
+  margin-bottom: var(--layout-spacing-xl); /* 32px subtitle -> first bio paragraph */
 }
 .homepage > header h1 {
   margin: 0;
-  color: var(--content-name);                      /* content/name VariableID:227:1565 */
+  color: var(--content-primary);
   font-size: var(--type-home-name-size);           /* home/name 16 */
-  font-weight: var(--type-home-name-weight);       /* 600 Semi Bold */
+  font-weight: var(--type-post-title-weight);      /* 500 Medium */
   line-height: var(--type-home-name-lh);           /* 24 */
   letter-spacing: var(--type-home-name-tracking);  /* -0.1px */
 }
 .homepage .article-date {
-  color: var(--content-subtle);                    /* content/subtle VariableID:227:1567 */
-  font-size: var(--type-post-body-size);           /* Figma 59:1523 uses post/body 14/20 400 */
+  color: var(--content-nav-default);               /* muted slate rgba(18, 18, 18, 0.4) */
+  font-size: var(--type-post-body-size);
   font-weight: var(--type-post-body-weight);
   line-height: var(--type-post-body-lh);
   letter-spacing: var(--type-post-body-tracking);
 }
 .homepage p {
   margin: 0 0 var(--layout-spacing-m); /* 16px */
-  color: var(--content-muted); /* content/muted, Figma bio-paragraph 59:1525 */
-  font-size: var(--type-home-body-size);           /* home/body 14/20, wght 460 */
-  font-weight: var(--type-home-body-weight);
-  line-height: var(--type-home-body-lh);
-  letter-spacing: var(--type-home-body-tracking);
-  /* no text-wrap: pretty here: Figma wraps greedily, and pretty moved "with" to line 2 at 390 (Slice 02 fix round 1) */
-}
-.homepage > header + p {
-  color: var(--content-lead); /* content/lead VariableID:227:1566, Figma first paragraph 59:1524 */
-  font-size: var(--type-post-body-size);           /* Figma 59:1524 uses post/body 14/20 400 */
+  color: var(--content-primary);
+  font-size: var(--type-post-body-size);
   font-weight: var(--type-post-body-weight);
   line-height: var(--type-post-body-lh);
   letter-spacing: var(--type-post-body-tracking);
@@ -656,38 +649,55 @@ a:focus-visible {
   padding: 0;
   border: 0;
   border-radius: 4px;
-  background: transparent;
-  color: var(--content-muted);
+  background: var(--surface-code);
+  box-shadow: -8px 0 8px var(--surface-code), 10px 0 0 var(--surface-code);
+  color: var(--content-nav-default);
   cursor: pointer;
-  opacity: 0.6;
-  transition: opacity var(--motion-micro) var(--motion-ease),
-    color var(--motion-micro) var(--motion-ease),
+  transition: color var(--motion-micro) var(--motion-ease),
     background-color var(--motion-micro) var(--motion-ease),
     transform var(--motion-micro) var(--motion-ease);
 }
 .article pre:hover .code-copy-btn,
 .article .code-copy-btn:focus-visible {
-  opacity: 0.9;
+  color: var(--content-muted);
 }
 .article .code-copy-btn:hover {
-  opacity: 1;
   color: var(--content-primary);
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--outline-subtle);
 }
 .article .code-copy-btn:focus-visible {
   outline: 2px solid var(--outline-focus);
   outline-offset: 2px;
+}
+.article .code-copy-btn .icon-check {
+  display: none;
 }
 .article .code-copy-btn.is-copied {
   opacity: 1;
   color: var(--content-terminal-prompt);
   transform: scale(1.06);
 }
+.article .code-copy-btn.is-copied .icon-copy {
+  display: none;
+}
+.article .code-copy-btn.is-copied .icon-check {
+  display: block;
+}
+@media (pointer: coarse) {
+  .article .code-copy-btn {
+    top: 6px;
+    right: 6px;
+    width: 32px;
+    height: 32px;
+  }
+}
 .article pre[data-language="bash"] .code-copy-btn,
 .article pre[data-language="sh"] .code-copy-btn,
 .article pre[data-language="shell"] .code-copy-btn,
 .article pre[data-language="console"] .code-copy-btn,
 .article pre[data-language="zsh"] .code-copy-btn {
+  background: var(--surface-terminal);
+  box-shadow: -8px 0 8px var(--surface-terminal), 10px 0 0 var(--surface-terminal);
   color: rgba(255, 255, 255, 0.55);
 }
 .article pre[data-language="bash"] .code-copy-btn:hover,
@@ -696,7 +706,7 @@ a:focus-visible {
 .article pre[data-language="console"] .code-copy-btn:hover,
 .article pre[data-language="zsh"] .code-copy-btn:hover {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
+  background: #262626;
 }
 .article pre code {
   display: block;
@@ -705,6 +715,11 @@ a:focus-visible {
   font-size: inherit;
   overflow-wrap: normal;
   scrollbar-width: thin;
+}
+.article pre code:focus-visible {
+  border-radius: 8px;
+  outline: 2px solid var(--outline-focus);
+  outline-offset: -2px;
 }
 /* Figma 59:1816 Block / Terminal: #141414 surface, 1px solid #333333, 8px radius */
 .article pre[data-language="bash"],
@@ -1180,6 +1195,22 @@ a:focus-visible {
   }
   .writing a {
     grid-template-columns: 56px minmax(0, 1fr) auto;
+  }
+}
+
+@media (forced-colors: active) {
+  .article mark {
+    background-image: none;
+    background-color: Highlight;
+    color: HighlightText;
+  }
+  .article :is(u, .mark-underline, .mark-wavy) {
+    background-image: none;
+    text-decoration: underline;
+  }
+  .article :is(del, s, .mark-strike, .mark-scratch) {
+    background-image: none;
+    text-decoration: line-through;
   }
 }
 

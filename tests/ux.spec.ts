@@ -132,5 +132,10 @@ test.describe("UX & Accessibility Checks", () => {
     }
 
     expect(errors).toEqual([]);
+
+    const notFoundRes = await page.goto("/404", { waitUntil: "networkidle" });
+    expect(notFoundRes?.status()).toBe(404);
+    await expect(page.locator(".post h1")).toHaveText("404");
+    await expect(page.locator(".back-link--main")).toBeVisible();
   });
 });

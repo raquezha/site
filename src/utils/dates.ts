@@ -5,16 +5,16 @@ const MONTHS = [
   "July", "August", "September", "October", "November", "December",
 ] as const;
 
-const SHORT_MONTHS = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-] as const;
-
 const ISO_DATE = /^(\d{4})-(\d{2})-(\d{2})$/;
 
 function parts(iso: string): [string, string, string] {
   const m = ISO_DATE.exec(iso);
   if (!m) throw new Error(`Expected YYYY-MM-DD, got "${iso}"`);
+  const month = Number(m[2]);
+  const day = Number(m[3]);
+  if (month < 1 || month > 12 || day < 1 || day > 31) {
+    throw new Error(`Invalid calendar date "${iso}"`);
+  }
   return [m[1], m[2], m[3]];
 }
 
@@ -22,12 +22,6 @@ function parts(iso: string): [string, string, string] {
 export function formatLongDate(iso: string): string {
   const [y, m, d] = parts(iso);
   return `${MONTHS[Number(m) - 1]} ${Number(d)}, ${y}`;
-}
-
-/** "2026-10-23" -> "Oct 23, 2026" */
-export function formatShortDate(iso: string): string {
-  const [y, m, d] = parts(iso);
-  return `${SHORT_MONTHS[Number(m) - 1]} ${Number(d)}, ${y}`;
 }
 
 /** "2026-10-23" -> "2026" (Figma v7.7 Home left year column) */

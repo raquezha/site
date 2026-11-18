@@ -28,7 +28,7 @@ const showToc = h2Headings.length >= 3;
         <a href="#" class="post-toc-post-title" aria-hidden="true" tabindex="-1">
           {entry.data.shortTitle ?? title}
         </a>
-        <nav>
+        <nav aria-label="Table of contents">
           <ul>
             {h2Headings.map((heading, idx) => (
               <li>
@@ -66,6 +66,15 @@ const showToc = h2Headings.length >= 3;
       </article>
     </div>
   </div>
+  <template id="code-copy-tpl">
+    <svg class="icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+    <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+  </template>
   <script is:inline>
     (() => {
       function initTocScrollSpy() {
@@ -99,6 +108,7 @@ const showToc = h2Headings.length >= 3;
         };
 
         window.addEventListener("scroll", syncScrollActive, { passive: true });
+        window.addEventListener("resize", syncScrollActive, { passive: true });
         syncScrollActive();
 
         const tocTitle = document.querySelector(".post-toc-post-title");
@@ -107,11 +117,20 @@ const showToc = h2Headings.length >= 3;
 
         tocTitle.addEventListener("click", (e) => {
           e.preventDefault();
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          window.scrollTo({ top: 0, behavior: reduced ? "instant" : "smooth" });
         });
         const titleObserver = new IntersectionObserver(
           ([entry]) => {
             const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+            if (!scrolledPast && document.activeElement === tocTitle) {
+              const backLink = document.querySelector(".post-toc .back-link");
+              if (backLink instanceof HTMLElement) {
+                backLink.focus({ preventScroll: true });
+              } else {
+                tocTitle.blur();
+              }
+            }
             tocTitle.classList.toggle("is-visible", scrolledPast);
             tocTitle.setAttribute("aria-hidden", String(!scrolledPast));
             tocTitle.setAttribute("tabindex", scrolledPast ? "0" : "-1");
@@ -128,16 +147,21 @@ const showToc = h2Headings.length >= 3;
       }
 
       function initCodeCopyButtons() {
-        const COPY_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-        const CHECK_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+        const tpl = document.getElementById("code-copy-tpl");
+        if (!(tpl instanceof HTMLTemplateElement)) return;
         for (const pre of document.querySelectorAll(".article pre")) {
           const code = pre.querySelector("code");
           if (!code || pre.querySelector(".code-copy-btn")) continue;
+          if (!code.hasAttribute("tabindex")) {
+            code.setAttribute("tabindex", "0");
+            code.setAttribute("role", "region");
+            code.setAttribute("aria-label", "Code snippet");
+          }
           const btn = document.createElement("button");
           btn.type = "button";
           btn.className = "code-copy-btn";
           btn.setAttribute("aria-label", "Copy code");
-          btn.innerHTML = COPY_SVG;
+          btn.appendChild(tpl.content.cloneNode(true));
           let timer;
           btn.addEventListener("click", async () => {
             try {
@@ -145,12 +169,10 @@ const showToc = h2Headings.length >= 3;
             } catch {}
             btn.classList.add("is-copied");
             btn.setAttribute("aria-label", "Copied");
-            btn.innerHTML = CHECK_SVG;
             clearTimeout(timer);
             timer = setTimeout(() => {
               btn.classList.remove("is-copied");
               btn.setAttribute("aria-label", "Copy code");
-              btn.innerHTML = COPY_SVG;
             }, 1500);
           });
           pre.appendChild(btn);

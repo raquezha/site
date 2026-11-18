@@ -1,10 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 async function hideAstroDevToolbar(page: import("@playwright/test").Page) {
-  await page.evaluate(() => {
-    document.querySelectorAll("astro-dev-toolbar").forEach((el) => {
-      (el as HTMLElement).style.display = "none";
-    });
+  await page.addStyleTag({
+    content: "astro-dev-toolbar { display: none !important; }",
   });
 }
 

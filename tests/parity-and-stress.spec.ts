@@ -18,7 +18,7 @@ function contrastRatio(a: number[], b: number[]) {
 }
 
 test.describe("Parity & Stress: Home & Article Layouts", () => {
-  for (const width of [1440, 390]) {
+  for (const width of [1440, 390, 320]) {
     test(`Home parity at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto("/");
@@ -137,7 +137,7 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
     }
   });
 
-  for (const width of [1440, 1120, 1090, 768, 390]) {
+  for (const width of [1440, 1120, 1090, 768, 390, 320]) {
     test(`Absurd stress test layout & responsiveness at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto("/writing/_absurd-stress-test");
