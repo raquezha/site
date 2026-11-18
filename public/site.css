@@ -223,10 +223,10 @@
 }
 @keyframes catPeek {
   0%, 100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(4px);
+    transform: translate3d(0, 7px, 0);
   }
 }
 @keyframes targetFade {
@@ -301,7 +301,8 @@ body {
   }
   .footer img.footer-cat {
     will-change: transform;
-    animation: 4.5s cubic-bezier(0.37, 0, 0.63, 1) infinite catPeek;
+    backface-visibility: hidden;
+    animation: 3.6s cubic-bezier(0.42, 0, 0.58, 1) infinite catPeek;
   }
   .footer-cat-slot:hover img.footer-cat {
     animation-play-state: paused;
