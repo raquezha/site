@@ -42,7 +42,7 @@ Three things got in the way:
 
 ## How it started
 
-It started while I was playing around with [Spaces](https://github.com/raquezha/spaces), my open source Kotlin Multiplatform app. First I prompted Grok Bot for a UI mock and thought, wow, this actually looks good. Then I brought that image into ChatGPT to polish it: update this button, fix that card, tweak the layout.
+It started while I was playing around with [Spaces](https://github.com/raquezha/spaces), my open source Kotlin Multiplatform app. First I prompted Grok Bot for a UI mock and thought, wow, this actually looks good. Then I brought that image into ChatGPT[^models] to polish it: update this button, fix that card, tweak the layout.
 
 <figure>
   <img src="/images/spaces-phase1-screens.png" alt="Three early Spaces mobile screens: Login, Weekly Report, and Settings" />
@@ -125,3 +125,4 @@ On the design side, <mark class="mint">both Spaces and raquezha.net made it clea
 [^3]: [html.to.design](https://html.to.design/) converts rendered browser pages into editable Figma frames. When the initial free imports ran out, registering a free divRIOTS account and logging in and out gave me 10 more imports a month to re-import the states cleanly haha.
 [^4]: Turned my old 2018 Asus ROG GLX703GE into a home server running EndeavourOS. Wanna know how I set that up? Writing that post next.
 [^5]: Google "DTCG" and the first thing that pops up is the Digimon Trading Card Game haha. The one I discovered here is the W3C [Design Tokens Community Group](https://www.w3.org/community/design-tokens/) ([designtokens.org](https://www.designtokens.org/) and their [2025.10 Format Spec](https://www.designtokens.org/tr/2025.10/format/)), a community of designers and engineers defining a portable JSON standard (`$value`, `$type`, and primitive to semantic aliases) so one token file works across Figma, web (CSS), Android (Compose), and iOS (SwiftUI).
+[^models]: Models used across the loop: **Grok Bot** for initial mocks and targeted tweaks, **ChatGPT** (mostly `gpt-5.6-terra` and `gpt-6.1-sol`) for polish, and **Gemini 3.8 Flash** for fast HTML and code passes.
