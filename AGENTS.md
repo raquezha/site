@@ -19,8 +19,9 @@ Guidelines for agents working in `raquezha/site`.
 
 ## Footnotes & Typography Conventions
 
-Follow the `benji.org` footnote styling in `public/site.css` (`.post .footnotes`):
+Follow the `benji.org` footnote styling in `public/site.css` (`.post sup` and `.post .footnotes`), which applies globally across all articles:
 
+- **Inline footnote references:** `.post sup` uses `color: var(--content-nav-default)`, `font-size: 0.6em`, `font-weight: 460`, `line-height: 1`, and `padding: 0 0 0 0.35em`. `.post sup a` inherits that muted color with `text-decoration: none` and transitions to `var(--content-primary)` on `:hover`.
 - **Uniform muted style:** Footnotes use `11px` / `15px` in `var(--content-nav-default)`. `.post .footnotes :is(p, strong, code)` inherits font, size, weight, and color with transparent background—avoid adding bold or pill code styling inside footnotes.
 - **Exponent numbers:** `.post .footnotes ol` uses `list-style: none` with `li::before` (`content: counter(list); font-size: 0.45rem;`) positioned at `right: 100%; top: 0` to render superscript-style footnote numbers.
 - **Clickable row backref (no `↩` arrow):** `.post .footnotes a.data-footnote-backref` is visually hidden (`text-indent: -9999px; overflow: hidden`) and stretched over the footnote item (`position: absolute; inset: 0; bottom: 0.5em; z-index: 1`) so clicking anywhere on the footnote line jumps back to the inline reference.

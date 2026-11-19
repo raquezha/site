@@ -902,13 +902,20 @@ a:focus-visible {
 }
 
 /* Footnotes & Acknowledgements (Figma 57:629 Article references) */
+.post sup {
+  display: inline-block;
+  padding: 0 0 0 0.35em;
+  color: var(--content-nav-default);
+  font-size: 0.6em;
+  font-weight: 460;
+  line-height: 1;
+}
 .post sup a {
-  font-size: 9px;
-  line-height: 12px;
-  font-weight: 500;
   text-decoration: none;
-  color: var(--content-link-styled);
-  padding-inline: 1px;
+  color: inherit;
+}
+.post sup a:hover {
+  color: var(--content-primary);
 }
 .post .footnotes {
   margin-top: var(--layout-spacing-xxl); /* 48px */
