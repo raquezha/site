@@ -98,12 +98,12 @@
     </g>
 
     <!-- Return loop arc (Card 3 -> Card 1) with clean attached arrowhead -->
-    <path d="M 556 164 C 504 202, 182 202, 118 164" fill="none" stroke="#2a2a28" stroke-width="1.4" stroke-dasharray="5 3"/>
-    <path d="M 114 174 L 117 163 L 128 167" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+    <path d="M 556 164 C 504 202, 182 202, 119 164.6" fill="none" stroke="#2a2a28" stroke-width="1.4" stroke-dasharray="5 3"/>
+    <path d="M 128.5 163.5 L 118 164 L 122.5 173.5" fill="none" stroke="#2a2a28" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
     <!-- Highlighted AI loop pill -->
     <g transform="translate(206, 178) rotate(-0.6)">
-      <path d="M 4 2 Q 134 -1 264 2 Q 267 13 263 24 Q 134 26 4 23 Q 1 13 4 2 Z" fill="#bde8cf" opacity="0.72" stroke="#2a2a28" stroke-width="1.15"/>
+      <path d="M 4 2 Q 134 -1 264 2 Q 267 13 263 24 Q 134 26 4 23 Q 1 13 4 2 Z" fill="#d0efe0" stroke="#2a2a28" stroke-width="1.15"/>
       <!-- Tiny lightning bolt doodle inside pill -->
       <path d="M 16 7 L 11 14 L 15 14 L 13 20 L 20 12 L 16 12 Z" fill="#f8ec9c" stroke="#2a2a28" stroke-width="0.95"/>
       <text x="27" y="16.5" font-size="11" font-weight="600" fill="#2a2a28">AI loop: prompt tweak -&gt; instant UI in Figma!</text>
