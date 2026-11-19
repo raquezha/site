@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 336" width="680" height="336" role="img" aria-labelledby="flal-sketch-title">
+  <title id="flal-sketch-title">Hand-drawn sketch of the zero-click Arch Linux loop: prompt in terminal updates code.js, triggers Run last plugin over figma-linux debug port, and updates Figma automatically, until the office Mac Mini blocks it</title>
+  <rect width="680" height="336" rx="8" fill="#fdfdfc" stroke="#ededed" stroke-width="1.5"/>
+
+  <g fill="#2a2a28" stroke-linecap="round" stroke-linejoin="round" font-family="'Caveat', 'Kalam', 'Bradley Hand', 'Inter', system-ui, sans-serif">
+    <!-- Subtle Excalidraw dot grid -->
+    <g fill="#e6e6e0" opacity="0.55">
+      <circle cx="40" cy="36" r="1"/><circle cx="120" cy="36" r="1"/><circle cx="200" cy="36" r="1"/><circle cx="280" cy="36" r="1"/><circle cx="360" cy="36" r="1"/><circle cx="440" cy="36" r="1"/><circle cx="520" cy="36" r="1"/><circle cx="600" cy="36" r="1"/>
+      <circle cx="40" cy="108" r="1"/><circle cx="120" cy="108" r="1"/><circle cx="200" cy="108" r="1"/><circle cx="280" cy="108" r="1"/><circle cx="360" cy="108" r="1"/><circle cx="440" cy="108" r="1"/><circle cx="520" cy="108" r="1"/><circle cx="600" cy="108" r="1"/>
+      <circle cx="40" cy="180" r="1"/><circle cx="120" cy="180" r="1"/><circle cx="200" cy="180" r="1"/><circle cx="280" cy="180" r="1"/><circle cx="360" cy="180" r="1"/><circle cx="440" cy="180" r="1"/><circle cx="520" cy="180" r="1"/><circle cx="600" cy="180" r="1"/>
+      <circle cx="40" cy="252" r="1"/><circle cx="120" cy="252" r="1"/><circle cx="200" cy="252" r="1"/><circle cx="280" cy="252" r="1"/><circle cx="360" cy="252" r="1"/><circle cx="440" cy="252" r="1"/><circle cx="520" cy="252" r="1"/><circle cx="600" cy="252" r="1"/>
+      <circle cx="40" cy="312" r="1"/><circle cx="120" cy="312" r="1"/><circle cx="200" cy="312" r="1"/><circle cx="280" cy="312" r="1"/><circle cx="360" cy="312" r="1"/><circle cx="440" cy="312" r="1"/><circle cx="520" cy="312" r="1"/><circle cx="600" cy="312" r="1"/>
+    </g>
+
+    <!-- Header label: Arch Linux loop -->
+    <g transform="translate(28, 16)">
+      <path d="M 9 1 C 6.5 6.5, 4 11.5, 1.5 16.5 C 4.5 15, 7 14.5, 9 14.8 C 11 14.5, 13.5 15, 16.5 16.5 C 14 11.5, 11.5 6.5, 9 1 Z M 9 9.5 C 10.2 10.5, 10.8 12.2, 10.8 14 C 9.6 13.5, 8.4 13.5, 7.2 14 C 7.2 12.2, 7.8 10.5, 9 9.5 Z" fill="#bfddf0" stroke="#2a2a28" stroke-width="1.2"/>
+      <text x="24" y="13" font-size="12.5" font-weight="600" fill="#2a2a28">At home on Arch Linux: zero-click loop</text>
+    </g>
+
+    <!-- Tiny sparkle doodle near Card 2 -->
+    <path d="M 448 34 L 450 28 L 452 34 L 458 36 L 452 38 L 450 44 L 448 38 L 442 36 Z" fill="#ebd38f" stroke="#2a2a28" stroke-width="0.9"/>
+
+    <!-- 1. LEFT CARD: Prompt in terminal -> edit code.js -->
+    <g transform="translate(28, 44) rotate(-0.8)">
+      <path d="M 3 2 Q 88 -1 174 3 Q 178 58 173 114 Q 88 118 3 114 Q -1 58 3 2 Z" fill="#f8ec9c" opacity="0.38" stroke="#2a2a28" stroke-width="1.4"/>
+      <path d="M 1 5 Q 90 1 172 1 Q 176 60 175 112 Q 86 115 1 116 Q 2 56 1 5 Z" fill="none" stroke="#2a2a28" stroke-width="0.9" opacity="0.65"/>
+
+      <text x="14" y="24" font-size="11.5" font-weight="600" fill="#2a2a28">1. Prompt change</text>
+
+      <!-- Mini terminal prompt -->
+      <path d="M 12 34 Q 88 32 162 34 Q 164 52 162 66 Q 88 68 12 66 Q 10 50 12 34 Z" fill="#ffffff" stroke="#2a2a28" stroke-width="1.2"/>
+      <text x="20" y="53" font-family="'Inter', sans-serif" font-size="10.5" fill="#2a2a28">&gt; "fix 2px header gap"</text>
+
+      <!-- Agent edits code.js -->
+      <path d="M 12 76 L 162 76 L 162 103 L 12 103 Z" fill="#fdfdfc" stroke="#2a2a28" stroke-width="1.05" stroke-dasharray="3 2"/>
+      <text x="20" y="93" font-size="10.5" fill="#727271">agent edits same <tspan font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#2a2a28">code.js</tspan></text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 208 102 C 220 96, 232 98, 244 102" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+    <path d="M 237 96 L 245 102 L 236 107" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+
+    <!-- 2. CENTER CARD: figma-linux debug port + Run last plugin -->
+    <g transform="translate(248, 48) rotate(0.6)">
+      <path d="M 3 2 Q 92 -1 180 2 Q 184 54 179 106 Q 92 110 3 106 Q -1 54 3 2 Z" fill="#dcd2f2" opacity="0.52" stroke="#2a2a28" stroke-width="1.4"/>
+      <path d="M 1 4 Q 94 1 178 1 Q 182 56 181 104 Q 90 107 1 108 Q 2 52 1 4 Z" fill="none" stroke="#2a2a28" stroke-width="0.9" opacity="0.65"/>
+
+      <text x="14" y="23" font-size="11.5" font-weight="600" fill="#2a2a28">2. Auto-rerun plugin</text>
+      <text x="14" y="42" font-family="'Inter', sans-serif" font-size="9.5" fill="#727271">figma-linux debug (:9222)</text>
+
+      <!-- Shortcut keycap pill -->
+      <path d="M 14 50 Q 92 48 168 50 Q 170 64 168 76 Q 92 78 14 76 Q 12 63 14 50 Z" fill="#ffffff" stroke="#2a2a28" stroke-width="1.2"/>
+      <text x="24" y="67" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#2a2a28">Ctrl+Alt+P</text>
+      <text x="86" y="67" font-size="10.5" fill="#727271">Run last plugin</text>
+
+      <text x="46" y="96" font-size="11" font-weight="600" fill="#2f7d4d">0 manual clicks!</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <path d="M 434 102 C 446 97, 456 98, 466 102" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+    <path d="M 459 96 L 468 102 L 459 107" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+
+    <!-- Tiny sitting cat on top-right of Card 3 -->
+    <g transform="translate(610, 21) rotate(2)">
+      <path d="M 4 13 L 5 4 L 11 9 L 18 9 L 24 4 L 25 13" fill="#ffffff" stroke="#2a2a28" stroke-width="1.2"/>
+      <path d="M 4 13 Q 1 19 5 21 L 30 21 Q 35 18 32 12 Q 28 9 25 13" fill="#ffffff" stroke="#2a2a28" stroke-width="1.2"/>
+      <path d="M 32 18 Q 39 17 38 10" fill="none" stroke="#2a2a28" stroke-width="1.2"/>
+      <path d="M 9 14 Q 11 12.5 13 14 M 16 14 Q 18 12.5 20 14" fill="none" stroke="#2a2a28" stroke-width="1"/>
+      <circle cx="14.5" cy="16.5" r="0.9" fill="#f5cdbf"/>
+    </g>
+
+    <!-- 3. RIGHT CARD: Figma updates live -->
+    <g transform="translate(470, 44) rotate(-0.6)">
+      <path d="M 3 2 Q 92 -1 180 3 Q 184 58 179 114 Q 92 118 3 114 Q -1 58 3 2 Z" fill="#bde8cf" opacity="0.42" stroke="#2a2a28" stroke-width="1.4"/>
+      <path d="M 1 5 Q 94 1 178 1 Q 182 60 181 112 Q 90 115 1 116 Q 2 56 1 5 Z" fill="none" stroke="#2a2a28" stroke-width="0.9" opacity="0.65"/>
+
+      <!-- Tiny Figma mark -->
+      <g transform="translate(14, 12) scale(0.75)">
+        <path d="M 4 0 H 8 V 8 H 4 A 4 4 0 0 1 4 0 Z" fill="#f5cdbf" stroke="#2a2a28" stroke-width="1.4"/>
+        <path d="M 8 0 H 12 A 4 4 0 0 1 12 8 H 8 V 0 Z" fill="#f8ec9c" stroke="#2a2a28" stroke-width="1.4"/>
+        <path d="M 4 8 H 8 V 16 H 4 A 4 4 0 0 1 4 8 Z" fill="#dcd2f2" stroke="#2a2a28" stroke-width="1.4"/>
+        <circle cx="12" cy="12" r="4" fill="#bfddf0" stroke="#2a2a28" stroke-width="1.4"/>
+        <path d="M 4 16 H 8 V 20 A 4 4 0 0 1 0 20 A 4 4 0 0 1 4 16 Z" fill="#bde8cf" stroke="#2a2a28" stroke-width="1.4"/>
+      </g>
+      <text x="32" y="24" font-size="11.5" font-weight="600" fill="#2a2a28">3. Figma updates live!</text>
+
+      <!-- Mini updated frame preview -->
+      <rect x="14" y="34" width="154" height="50" rx="4" fill="#ffffff" stroke="#4a80b8" stroke-width="1.2"/>
+      <rect x="22" y="42" width="46" height="8" rx="2" fill="#2a2a28"/>
+      <rect x="22" y="54" width="94" height="5" rx="2" fill="#d8d8d0"/>
+      <rect x="22" y="64" width="76" height="5" rx="2" fill="#d8d8d0"/>
+      <!-- Live toast pill inside preview -->
+      <rect x="78" y="64" width="82" height="15" rx="7" fill="#2a2a28"/>
+      <text x="86" y="74.5" font-family="'Inter', sans-serif" font-size="8.5" font-weight="600" fill="#ffffff">Plugin ran!</text>
+
+      <text x="16" y="102" font-size="10.5" fill="#2a2a28">reads fresh code.js from disk</text>
+    </g>
+
+    <!-- Return loop arc (Card 3 -> Card 1) with clean attached arrowhead -->
+    <path d="M 556 164 C 504 202, 182 202, 118 164" fill="none" stroke="#2a2a28" stroke-width="1.4" stroke-dasharray="5 3"/>
+    <path d="M 114 174 L 117 163 L 128 167" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+
+    <!-- Highlighted AI loop pill -->
+    <g transform="translate(206, 178) rotate(-0.6)">
+      <path d="M 4 2 Q 134 -1 264 2 Q 267 13 263 24 Q 134 26 4 23 Q 1 13 4 2 Z" fill="#bde8cf" opacity="0.72" stroke="#2a2a28" stroke-width="1.15"/>
+      <!-- Tiny lightning bolt doodle inside pill -->
+      <path d="M 16 7 L 11 14 L 15 14 L 13 20 L 20 12 L 16 12 Z" fill="#f8ec9c" stroke="#2a2a28" stroke-width="0.95"/>
+      <text x="27" y="16.5" font-size="11" font-weight="600" fill="#2a2a28">AI loop: prompt tweak -&gt; instant UI in Figma!</text>
+    </g>
+
+    <!-- 4. BOTTOM STRIP: Office Mac Mini wall -->
+    <g transform="translate(28, 228) rotate(-0.3)">
+      <path d="M 4 2 Q 312 -1 620 2 Q 624 44 619 86 Q 312 89 4 86 Q 0 44 4 2 Z" fill="#f5cdbf" opacity="0.45" stroke="#2a2a28" stroke-width="1.45"/>
+      <path d="M 2 5 Q 314 1 618 1 Q 622 46 621 84 Q 310 87 2 88 Q 3 42 2 5 Z" fill="none" stroke="#2a2a28" stroke-width="0.9" opacity="0.65"/>
+
+      <!-- Mac Mini hand-drawn doodle icon -->
+      <g transform="translate(18, 15) scale(1.15)">
+        <path d="M 4 5 L 18 5 L 20 10 L 2 10 Z" fill="#fdfdfc" stroke="#2a2a28" stroke-width="1.2"/>
+        <path d="M 2 10 L 20 10 L 20 15.5 L 2 15.5 Z" fill="#e6e6e0" stroke="#2a2a28" stroke-width="1.2"/>
+        <path d="M 4 15.5 L 18 15.5 L 17 17 L 5 17 Z" fill="#2a2a28"/>
+        <rect x="5" y="12" width="2.2" height="1.8" rx="0.4" fill="#2a2a28"/>
+        <rect x="8.5" y="12" width="2.2" height="1.8" rx="0.4" fill="#2a2a28"/>
+        <circle cx="16.5" cy="12.8" r="0.9" fill="#2a2a28"/>
+      </g>
+
+      <!-- Hand-drawn brush highlight behind Plot twist headline -->
+      <path d="M 48 25 Q 148 20 250 26" fill="none" stroke="#f8ec9c" stroke-width="12" opacity="0.82"/>
+      <text x="50" y="30" font-size="12.5" font-weight="600" fill="#9a5b4a">Plot twist on the office Mac Mini:</text>
+      <text x="50" y="50" font-size="11.5" fill="#2a2a28">Official macOS Figma blocks debug mode (:9222) - and the UX/UI team all use Macs.</text>
+      <text x="50" y="69" font-size="11.5" fill="#727271">An Arch-only hack won't help them... <tspan font-weight="600" fill="#9a5b4a">back to clicking Run manually haha</tspan></text>
+
+      <!-- Hand-drawn wobbly hazard warning triangle on right -->
+      <g transform="translate(558, 16) rotate(3)">
+        <path d="M 22 3 Q 33 19 42 36 Q 22 39 2 36 Q 11 19 22 3 Z" fill="#f8ec9c" stroke="#2a2a28" stroke-width="1.5"/>
+        <path d="M 21 5 Q 31 20 40 34 Q 22 36 4 35 Q 13 20 21 5 Z" fill="none" stroke="#9a5b4a" stroke-width="0.95" opacity="0.75"/>
+        <!-- Hand-drawn exclamation mark -->
+        <path d="M 22 14 L 22 25" stroke="#9a5b4a" stroke-width="2.4"/>
+        <circle cx="22" cy="30.5" r="1.4" fill="#9a5b4a"/>
+        <!-- Little warning sparks -->
+        <path d="M 5 8 L 9 11 M 39 7 L 35 11 M 43 18 L 47 17" stroke="#9a5b4a" stroke-width="1.15"/>
+      </g>
+    </g>
+  </g>
+</svg>

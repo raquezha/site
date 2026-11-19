@@ -1,0 +1,246 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 385" width="680" height="385" role="img" aria-labelledby="ffds-sketch-title">
+  <title id="ffds-sketch-title">Hand-drawn Excalidraw style sketch of going from Grok and ChatGPT chat prompts to a website in Chrome, imported via the html.to.design Figma plugin</title>
+  <rect width="680" height="385" rx="8" fill="#fdfdfc" stroke="#ededed" stroke-width="1.5"/>
+
+  <defs>
+    <path id="openai-petal" d="M 12 2.2 C 14.3 2.2, 16.1 4.0, 16.1 6.3 L 16.1 10.6 L 12 12.9 L 8.9 11.1 L 8.9 5.5 C 8.9 3.7, 10.3 2.2, 12 2.2 Z" fill="none" stroke="#2a2a28" stroke-width="1.35"/>
+  </defs>
+
+  <g fill="#2a2a28" stroke-linecap="round" stroke-linejoin="round" font-family="'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive">
+    <!-- Subtle Excalidraw dot grid -->
+    <g fill="#e6e6e0" opacity="0.55">
+      <circle cx="40" cy="40" r="1"/><circle cx="120" cy="40" r="1"/><circle cx="200" cy="40" r="1"/><circle cx="280" cy="40" r="1"/><circle cx="360" cy="40" r="1"/><circle cx="440" cy="40" r="1"/><circle cx="520" cy="40" r="1"/><circle cx="600" cy="40" r="1"/>
+      <circle cx="40" cy="120" r="1"/><circle cx="120" cy="120" r="1"/><circle cx="200" cy="120" r="1"/><circle cx="280" cy="120" r="1"/><circle cx="360" cy="120" r="1"/><circle cx="440" cy="120" r="1"/><circle cx="520" cy="120" r="1"/><circle cx="600" cy="120" r="1"/>
+      <circle cx="40" cy="200" r="1"/><circle cx="120" cy="200" r="1"/><circle cx="200" cy="200" r="1"/><circle cx="280" cy="200" r="1"/><circle cx="360" cy="200" r="1"/><circle cx="440" cy="200" r="1"/><circle cx="520" cy="200" r="1"/><circle cx="600" cy="200" r="1"/>
+      <circle cx="40" cy="280" r="1"/><circle cx="120" cy="280" r="1"/><circle cx="200" cy="280" r="1"/><circle cx="280" cy="280" r="1"/><circle cx="360" cy="280" r="1"/><circle cx="440" cy="280" r="1"/><circle cx="520" cy="280" r="1"/><circle cx="600" cy="280" r="1"/>
+      <circle cx="40" cy="350" r="1"/><circle cx="120" cy="350" r="1"/><circle cx="200" cy="350" r="1"/><circle cx="280" cy="350" r="1"/><circle cx="360" cy="350" r="1"/><circle cx="440" cy="350" r="1"/><circle cx="520" cy="350" r="1"/><circle cx="600" cy="350" r="1"/>
+    </g>
+
+    <!-- Grok + ChatGPT logos above Chat Box -->
+    <g transform="translate(36, 16)">
+      <path d="M 16.5 6.8 A 7.5 7.5 0 1 0 18.8 14.8" fill="none" stroke="#2a2a28" stroke-width="2.1"/>
+      <path d="M 3.5 18.5 L 20.5 2.5" stroke="#2a2a28" stroke-width="2.2"/>
+    </g>
+    <g transform="translate(64, 15) scale(0.95)">
+      <use href="#openai-petal" transform="rotate(0 12 12)"/>
+      <use href="#openai-petal" transform="rotate(60 12 12)"/>
+      <use href="#openai-petal" transform="rotate(120 12 12)"/>
+      <use href="#openai-petal" transform="rotate(180 12 12)"/>
+      <use href="#openai-petal" transform="rotate(240 12 12)"/>
+      <use href="#openai-petal" transform="rotate(300 12 12)"/>
+    </g>
+    <text x="94" y="31" font-size="12.5" font-weight="600" fill="#2a2a28">Grok Bot + ChatGPT</text>
+
+    <!-- 1. TOP LEFT: Chat prompt box doodle -->
+    <g transform="translate(30, 44) rotate(-1.5)">
+      <path d="M 4 2 Q 86 -1 168 3 Q 172 48 167 92 Q 86 96 3 92 Q -1 48 4 2 Z" fill="#f8ec9c" opacity="0.38" stroke="#2a2a28" stroke-width="1.4"/>
+      <path d="M 2 5 Q 88 2 166 1 Q 170 50 169 90 Q 84 93 1 94 Q 2 46 2 5 Z" fill="none" stroke="#2a2a28" stroke-width="0.9" opacity="0.65"/>
+
+      <!-- Bot image reply bubble -->
+      <path d="M 12 12 L 54 12 L 54 44 L 12 44 Z" fill="#ffffff" stroke="#2a2a28" stroke-width="1.15"/>
+      <circle cx="21" cy="21" r="2.2" fill="#f5cdbf" stroke="#2a2a28" stroke-width="0.9"/>
+      <path d="M 15 39 L 25 27 L 35 36 L 43 29 L 51 39" fill="none" stroke="#2a2a28" stroke-width="1.1"/>
+      <text x="62" y="25" font-size="11" fill="#727271">image mock</text>
+      <text x="62" y="40" font-size="10.5" fill="#9a5b4a">"fix that btn"</text>
+
+      <!-- Chat text input box -->
+      <path d="M 12 56 Q 84 54 156 56 Q 158 70 156 82 Q 84 84 12 82 Q 10 69 12 56 Z" fill="#ffffff" stroke="#2a2a28" stroke-width="1.25"/>
+      <text x="20" y="73" font-size="11" fill="#2a2a28">&gt; update UI...</text>
+      <circle cx="143" cy="69" r="8" fill="#2a2a28"/>
+      <path d="M 143 73 L 143 65 M 139.5 68.5 L 143 65 L 146.5 68.5" fill="none" stroke="#ffffff" stroke-width="1.4"/>
+    </g>
+
+    <!-- Messy self-loop arrow beside chat box -->
+    <path d="M 206 62 C 232 44, 240 82, 208 90" fill="none" stroke="#9a5b4a" stroke-width="1.3"/>
+    <path d="M 214 84 L 206 90 L 215 94" fill="none" stroke="#9a5b4a" stroke-width="1.3"/>
+    <text x="234" y="62" font-size="11" fill="#9a5b4a">prompt,</text>
+    <text x="236" y="76" font-size="11" fill="#9a5b4a">retry...</text>
+
+    <!-- Tiny sparkle doodle near top middle -->
+    <path d="M 332 48 L 334 42 L 336 48 L 342 50 L 336 52 L 334 58 L 332 52 L 326 50 Z" fill="#ebd38f" stroke="#2a2a28" stroke-width="0.9"/>
+
+    <!-- Sweeping curved arrow down-right from Chat box to Website -->
+    <path d="M 106 144 C 102 186, 126 218, 168 228" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+    <path d="M 160 222 L 170 228 L 161 234" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+    <text x="40" y="192" font-size="11.5" fill="#2a2a28" transform="rotate(-4, 40, 192)">turn image</text>
+    <text x="42" y="207" font-size="11.5" fill="#2a2a28" transform="rotate(-4, 42, 207)">to HTML?</text>
+
+    <!-- Tiny sleeping/sitting cat doodle on top-left of browser box! -->
+    <g transform="translate(192, 161) rotate(-2)">
+      <!-- Ears & head -->
+      <path d="M 4 14 L 5 5 L 11 10 L 18 10 L 24 5 L 25 14" fill="#ffffff" stroke="#2a2a28" stroke-width="1.25"/>
+      <!-- Body resting on browser bar -->
+      <path d="M 4 14 Q 1 20 5 22 L 31 22 Q 36 19 33 13 Q 29 10 25 14" fill="#ffffff" stroke="#2a2a28" stroke-width="1.25"/>
+      <!-- Cute tail curled up -->
+      <path d="M 33 19 Q 41 18 40 11" fill="none" stroke="#2a2a28" stroke-width="1.25"/>
+      <!-- Closed happy eyes + tiny nose -->
+      <path d="M 9 15 Q 11 13.5 13 15 M 16 15 Q 18 13.5 20 15" fill="none" stroke="#2a2a28" stroke-width="1"/>
+      <circle cx="14.5" cy="17.5" r="0.9" fill="#f5cdbf"/>
+    </g>
+
+    <!-- HTML5 + CSS3 shields above right side of Website -->
+    <g transform="translate(292, 152) rotate(2)">
+      <path d="M 1 1 L 19 1 L 17.2 17.5 L 10 20.5 L 2.8 17.5 Z" fill="#f5cdbf" stroke="#2a2a28" stroke-width="1.25"/>
+      <path d="M 14.5 5.2 L 5.8 5.2 L 6.3 9.8 L 14 9.8 L 13.4 14.5 L 10 15.6 L 6.6 14.5 L 6.4 12.6" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+    </g>
+    <g transform="translate(316, 154) rotate(-2)">
+      <path d="M 1 1 L 19 1 L 17.2 17.5 L 10 20.5 L 2.8 17.5 Z" fill="#bfddf0" stroke="#2a2a28" stroke-width="1.25"/>
+      <path d="M 5.8 5.2 L 14.2 5.2 L 13.7 9.8 L 7.5 9.8 M 13.7 9.8 L 13.2 14.5 L 10 15.6 L 6.6 14.5 L 6.4 12.6" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+    </g>
+
+    <!-- 2. BOTTOM CENTER-LEFT: Website in Chrome (more breathing room) -->
+    <g transform="translate(178, 184) rotate(1)">
+      <path d="M 3 2 Q 86 -1 170 3 Q 173 54 169 104 Q 86 107 3 103 Q 0 52 3 2 Z" fill="#ffffff" stroke="#2a2a28" stroke-width="1.4"/>
+      <path d="M 1 4 Q 88 1 168 1 Q 171 56 171 102 Q 84 105 1 105 Q 2 50 1 4 Z" fill="none" stroke="#2a2a28" stroke-width="0.9" opacity="0.65"/>
+      <!-- Browser top bar + URL pill -->
+      <path d="M 4 22 Q 86 20 168 22" fill="none" stroke="#2a2a28" stroke-width="1.1"/>
+      <circle cx="13" cy="12" r="2" fill="#f5cdbf" stroke="#2a2a28" stroke-width="0.8"/>
+      <circle cx="20" cy="12" r="2" fill="#f8ec9c" stroke="#2a2a28" stroke-width="0.8"/>
+      <circle cx="27" cy="12" r="2" fill="#bde8cf" stroke="#2a2a28" stroke-width="0.8"/>
+      <path d="M 38 6 L 154 6 L 154 17 L 38 17 Z" fill="#fdfdfc" stroke="#2a2a28" stroke-width="0.9"/>
+      <text x="44" y="14.5" font-family="'Inter', sans-serif" font-size="7.5" fill="#727271">localhost:3000</text>
+
+      <!-- Mini website wireframe inside -->
+      <path d="M 14 31 L 44 31 M 118 31 L 134 31 M 140 31 L 156 31" stroke="#727271" stroke-width="1.3"/>
+      <path d="M 14 40 L 156 40 L 156 64 L 14 64 Z" fill="#bfddf0" opacity="0.35" stroke="#2a2a28" stroke-width="1"/>
+      <text x="20" y="55" font-size="10.5" font-weight="600">HTML + CSS site</text>
+      <path d="M 14 71 L 80 71 L 80 94 L 14 94 Z" fill="#fdfdfc" stroke="#2a2a28" stroke-width="1"/>
+      <path d="M 88 71 L 156 71 L 156 94 L 88 94 Z" fill="#fdfdfc" stroke="#2a2a28" stroke-width="1"/>
+      <text x="19" y="86" font-size="9.5" fill="#727271">0 MCP calls</text>
+      <text x="92" y="86" font-size="9.5" fill="#9a5b4a">not a handoff</text>
+    </g>
+
+    <!-- Tiny coffee mug doodle bottom-left near website -->
+    <g transform="translate(132, 260)">
+      <path d="M 3 10 L 15 10 L 14 21 Q 9 23 4 21 Z" fill="#ffffff" stroke="#2a2a28" stroke-width="1.15"/>
+      <path d="M 15 12 Q 19 12 19 15.5 Q 19 18.5 15 18.5" fill="none" stroke="#2a2a28" stroke-width="1.15"/>
+      <path d="M 7 7 Q 8 4 6 2 M 11 7 Q 12 4 10 2" fill="none" stroke="#727271" stroke-width="0.95"/>
+    </g>
+
+    <!-- Sweeping arrow up-right from Website to Figma (clear gap!) -->
+    <path d="M 358 220 C 394 206, 412 174, 428 144" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+    <path d="M 420 147 L 429 142 L 429 153" fill="none" stroke="#2a2a28" stroke-width="1.5"/>
+
+    <!-- Highlighted Figma Plugin badge with breathing space -->
+    <g transform="translate(306, 98) rotate(-7)">
+      <path d="M 2 2 Q 56 0 110 2 Q 112 16 110 28 Q 56 30 2 27 Q 0 15 2 2 Z" fill="#dcd2f2" opacity="0.82" stroke="#2a2a28" stroke-width="1.2"/>
+      <path d="M 9 11 H 13 V 9 A 1.5 1.5 0 0 1 16 9 V 11 H 19 V 19 H 9 Z" fill="#ffffff" stroke="#2a2a28" stroke-width="1"/>
+      <text x="23" y="13.5" font-size="8.5" font-family="'Inter', sans-serif" font-weight="600" fill="#2a2a28">Figma plugin:</text>
+      <text x="23" y="23.5" font-size="9.5" font-weight="600" fill="#2a2a28">html.to.design</text>
+    </g>
+
+    <!-- Figma logo pinned above Card 3 -->
+    <g transform="translate(450, 14) rotate(-3) scale(1.05)">
+      <path d="M 4 0 H 8 V 8 H 4 A 4 4 0 0 1 4 0 Z" fill="#f5cdbf" stroke="#2a2a28" stroke-width="1.25"/>
+      <path d="M 8 0 H 12 A 4 4 0 0 1 12 8 H 8 V 0 Z" fill="#f8ec9c" stroke="#2a2a28" stroke-width="1.25"/>
+      <path d="M 4 8 H 8 V 16 H 4 A 4 4 0 0 1 4 8 Z" fill="#dcd2f2" stroke="#2a2a28" stroke-width="1.25"/>
+      <circle cx="12" cy="12" r="4" fill="#bfddf0" stroke="#2a2a28" stroke-width="1.25"/>
+      <path d="M 4 16 H 8 V 20 A 4 4 0 0 1 0 20 A 4 4 0 0 1 4 16 Z" fill="#bde8cf" stroke="#2a2a28" stroke-width="1.25"/>
+    </g>
+    <text x="472" y="31" font-size="12.5" font-weight="600" fill="#2a2a28">Figma canvas</text>
+
+    <!-- 3. RIGHT: Authentic Figma Canvas UI -->
+    <g transform="translate(436, 44) rotate(-0.8)">
+      <path d="M 3 2 Q 108 -2 212 3 Q 216 74 211 144 Q 108 148 3 144 Q -1 74 3 2 Z" fill="#bde8cf" opacity="0.35" stroke="#2a2a28" stroke-width="1.5"/>
+      <path d="M 1 5 Q 110 1 210 1 Q 214 76 213 142 Q 106 146 1 146 Q 2 72 1 5 Z" fill="none" stroke="#2a2a28" stroke-width="0.95" opacity="0.65"/>
+
+      <!-- Figma top toolbar bar -->
+      <path d="M 5 22 Q 108 20 209 22" fill="none" stroke="#2a2a28" stroke-width="1.1"/>
+      <path d="M 14 7 L 14 17 L 17 14 L 20 17" fill="none" stroke="#2a2a28" stroke-width="1.1"/>
+      <path d="M 30 8 L 30 16 M 35 8 L 35 16 M 28 10 L 37 10 M 28 14 L 37 14" fill="none" stroke="#2a2a28" stroke-width="1"/>
+      <rect x="44" y="8" width="8" height="8" fill="none" stroke="#2a2a28" stroke-width="1"/>
+      <text x="64" y="15.5" font-size="9.5" fill="#727271">Design System (v7.7)</text>
+
+      <!-- Selected Frame 1 with Figma blue bounding box + cursor -->
+      <text x="14" y="39" font-family="'Inter', sans-serif" font-size="8" fill="#4a80b8"># Home</text>
+      <rect x="14" y="43" width="52" height="72" fill="#ffffff" stroke="#4a80b8" stroke-width="1.3"/>
+      <rect x="12" y="41" width="4" height="4" fill="#ffffff" stroke="#4a80b8" stroke-width="1"/>
+      <rect x="64" y="41" width="4" height="4" fill="#ffffff" stroke="#4a80b8" stroke-width="1"/>
+      <rect x="12" y="113" width="4" height="4" fill="#ffffff" stroke="#4a80b8" stroke-width="1"/>
+      <rect x="64" y="113" width="4" height="4" fill="#ffffff" stroke="#4a80b8" stroke-width="1"/>
+      <path d="M 21 55 L 58 55 M 21 64 L 50 64 M 21 94 L 58 94" stroke="#727271" stroke-width="1.2"/>
+      <!-- Tiny mouse pointer on Home frame -->
+      <path d="M 55 96 L 55 107 L 58 104 L 62 108 L 63 106 L 59 102 L 63 102 Z" fill="#2a2a28"/>
+
+      <!-- Frame 2 -->
+      <text x="76" y="43" font-family="'Inter', sans-serif" font-size="8" fill="#727271"># Tokens</text>
+      <path d="M 76 47 L 124 47 L 124 115 L 76 115 Z" fill="#ffffff" stroke="#2a2a28" stroke-width="1.15"/>
+      <circle cx="85" cy="58" r="3" fill="#f5cdbf" stroke="#2a2a28" stroke-width="0.8"/>
+      <circle cx="85" cy="70" r="3" fill="#bfddf0" stroke="#2a2a28" stroke-width="0.8"/>
+      <circle cx="85" cy="82" r="3" fill="#bde8cf" stroke="#2a2a28" stroke-width="0.8"/>
+      <path d="M 93 58 L 116 58 M 93 70 L 116 70 M 93 82 L 116 82" stroke="#727271" stroke-width="1.1"/>
+
+      <!-- Sticky note inside Figma -->
+      <g transform="translate(132, 46) rotate(3)">
+        <path d="M 0 0 L 72 2 L 70 62 L 2 60 Z" fill="#f8ec9c" stroke="#2a2a28" stroke-width="1.1"/>
+        <text x="7" y="19" font-size="10.5" fill="#9a5b4a">burned</text>
+        <text x="7" y="34" font-size="10.5" fill="#9a5b4a">tokens</text>
+        <text x="7" y="49" font-size="10.5" fill="#9a5b4a">nudging 2px</text>
+      </g>
+
+      <text x="14" y="135" font-size="10.5" fill="#2a2a28">editable layers + UX/UI variables</text>
+    </g>
+
+    <!-- Dizzy spiral + sweat drop near burned tokens -->
+    <path d="M 650 42 C 654 36, 662 40, 658 46 C 654 52, 644 46, 648 38 C 652 30, 666 34, 664 45" fill="none" stroke="#9a5b4a" stroke-width="1.3"/>
+    <path d="M 658 58 Q 662 62 659 65 Q 656 62 658 58 Z" fill="#bfddf0" stroke="#2a2a28" stroke-width="0.9"/>
+
+    <!-- Branching notes under Figma (Arch vs Mac Mini) -->
+    <path d="M 526 198 Q 512 228 484 244" fill="none" stroke="#2a2a28" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="412" y="264" font-size="11.5" fill="#2a2a28">Arch: debug mode (auto)</text>
+
+    <path d="M 556 198 Q 568 228 584 248" fill="none" stroke="#2a2a28" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="524" y="286" font-size="11.5" fill="#727271">Mac: code.js drop</text>
+
+    <!-- Bottom goal annotation -->
+    <path d="M 34 344 Q 170 339 316 346" fill="none" stroke="#bfddf0" stroke-width="10" opacity="0.65"/>
+    <text x="38" y="348" font-size="12" font-weight="600" fill="#2a2a28">Point of it all: feel UX/UI pain for real mobile handoffs</text>
+
+    <!-- Bottom-right desk doodles: MacBook, Tablet, Steam Deck, and a Cat -->
+    <g transform="translate(398, 314)">
+      <!-- MacBook laptop -->
+      <g transform="translate(0, 6) rotate(-2)">
+        <path d="M 6 2 L 42 2 L 42 26 L 6 26 Z" fill="#ffffff" stroke="#2a2a28" stroke-width="1.25"/>
+        <path d="M 10 7 L 28 7 M 10 12 L 22 12" stroke="#727271" stroke-width="1"/>
+        <path d="M 2 26 L 46 26 L 49 32 L -1 32 Z" fill="#fdfdfc" stroke="#2a2a28" stroke-width="1.25"/>
+        <path d="M 19 29 L 29 29" stroke="#727271" stroke-width="1"/>
+      </g>
+
+      <!-- Tablet -->
+      <g transform="translate(62, 10) rotate(3)">
+        <rect x="0" y="0" width="24" height="30" rx="3" fill="#ffffff" stroke="#2a2a28" stroke-width="1.25"/>
+        <path d="M 4 5 L 20 5 L 20 23 L 4 23 Z" fill="#bfddf0" opacity="0.35" stroke="#2a2a28" stroke-width="0.9"/>
+        <circle cx="12" cy="26.5" r="1" fill="#2a2a28"/>
+      </g>
+
+      <!-- Steam Deck -->
+      <g transform="translate(102, 11) rotate(-2)">
+        <!-- Wide handheld body with side grips -->
+        <path d="M 6 4 L 46 4 Q 53 4 53 13 Q 53 24 46 25 L 41 25 L 40 22 L 12 22 L 11 25 L 6 25 Q -1 24 -1 13 Q -1 4 6 4 Z" fill="#ffffff" stroke="#2a2a28" stroke-width="1.25"/>
+        <!-- Center screen -->
+        <rect x="13" y="7" width="26" height="13" rx="1.5" fill="#f8ec9c" opacity="0.45" stroke="#2a2a28" stroke-width="1"/>
+        <!-- Left stick + D-pad + trackpad -->
+        <circle cx="6.5" cy="10" r="2" fill="none" stroke="#2a2a28" stroke-width="1"/>
+        <rect x="4.5" y="15" width="4" height="4" rx="0.5" fill="none" stroke="#2a2a28" stroke-width="0.9"/>
+        <!-- Right stick + ABXY + trackpad -->
+        <circle cx="45.5" cy="10" r="2" fill="none" stroke="#2a2a28" stroke-width="1"/>
+        <rect x="43.5" y="15" width="4" height="4" rx="0.5" fill="none" stroke="#2a2a28" stroke-width="0.9"/>
+      </g>
+
+      <!-- Cute sitting cat beside the gadgets -->
+      <g transform="translate(172, 6) rotate(1)">
+        <!-- Ears & head -->
+        <path d="M 5 13 L 6 3 L 12 8 L 19 8 L 25 3 L 26 13" fill="#ffffff" stroke="#2a2a28" stroke-width="1.25"/>
+        <!-- Sitting body -->
+        <path d="M 6 13 Q 2 21 5 30 L 26 30 Q 29 21 25 13" fill="#ffffff" stroke="#2a2a28" stroke-width="1.25"/>
+        <!-- Tail -->
+        <path d="M 27 27 Q 37 26 36 16 Q 35 12 32 14" fill="none" stroke="#2a2a28" stroke-width="1.25"/>
+        <!-- Eyes, whiskers & nose -->
+        <circle cx="11.5" cy="13.5" r="1" fill="#2a2a28"/>
+        <circle cx="19.5" cy="13.5" r="1" fill="#2a2a28"/>
+        <path d="M 14.5 16 Q 15.5 17 16.5 16" fill="none" stroke="#2a2a28" stroke-width="1"/>
+        <path d="M 3 14 L 7 14.5 M 3 16.5 L 7 16 M 24 14.5 L 28 14 M 24 16 L 28 16.5" stroke="#727271" stroke-width="0.8"/>
+      </g>
+    </g>
+  </g>
+</svg>
