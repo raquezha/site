@@ -948,6 +948,19 @@ a:focus-visible {
 .post .footnotes a {
   color: var(--content-primary);
 }
+.post .footnotes :is(p, strong, code) {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  font-weight: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+.post .footnotes p {
+  margin: 0;
+}
 .post .acknowledgements {
   margin-top: var(--layout-spacing-xxl); /* 48px (Figma 57:685) */
 }
