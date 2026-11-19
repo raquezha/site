@@ -946,6 +946,9 @@ a:focus-visible {
   line-height: 15px;
 }
 .post .footnotes a {
+  color: inherit;
+}
+.post .footnotes a.data-footnote-backref {
   color: var(--content-primary);
 }
 .post .footnotes :is(p, strong, code) {
