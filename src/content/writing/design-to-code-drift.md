@@ -2,7 +2,7 @@
 title: "Design to code drift"
 shortTitle: "Design to code drift"
 date: "2026-11-18"
-status: "published"
+status: "draft"
 description: "My build passed in 515ms and still showed a 500px cat. Six times raquezha.net drifted from Figma, and what I check now before shipping."
 routeOverride: "/writing/design-to-code-drift"
 acknowledgements:
