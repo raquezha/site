@@ -14,9 +14,9 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const { title, description, format = "prose", acknowledgements = [] } = entry.data;
+const { title, description, format = "prose" } = entry.data;
 const date = resolveDate(entry);
-const h2Headings = headings.filter((h) => h.depth === 2);
+const h2Headings = headings.filter((h) => h.depth === 2 && h.slug !== "footnote-label");
 const showToc = h2Headings.length >= 3;
 ---
 
@@ -55,14 +55,6 @@ const showToc = h2Headings.length >= 3;
           </time>
         </header>
         <Content />
-        {acknowledgements.length > 0 && (
-          <section class="acknowledgements" aria-labelledby="ack-heading">
-            <h3 id="ack-heading">Acknowledgements</h3>
-            {acknowledgements.map((paragraph) => (
-              <p>{paragraph}</p>
-            ))}
-          </section>
-        )}
       </article>
     </div>
   </div>

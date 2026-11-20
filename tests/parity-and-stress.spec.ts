@@ -154,17 +154,19 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
         const tocCs = getComputedStyle(toc);
         const tocRect = toc.getBoundingClientRect();
         const fn = document.querySelector(".post .footnotes")!.getBoundingClientRect();
-        const ack = document.querySelector(".post .acknowledgements")!.getBoundingClientRect();
+        const ack = (document.querySelector(".post #acknowledgements") || document.querySelector(".post .acknowledgements"))!.getBoundingClientRect();
         const rail = document.querySelector(".post .annotation")!.getBoundingClientRect();
         const arrowEl = document.querySelector(".post .annotation-arrow") as HTMLImageElement | SVGElement | null;
         const arrow = getComputedStyle(arrowEl!);
         const arrowRect = arrowEl!.getBoundingClientRect();
         const taskLi = getComputedStyle(document.querySelector(".post .task-list-item")!);
         const th = document.querySelector(".article th")!.getBoundingClientRect();
+        const tocTexts = Array.from(document.querySelectorAll(".post-toc-link")).map((a) => a.textContent?.trim());
         return {
           overflowX: document.documentElement.scrollWidth > window.innerWidth,
           footnotesCount: document.querySelectorAll(".post .footnotes li").length,
-          footnotesBeforeAck: fn.bottom <= ack.top + 1,
+          ackBeforeFootnotes: ack.bottom <= fn.top + 1,
+          hasAckInToc: tocTexts.includes("Acknowledgements"),
           inRightRail: rail.left >= postRect.right + 28,
           tocDisplay: tocCs.display,
           tocLeft: tocRect.left,
@@ -178,13 +180,14 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
 
       expect(res.overflowX).toBe(false);
       expect(res.footnotesCount).toBe(10);
-      expect(res.footnotesBeforeAck).toBe(true);
+      expect(res.ackBeforeFootnotes).toBe(true);
       expect(res.taskDisplay).toBe("block");
       expect(res.thHeight).toBeLessThanOrEqual(40);
       expect(res.arrowTag).toBe("img");
       if (width >= 1120) {
         expect(res.tocDisplay).toBe("block");
         expect(res.tocLeft).toBeGreaterThanOrEqual(8);
+        expect(res.hasAckInToc).toBe(true);
         expect(res.inRightRail).toBe(true);
         expect(res.arrowDisplay).toBe("block");
         expect(res.arrowRect).toEqual({ w: 48, h: 28 });

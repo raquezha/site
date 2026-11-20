@@ -1021,8 +1021,28 @@ body.is-post::before {
 .post .footnotes p {
   margin: 0;
 }
-.post .acknowledgements {
+.post :is(h2#acknowledgements, .acknowledgements) {
   margin-top: var(--layout-spacing-xxl); /* 48px (Figma 57:685) */
+}
+.post h2#acknowledgements {
+  margin-bottom: var(--layout-spacing-m); /* 16px */
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--content-primary);
+}
+.post h2#acknowledgements::after {
+  display: none; /* Hide hairline rule on Acknowledgements to match minimal benji.org styling */
+}
+.post :is(h2#acknowledgements ~ p, .acknowledgements p) {
+  margin: 0 0 var(--layout-spacing-m);
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--content-muted);
+}
+.post :is(h2#acknowledgements ~ p:last-of-type, .acknowledgements p:last-child) {
+  margin-bottom: 0;
 }
 .post .acknowledgements h3 {
   margin: 0 0 var(--layout-spacing-m); /* 16px */
@@ -1032,13 +1052,6 @@ body.is-post::before {
   letter-spacing: 0;
   color: var(--content-primary);
 }
-.post .acknowledgements p {
-  margin: 0 0 var(--layout-spacing-m);
-  font-size: 11px;
-  line-height: 15px;
-  color: var(--content-muted);
-}
-.post .acknowledgements p:last-child { margin-bottom: 0; }
 
 /* Margin Annotations (Figma 42:1507 Article annotations: 160px right rail >=1120px, stacked <1120px) */
 .post .annotated-block {

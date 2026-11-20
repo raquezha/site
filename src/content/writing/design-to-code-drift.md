@@ -5,8 +5,6 @@ date: "2026-11-20"
 status: "draft"
 description: "My build passed in 515ms and still showed a 500px cat. Why one-shot prompting fails, the breakdown between Figma and code, and why task slicing is the only way forward."
 routeOverride: "/writing/figma-to-code"
-acknowledgements:
-  - "Inspired by Benji Taylor's writing and minimal design systems."
 tags:
   - "figma"
   - "design to code"

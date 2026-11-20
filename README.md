@@ -24,8 +24,9 @@ Posts show up on the home page sorted newest first. Optional frontmatter fields:
 
 - `section: "writing" | "personal"` (defaults to `writing`)
 - `format: "prose" | "poetry"` (preserves line breaks when set to `poetry`)
-- `acknowledgements: ["..."]` (renders below footnotes)
 - `routeOverride: "/writing/custom-slug"`
+
+To add acknowledgements, write an `## Acknowledgements` section directly in the Markdown prose right before footnotes. It appears in the sticky table of contents and sits cleanly above the footnote divider.
 
 ## Local development
 

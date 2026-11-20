@@ -15,7 +15,6 @@ const writing = defineCollection({
       status: z.string().optional(),
       section: z.enum(["writing", "personal"]).optional(),
       format: z.enum(["prose", "poetry"]).optional(),
-      acknowledgements: z.array(z.string()).optional(),
     })
     .passthrough()
     .refine((data) => Boolean(data.date || data.created), {
