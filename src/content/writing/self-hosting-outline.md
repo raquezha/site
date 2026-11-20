@@ -100,7 +100,7 @@ We also use Outline as our publishing spot instead of building a custom docs sit
 
 I'm happy I found Outline. Maintaining it is easy anyway: just `docker compose pull`, bring it back up, done. The only thing I half worry about is the day uploads fill up the disk or the server gets overloaded. If that happens, I'll fix it then.
 
-<mark class="mint">Try Outline. It's good!</mark>
+<mark class="mint">Try [Outline](https://www.getoutline.com/). It's good!</mark>
 
 [^1]: [Outline](https://www.getoutline.com/) and its [source on GitHub](https://github.com/outline/outline).
 [^2]: Microsoft Loop works well if your team already lives inside Microsoft 365. For developers living in GitLab and Markdown, it always felt like extra clicks.
