@@ -61,9 +61,9 @@ The terminal gave me green checkmarks in 515 milliseconds, but the browser was u
 
 ## Hitting the tool limits
 
-Once I saw the giant cat, I told the agent to stop guessing and read the real design through the Figma MCP server. That immediately hit another wall:
+Once I saw the giant cat, I told the agent to stop guessing and read the real design through the Figma MCP server. That immediately hit a wall.
 
-**1. The quota trap and stale cache.** I forgot I had already burned my 20 monthly Starter MCP calls on Spaces. The calls threw 429 quota errors.
+I forgot I had already burned my 20 monthly Starter MCP calls on Spaces. The calls threw 429 quota errors.
 
 | Method | Limit | Cost | Failure mode |
 | :--- | :--- | :--- | :--- |
@@ -71,11 +71,17 @@ Once I saw the giant cat, I told the agent to stop guessing and read the real de
 | **Local dev plugin + CDP** | Unlimited | Free | Requires local browser setup |
 | **Figma paid plan** | High | Paid seat | Adds monthly subscription costs |
 
-To keep moving without waiting a month, I pointed the agent to local files to find any exported scripts. It found an exported `code.js` plugin file in my `Downloads` folder and used it to generate the layout.
+A 20-call limit sounds fine until an agent starts inspecting a canvas. A single screen lookup can chew through three or four calls just inspecting frames, component trees, and styles. Halfway through the build, the free tier shuts the door.
+
+## Stale backups and version drift
+
+To keep moving without waiting a month for my quota to reset, I pointed the agent to local files to find any exported scripts. It found an exported `code.js` plugin file in my `Downloads` folder and used it to generate the layout.
+
+That introduced two new silent failures:
 
 <div class="annotated-block">
 
-The problem was version drift. While building the design in Figma, I had been exporting plugin scripts as local backups, tagging each iteration with a version number. The agent picked up an old version 5 export from November 6, but the active Figma file had already moved forward to version 7.7. Column widths, font sizes, back link styling, and highlights were all from the older iteration.
+**1. Version drift.** While building the design in Figma, I had been exporting plugin scripts as local backups, tagging each iteration with a version number. The agent picked up an old version 5 export from November 6, but the active Figma file had already moved forward to version 7.7. Column widths, font sizes, back link styling, and highlights were all from the older iteration.
 
 <aside class="annotation">
   <img src="/doodle-arrow.svg" width="48" height="28" alt="" aria-hidden="true" class="annotation-arrow" />
@@ -85,14 +91,14 @@ The problem was version drift. While building the design in Figma, I had been ex
 
 Lesson learned: <mark class="sky">if you fall back to local exports, verify the version timestamp first.</mark> An agent will gladly trust whatever file you give it, even if your design has moved five versions ahead.
 
+**2. Asset hallucinations.** Figma had a hand drawn arrow for side notes. Instead of exporting the SVG asset, the agent literally typed raw `<path>` coordinates in code. The result was a stiff, awkward curve instead of a loose doodle.
+
+The cat icons had the same problem: large drawings shrunk 31 times, so the strokes looked faint when zoomed in. I replaced them with real size exports from Figma.
+
 <figure>
   <img src="/images/2026-11-10-site-fixed-home.png" alt="The home page after matching the version 7.7 Figma file with restored 14px cat and aligned layout" />
   <figcaption>The home page after matching the real version 7.7 Figma file: 14px cat icon restored and layout rhythm aligned.</figcaption>
 </figure>
-
-**2. The fake doodle.** Figma had a hand drawn arrow for side notes. Instead of exporting the SVG asset, the agent literally typed raw `<path>` coordinates in code. The result was a stiff, awkward curve instead of a loose doodle.
-
-The cat icons had the same problem: large drawings shrunk 31 times, so the strokes looked faint when zoomed in. I replaced them with real size exports from Figma.
 
 ## The interconnected breakdown
 
