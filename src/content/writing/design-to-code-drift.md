@@ -142,7 +142,7 @@ Going slowly exposed plenty of small details on raquezha.net:
   <figcaption>Article layout with compact typography, 160px sticky table of contents, and syntax highlighted code blocks.</figcaption>
 </figure>
 
-To make sure things stay locked down, the site now runs <mark class="lilac">24 Playwright checks</mark> against an [absurd stress test post](/writing/_absurd-stress-test). It throws unbroken identifiers, 6-column tables, multi-line brush highlights, and wordy callout boxes with 27px 32px padding at the layout to verify zero horizontal scroll and zero text clipping on 390px mobile screens.
+To make sure things stay locked down, the site now runs <mark class="lilac">24 Playwright checks</mark>[^5] against an [absurd stress test post](/writing/_absurd-stress-test). It throws unbroken identifiers, 6-column tables, multi-line brush highlights, and wordy callout boxes with 27px 32px padding at the layout to verify zero horizontal scroll and zero text clipping on 390px mobile screens.
 
 Since this article is live on raquezha.net, you are looking directly at the product of that research. Feel free to explore the site, test the navigation, and check the mobile layout. Are you happy with what you are seeing? Getting here took fighting through 500px cats, stale backup files, and API quota walls.
 
@@ -156,3 +156,4 @@ Now the real challenge begins: taking these exact lessons back to the Mobile Tea
 [^2]: [Astro](https://astro.build), a web framework for content driven websites that renders static HTML with zero client JavaScript by default.
 [^3]: The test ran on my daily setup using Gemini 3.8 Flash and Grok Bot, not frontier models like GPT 6.1 Astra or Fable. Maybe a top model could parse the whole canvas in one shot, but I work with what I have, and everyday agents look for the nearest shortcut.
 [^4]: [benji.org](https://benji.org) was the visual reference for the compact typography scale and muted hover states.
+[^5]: [Playwright](https://playwright.dev) is an automated browser testing tool that launches real headless browsers to verify page layouts, element geometry, and responsive breakpoints in code.
