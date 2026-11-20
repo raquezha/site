@@ -102,6 +102,10 @@ The giant cat was just the symptom. The real issue is the connection between Fig
 
 If a Figma screen has disconnected components, raw hex codes instead of variables (`#20201E` on my name, `#30302E` on the bio), and untokenized spacing, no AI model can match it 100%. The agent is forced to guess. When it guesses, it hallucinates or grabs old code.
 
+<div class="callout">
+  <strong>Values versus roles:</strong> A raw hex code like <code>#FD8770</code> is just a value. <code>theme/primary</code> is a role. When a Figma canvas only has raw values and loose padding, the AI is forced to guess the intent. When it guesses, the build drifts.
+</div>
+
 Combine that with limited context windows, token pricing, and rate limits, and one-shot prompting an entire screen is dead on arrival.
 
 ## The lightbulb: task slicing
@@ -130,7 +134,7 @@ Going slowly exposed plenty of small details on raquezha.net:
   <figcaption>Article layout with compact typography, 160px sticky table of contents, and syntax highlighted code blocks.</figcaption>
 </figure>
 
-To make sure things stay locked down, the site now has three test posts and <mark class="lilac">24 Playwright checks</mark> verifying token values, font sizes, icon sizes, footnote order, and zero horizontal scroll at 1440px, 390px, and 320px.
+To make sure things stay locked down, the site now runs <mark class="lilac">24 Playwright checks</mark> against an [absurd stress test post](/writing/_absurd-stress-test). It throws unbroken identifiers, 6-column tables, multi-line brush highlights, and wordy callout boxes with 27px 32px padding at the layout to verify zero horizontal scroll and zero text clipping on 390px mobile screens.
 
 ## Next stop: Spaces on mobile
 
