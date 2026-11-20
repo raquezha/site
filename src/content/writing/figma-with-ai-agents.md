@@ -42,7 +42,7 @@ Three things got in the way:
 
 ## How it started
 
-It started while I was playing around with [Spaces](https://github.com/raquezha/spaces), my open source Kotlin Multiplatform app. First I prompted Grok Bot for a UI mock and thought, wow, this actually looks good. Then I brought that image into ChatGPT[^models] to polish it: update this button, fix that card, tweak the layout.
+It started while I was playing around with [Spaces](https://github.com/raquezha/spaces), my open source Kotlin Multiplatform app. First I prompted Grok Bot for a UI mock and thought, wow, this actually looks good. Then I brought that image into ChatGPT[^3] to polish it: update this button, fix that card, tweak the layout.
 
 <figure>
   <img src="/images/spaces-phase1-screens.png" alt="Three early Spaces mobile screens: Login, Weekly Report, and Settings" />
@@ -64,7 +64,7 @@ That's where I learned both bots have weird flaws:
 
 Once the mock felt close enough, I asked if it could turn the image into HTML. It did, and it looked decent in Zen Browser <em class="muted">(and worked well in other browsers too)</em>.
 
-> *I could have stopped at HTML, except vibe coded HTML isn't a real handoff.* <mark>*My actual goal at work is helping our mobile and UX/UI teams standardize Figma handoffs.*</mark> *So when I discovered `html.to.design`[^3] could turn rendered HTML into editable Figma layers, I pulled the whole thing into Figma.*
+> *I could have stopped at HTML, except vibe coded HTML isn't a real handoff.* <mark>*My actual goal at work is helping our mobile and UX/UI teams standardize Figma handoffs.*</mark> *So when I discovered `html.to.design`[^4] could turn rendered HTML into editable Figma layers, I pulled the whole thing into Figma.*
 
 ## Hitting real Figma pain
 
@@ -76,7 +76,7 @@ That's when the real friction hit. Simple layout tweaks take two seconds in Figm
 
 ## Hacking around the limits
 
-Even <img src="/doodle-plugin.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> `html.to.design` had a free tier wall. For <img src="/doodle-spaces.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> **Spaces**, I needed 6 main screens and 13 state variants (empty, loading, and error states). Instead of importing them one by one, I stacked 11 states onto one giant HTML page, imported it in a single shot, and split the frames inside Figma. Later I did the same for **raquezha.net**, drafting pages in HTML, checking them in Zen, and importing them to organize Foundations, Components, and Screens.
+Even <img src="/doodle-plugin.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> `html.to.design` had a free tier wall. For <img src="/doodle-spaces.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> **Spaces**, I needed 6 main screens and 13 state variants (empty, loading, and error states). Instead of importing them one by one, I stacked 11 states onto one giant HTML page, imported it in a single shot, and split the frames inside Figma. Later I did the same for <img src="/doodle-website.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> **raquezha.net**, drafting pages in HTML, checking them in Zen, and importing them to organize Foundations, Components, and Screens.
 
 To edit inside Figma without burning my 20 monthly MCP calls, I found a second workaround: have the agent generate a local Figma plugin (`manifest.json` and `code.js`), drop it into Figma's `Plugins > Development` menu, and hit **Run**. It <mark>feels like enabling god mode in Figma</mark>. Zero design skills, zero clue what half the buttons do, one click on Run, and suddenly five full mobile screens just spawn on the canvas haha.
 
@@ -89,7 +89,7 @@ To edit inside Figma without burning my 20 monthly MCP calls, I found a second w
 
 Hooray, right? Except I'm a developer, and I didn't want to manually click buttons every time. I wanted to drive it even further.
 
-Once a development plugin is imported, Figma reads `code.js` fresh from disk on every run. At home on <img src="/doodle-arch.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> EndeavourOS (Arch Linux),[^4] `figma-linux` lets you open a local debug port,[^2] so I wired the agent to update `code.js` and trigger Figma's **Run last plugin** shortcut by itself. You just prompt a change, the agent edits the same plugin and reruns it, and <mark class="mint">the updated UI automatically appears in Figma</mark> with zero clicks.
+Once a development plugin is imported, Figma reads `code.js` fresh from disk on every run. At home on <img src="/doodle-arch.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> EndeavourOS (Arch Linux),[^5] `figma-linux` lets you open a local debug port,[^2] so I wired the agent to update `code.js` and trigger Figma's **Run last plugin** shortcut by itself. You just prompt a change, the agent edits the same plugin and reruns it, and <mark class="mint">the updated UI automatically appears in Figma</mark> with zero clicks.
 
 <figure>
   <video autoplay loop muted playsinline controls preload="metadata">
@@ -113,18 +113,18 @@ That could have been the perfect ending for the hack, except the real ending hap
 Getting screens into Figma was never the end goal by itself. <mark>The whole point of this R&D was to learn how Figma handoffs actually work, document everything I found, and bring real dev feedback back to our UX/UI team:</mark>
 
 - Frames on a canvas don't tell a developer or an agent which color is a background, which one is an accent, or what changes together.
-- I discovered **DTCG**[^5] <em class="muted">(no, not the <del><strong>Digimon Trading Card Game</strong></del> haha, the W3C **Design Tokens Community Group**)</em>. I didn't even know a whole community for this existed before starting this R&D. Mapping our layers to shared variable names (`surface/*`, `content/*`, `layout/spacing/*`) in their JSON format keeps the exact same names across Figma, CSS, Kotlin, and Swift.
+- I discovered **DTCG**[^7] <em class="muted">(no, not the <del><strong>Digimon Trading Card Game</strong></del> haha, the W3C **Design Tokens Community Group**)</em>. I didn't even know a whole community for this existed before starting this R&D. Mapping our layers to shared variable names (`surface/*`, `content/*`, `layout/spacing/*`) in their JSON format keeps the exact same names across Figma, CSS, Kotlin, and Swift.
 
 After documenting all of this, I actually understand the UX/UI team's side too, so I can help standardize our Figma to mobile handoffs instead of guessing from the sidelines.
 
 To be fair, AI is insanely helpful when reading a bunch of components and updating them in real time. **Figma MCP is god tier**, and so is the price haha. Since this is R&D, I stuck to the free tier and pushed those hacks to the limit first to prove whether the whole venture is actually worth it.
 
-On the design side, both Spaces and raquezha.net made it cleanly into Figma. The next headache was turning those Figma files back into production code. I wrote about the six times things broke on raquezha.net in **Design to code drift** (coming next). Spaces is up next too.
+On the design side, both Spaces and raquezha.net made it cleanly into Figma. The next headache was turning those Figma files back into production code. I wrote about what broke on raquezha.net in **Figma to code** (coming next). Spaces is up next too.
 
 [^1]: Our company has a paid Figma plan (200+ calls a day), so my colleagues never hit this. My personal R&D files sit on my free Starter account, where 20 calls a month vanish fast, so I had to hack around it haha. See [Figma's MCP rate limits](https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/).
 [^2]: Figma has no official Linux desktop app, so the community [figma-linux](https://github.com/Figma-Linux/figma-linux) project is a beast. Because it lets you open remote debugging, my AI agent could control Figma autonomously at home instead of getting locked out like on macOS.
-[^3]: [html.to.design](https://html.to.design/) converts rendered browser pages into editable Figma frames. When the initial free imports ran out, registering a free divRIOTS account and logging in and out gave me 10 more imports a month to re-import the states cleanly haha.
-[^4]: Turned my old 2018 Asus ROG GLX703GE into a home server running EndeavourOS. Wanna know how I set that up? Writing that post next.
-[^5]: Google "DTCG" and the first thing that pops up is the Digimon Trading Card Game haha. The one I discovered here is the W3C [Design Tokens Community Group](https://www.w3.org/community/design-tokens/) ([designtokens.org](https://www.designtokens.org/) and their [2025.10 Format Spec](https://www.designtokens.org/tr/2025.10/format/)), a community of designers and engineers defining a portable JSON standard ($value, $type, and primitive to semantic aliases) so one token file works across Figma, web (CSS), Android (Compose), and iOS (SwiftUI).
+[^3]: Models used across the loop: Grok Bot for initial mocks and targeted tweaks, ChatGPT (mostly gpt-5.6-terra and gpt-6.1-sol) for polish, Gemini 3.8 Flash for fast HTML and code passes, and Gemini 4 Neon for the video simulation and Spaces states.
+[^4]: [html.to.design](https://html.to.design/) converts rendered browser pages into editable Figma frames. When the initial free imports ran out, registering a free divRIOTS account and logging in and out gave me 10 more imports a month to re-import the states cleanly haha.
+[^5]: Turned my old 2018 Asus ROG GLX703GE into a home server running EndeavourOS. Wanna know how I set that up? Writing that post next.
 [^6]: It is hardcoded into Figma Desktop's main Electron bundle (`app.asar`): `process.env.FIGMA_TEST || app.commandLine.removeSwitch("remote-debugging-port")`. Unless you run in their internal test harness (which loads `about:blank`), Figma deletes the debug flag on startup. A forum reply suggested "Reset Figma and Restart", but that only clears cache; the flag deletion is in the app bundle. This really sucks haha. See the [Figma Forum bug report](https://forum.figma.com/report-a-problem-6/remote-debugging-port-not-working-in-figma-desktop-126-1-2-50858).
-[^models]: Models used across the loop: Grok Bot for initial mocks and targeted tweaks, ChatGPT (mostly gpt-5.6-terra and gpt-6.1-sol) for polish, Gemini 3.8 Flash for fast HTML and code passes, and Gemini 4 Neon for the video simulation and Spaces states.
+[^7]: Google "DTCG" and the first thing that pops up is the Digimon Trading Card Game haha. The one I discovered here is the W3C [Design Tokens Community Group](https://www.w3.org/community/design-tokens/) ([designtokens.org](https://www.designtokens.org/) and their [2025.10 Format Spec](https://www.designtokens.org/tr/2025.10/format/)), a community of designers and engineers defining a portable JSON standard ($value, $type, and primitive to semantic aliases) so one token file works across Figma, web (CSS), Android (Compose), and iOS (SwiftUI).

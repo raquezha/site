@@ -1,34 +1,49 @@
 ---
-title: "Design to code drift"
-shortTitle: "Design to code drift"
-date: "2026-11-18"
+title: "Figma to code"
+shortTitle: "Figma to code"
+date: "2026-11-20"
 status: "draft"
-description: "My build passed in 515ms and still showed a 500px cat. Six times raquezha.net drifted from Figma, and what I check now before shipping."
-routeOverride: "/writing/design-to-code-drift"
+description: "My build passed in 515ms and still showed a 500px cat. Why one-shot prompting fails, the breakdown between Figma and code, and why task slicing is the only way forward."
+routeOverride: "/writing/figma-to-code"
 acknowledgements:
   - "Inspired by Benji Taylor's writing and minimal design systems."
 tags:
   - "figma"
-  - "design-to-code"
+  - "design to code"
   - "astro"
-  - "ai-agents"
-  - "design-tokens"
+  - "ai agents"
+  - "design tokens"
 ---
-<mark>A green build doesn't mean the page looks right.</mark> My first Astro build for raquezha.net passed in 515 milliseconds. TypeScript passed. The Markdown parsed. Every CSS variable followed the token rules.
+In [Figma with AI agents](/writing/figma-with-ai-agents), I got both <img src="/doodle-spaces.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> **Spaces** and <img src="/doodle-website.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> **raquezha.net** into Figma.
 
-On screen, a 500 pixel cat squished my name into a column of single letters haha.
+Spaces is a full Kotlin Multiplatform mobile app with multiple screens and shared logic. There was no way I was going to let an AI agent loose on that first haha. I needed something small and simple to test the loop on, and this site was the obvious target.
 
-In [Figma with AI agents](/writing/figma-with-ai-agents), both Spaces and raquezha.net made it cleanly into Figma. I shipped **raquezha.net** first (Spaces on Android and iOS is next), and here are the six times the code drifted away from the design.
+For the tech stack, I originally wanted to build this using Kobweb,[^1] but I never really had the time to sit down and finish a whole project with it. When it came to shipping this site, I just searched what was popular right now. Astro was sitting right at the top of the pile, so I went with it. No deep reason.
 
-## 1. The giant cat
+## The one-shot experiment
 
-![The lounging cat SVG fills the column and squeezes 'Jan Celada' into a column of single letters](/images/2026-11-10-site-drift-giant-cat.png)
+I set up the Astro repo and had the Figma design ready.
 
-Three things went wrong here.
+I knew full well one-shot prompting an entire site was a bad idea. But I wanted to try it just for the hell of it: *"Hey agent, here's Figma. Build this."*
 
-**The agent copied old code instead of reading Figma.** I had an earlier prototype in Kobweb before moving to Astro. I only gave the agent the Figma file name, `raquezha.net`, so it assumed my old prototype CSS was the design and copied it line for line. Copying code perfectly also copies its mistakes.
+The agent ran, and the terminal output gave me green checkmarks: build completed in 515 milliseconds. Zero errors.
 
-**A CSS selector won when it shouldn't have.**
+I opened `localhost:4321`. Instead of my clean minimal header, I got this:
+
+<figure>
+  <img src="/images/2026-11-10-site-drift-giant-cat.png" alt="Side by side comparison: Figma header expectation with a 20px cat icon versus Zen browser reality where a 500px cat squished Jan Celada into single letters" />
+  <figcaption>Expectation in Figma versus reality on localhost: 515ms build, zero errors, and a 500px cat haha.</figcaption>
+</figure>
+
+A 500 pixel cat was taking over the screen, and my name was squished into a vertical column of single letters haha. A passing build only means the computer did not crash. It does not mean your page actually looks right.
+
+## Diagnosing the crime scene
+
+Why did it fail? It was not just that the AI was dumb. It was an interconnected chain of shortcuts:
+
+**1. The Kobweb heist.** The agent did not parse Figma at all. It took the lazy path: it found my old Kobweb prototype files lying around the repo and copied the old CSS line for line. Copying code perfectly also copies its mistakes.
+
+**2. The CSS specificity trap.**
 
 ```css
 /* Specificity (0, 1, 1) */
@@ -42,19 +57,15 @@ Three things went wrong here.
 }
 ```
 
-`.article img` is more specific, so `height: auto` won. The SVG had `width="686" height="438"` on it, so it took the whole row and squeezed my name. Every token name in that file was right, and none of it caught this bug.
+`.article img` was more specific, so `height: auto` won. The SVG had `width="686" height="438"` on it, so it took the whole row and squeezed my name. Every token name in that file was valid, and none of it caught this bug.
 
-<u>A passing build is not a visual check.</u> Nobody looked at the page.
+**3. The Figma MCP quota trap.** Next I told the agent: stop guessing, use the Figma MCP server to read every layer and variable. But I forgot I already burned my 20 monthly Starter MCP calls on Spaces.
 
-## 2. Stale plugin fallback
-
-Next I told the agent: use the Figma MCP server to read every page, style, and variable. If you can't reach Figma, stop and tell me instead of guessing.
-
-I forgot I already burned my 20 monthly Starter MCP calls on another project.
+The calls threw 429 quota errors. Did the agent stop and tell me? Nope. It snooped around my `Downloads` folder, found an old `code.js` plugin script from November 6 (version 5), and told me with a straight face that the site matched Figma 100%.
 
 <div class="annotated-block">
 
-The calls failed. The agent didn't tell me. Instead, it found an old `code.js` plugin script in my Downloads folder from my Mac Mini workaround (version 5 from November 6) and treated it as the real design. The actual Figma file was at version 7.7. So it showed me version 5 screenshots and told me everything was 100% aligned.
+The actual Figma file was at version 7.7. The column width, font sizes, back link, and highlights were all wrong. Only after I pushed back did it dig into the local Figma cache and find versions 5.2 to 7.7.
 
 <aside class="annotation">
   <img src="/doodle-arrow.svg" width="48" height="28" alt="" aria-hidden="true" class="annotation-arrow" />
@@ -62,73 +73,52 @@ The calls failed. The agent didn't tell me. Instead, it found an old `code.js` p
 </aside>
 </div>
 
-It wasn't. The column width, font sizes, back link, and highlights were all wrong. Only after I pushed back did it dig into the local Figma cache and find versions 5.2 to 7.7.
-
-Lesson learned: <mark class="sky">if the design source is missing, the agent has to stop and say so.</mark> Never quietly swap in an older file.
+Lesson learned: <mark class="sky">if the design source is missing, the agent has to stop and say so.</mark> Never swap in an older file behind my back.
 
 ![The home page after matching the version 7.7 Figma file](/images/2026-11-10-site-fixed-home.png)
 
-## 3. Messy Figma variables
+**4. The fake doodle.** Figma had a hand drawn arrow for side notes. The agent did not export the SVG asset. It literally typed its own raw `<path>` coordinates in code, giving me a stiff, awkward curve instead of the loose doodle.
 
-Once we had the real file, I stopped asking the agent to build the whole page at once. We went piece by piece: tokens first, then header, writing list, footer, post text, navigation, and columns.
+The cat icons had the same issue: large drawings shrunk 31 times, so the strokes looked faint when zoomed in. I replaced them with real size exports from Figma.
 
-Going slowly exposed a bunch of messy spots inside the Figma file itself:
+## The interconnected breakdown
 
-- Some text layers used raw hex colors instead of variables (`#20201E` on my name, `#30302E` on the bio).
-- There were no spacing variables, just typed numbers everywhere.
-- Text styles used a small 14/20 scale, while older CSS still had a 42px title and 20px body.
-- Figma dimmed rows to 60% on hover, which looked too faint in Chrome, so I kept 30% like benji.org.[^1]
-- The highlight yellow in Figma (`#EBD38F`) didn't match the CSS (`#EADBB4`).
-- On mobile, `text-wrap: pretty` broke lines differently than Figma, so I turned it off on the home page.
+The giant cat was just the symptom. The real issue is the connection between Figma and the developer workflow:
 
-When a Figma file disagrees with itself, an agent has to guess or stop. Cleaning up the file first saves a lot of back and forth.
+If a Figma screen has disconnected components, raw hex codes instead of variables (`#20201E` on my name, `#30302E` on the bio), and untokenized spacing, no AI model can match it 100%. The agent is forced to guess. When it guesses, it hallucinates or grabs old code.
 
-## 4. Breaking other pages
+Combine that with limited context windows, token pricing, and rate limits, and one-shot prompting an entire screen is dead on arrival.
 
-After moving everything to the 14/20 scale, a code heavy post showed three new bugs.
+## The lightbulb: task slicing
 
-The back arrow was still 24px next to 14px text, so it looked huge. Code blocks and terminal blocks needed different backgrounds too: light gray (`#f8f8f8`) for code, dark (`#141414`) for terminal output and video.
+The only way design to code actually works with AI agents is a disciplined two-sided handshake:
 
-Then my stress test post (wide tables, checklists with code, ten footnotes) broke even more stuff. Table words wrapped one letter at a time. Checklist items turned into flex columns. Footnotes showed up after the acknowledgements.
+**For the UX/UI team:** Standardize the Figma file. Bind real token variables, kill raw hex codes, and use structured components so the design has a single source of truth. (I am documenting this full feedback for our design team in a separate article on Figma Design Standardization).
+
+**For developers:** Stop one-shot prompting. Slice the build into small, verified tasks:
+
+1. **Tokens and variables first:** Get colors and spacing locked in code.
+2. **Components:** Build individual UI pieces with bound variables.
+3. **States:** Build component states (empty, active, edge cases).
+4. **Manual eye check:** Inspect what the AI built in the browser with real human eyes. Never trust green terminal output alone.
+5. **Composed screens:** Assemble the verified pieces into full views.
+6. **Navigation:** Connect the screens and page routes.
+
+Going slowly exposed plenty of small details on raquezha.net:
+- Figma dimmed rows to 60% on hover, which looked too faint in Chrome, so I kept 30% like benji.org.[^2]
+- The highlight yellow in Figma (`#EBD38F`) did not match the CSS (`#EADBB4`).
+- On mobile, `text-wrap: pretty` broke lines awkwardly, so I turned it off on the home page.
+- Under my name, Figma grouped name, subtitle, and bio into one 16px stack, leaving the subtitle stranded in the middle. It belongs right under my name (2px away) with 32px before the bio. If Figma looks wrong in the browser, code wins.
 
 ![A code heavy post with the 14px back arrow and syntax highlighting](/images/2026-11-17-post-compact-parity.png)
 
-Now the site has three test posts and <mark class="lilac">24 Playwright checks</mark> that verify token values, font sizes, icon sizes, footnote order, TOC behavior, and zero horizontal scroll at 1440px, 390px, and 320px.
+To make sure things stay locked down, the site now has three test posts and <mark class="lilac">24 Playwright checks</mark> verifying token values, font sizes, icon sizes, footnote order, and zero horizontal scroll at 1440px, 390px, and 320px.
 
-## 5. Fake agent SVGs
+## Next stop: Spaces on mobile
 
-Figma already had a hand drawn arrow for side notes. The agent didn't export it. It typed its own SVG path and guessed the size, which gave me a stiff curve instead of the loose doodle.
+Testing this on raquezha.net gave me the exact playbook I needed. A small sandbox lets you find where AI breaks before you bring it into a larger architecture.
 
-The cat icons had the same issue. They were big drawings shrunk 31 times, so the strokes looked faint when zoomed in. I replaced them with real size exports from Figma.
+Now the real challenge begins: taking these exact lessons back to the Mobile Team to build **Spaces** in Kotlin Multiplatform (Jetpack Compose on Android and native SwiftUI on iOS). Once we ship Spaces on mobile, I will update this series with what worked, what broke, and how Compose and SwiftUI handled the exact same loop.
 
-The tests missed all of it because the screenshot diff allowed a 2% change, and a small icon is only 0.1% of the screen.
-
-## 6. When Figma is wrong
-
-I put my home page next to benji.org. Something under my name still felt off.
-
-The code matched Figma. <span class="mark-wavy">Figma was the problem.</span>
-
-Figma put my name, subtitle, and bio in one stack with 16px between everything, so the subtitle floated halfway in the middle. It belongs right under my name (2px away) with 32px before the bio. Figma also used dark text for the first paragraph and gray for the rest, which faded out every link below paragraph one.
-
-I fixed the CSS first. I'll update Figma later.
-
-## What I do now
-
-When I started, my rule was: use Figma for what Figma is good at, and use plain HTML for the rest. Building the site added two more:
-
-> A passing build proves the code is valid. Only a screenshot next to the design proves the page is right.
->
-> Build one small piece at a time so messy tokens show up early.
-
-So my loop now is simple:
-
-- [ ] Clean up Figma variables first (colors and spacing).
-- [ ] If the design source is missing or old, stop and say so.
-- [ ] Build one piece at a time, not the whole page.
-- [ ] Check each piece in the browser or simulator at desktop and mobile sizes.
-- [ ] If Figma itself is wrong, fix the code, write down why, and sync Figma later.
-
-<mark class="mint">raquezha.net is live now.</mark> Next up is implementing **Spaces** in Jetpack Compose and SwiftUI using the exact same loop.
-
-[^1]: [benji.org](https://benji.org) was the visual reference for the compact typography scale and muted hover states.
+[^1]: [Kobweb on GitHub](https://github.com/varabyte/kobweb), a modern web framework built on Kotlin and Compose HTML.
+[^2]: [benji.org](https://benji.org) was the visual reference for the compact typography scale and muted hover states.
