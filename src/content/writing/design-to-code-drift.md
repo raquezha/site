@@ -24,7 +24,7 @@ For the tech stack, I originally wanted to build this using Kobweb,[^1] but I ne
 
 I set up the Astro repo and had the Figma design ready.
 
-I knew full well one-shot prompting an entire site was a bad idea. But I wanted to try it just for the hell of it: *"Hey agent, here's Figma. Build this."*
+I knew full well one-shot prompting an entire site was a bad idea. But I wanted to try it anyway just to see how far it could get. I gave the agent the Figma link, asked it to build the landing page in Astro, and let it run.
 
 The agent ran, and the terminal output gave me green checkmarks: build completed in 515 milliseconds. Zero errors.
 
@@ -59,13 +59,13 @@ Why did it fail? It was not just that the AI was dumb. It was an interconnected 
 
 `.article img` was more specific, so `height: auto` won. The SVG had `width="686" height="438"` on it, so it took the whole row and squeezed my name. Every token name in that file was valid, and none of it caught this bug.
 
-**3. The Figma MCP quota trap.** Next I told the agent: stop guessing, use the Figma MCP server to read every layer and variable. But I forgot I already burned my 20 monthly Starter MCP calls on Spaces.
+**3. The Figma MCP quota trap and stale cache.** Next I told the agent: stop guessing, use the Figma MCP server to read every layer and variable. But I forgot I already burned my 20 monthly Starter MCP calls on Spaces.
 
-The calls threw 429 quota errors. Did the agent stop and tell me? Nope. It snooped around my `Downloads` folder, found an old `code.js` plugin script from November 6 (version 5), and told me with a straight face that the site matched Figma 100%.
+The calls threw 429 quota errors. To keep moving without waiting a month, I pointed the agent to my local files to find any exported scripts or manifests. It found an exported `code.js` plugin file in my `Downloads` folder and used it to generate the layout.
 
 <div class="annotated-block">
 
-The actual Figma file was at version 7.7. The column width, font sizes, back link, and highlights were all wrong. Only after I pushed back did it dig into the local Figma cache and find versions 5.2 to 7.7.
+The problem was version drift. That local script was an export from November 6, sitting at version 5. The live Figma file had already moved forward to version 7.7. Column widths, font sizes, back link styling, and highlights were all from the older iteration.
 
 <aside class="annotation">
   <img src="/doodle-arrow.svg" width="48" height="28" alt="" aria-hidden="true" class="annotation-arrow" />
@@ -73,7 +73,7 @@ The actual Figma file was at version 7.7. The column width, font sizes, back lin
 </aside>
 </div>
 
-Lesson learned: <mark class="sky">if the design source is missing, the agent has to stop and say so.</mark> Never swap in an older file behind my back.
+Lesson learned: <mark class="sky">if you fall back to local exports, verify the version timestamp first.</mark> An agent will gladly trust whatever file you give it, even if your design has moved five versions ahead.
 
 ![The home page after matching the version 7.7 Figma file](/images/2026-11-10-site-fixed-home.png)
 
