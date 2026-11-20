@@ -57,7 +57,9 @@ Why did a passing build look like a disaster? Two things went wrong:
 }
 ```
 
-`.article img` was more specific, so `height: auto` won. The SVG had `width="686" height="438"` on it, so it took over the row and crushed my name into single letters. Every token name was valid, the build passed, and the page was still completely broken.
+`.article img` was more specific, so `height: auto` won. The SVG had `width="686" height="438"` on it, so it took over the row and crushed my name into single letters.
+
+The terminal gave me green checkmarks in 515 milliseconds, but the browser was unusable. That was the first lesson: a passing build only proves your syntax is valid. It cannot tell you if the visual design actually survived.
 
 ## Hitting the tool limits
 
@@ -65,11 +67,17 @@ Once I saw the giant cat, I told the agent to stop guessing and read the real de
 
 **1. The quota trap and stale cache.** I forgot I had already burned my 20 monthly Starter MCP calls on Spaces. The calls threw 429 quota errors.
 
+| Method | Limit | Cost | Failure mode |
+| :--- | :--- | :--- | :--- |
+| **Figma MCP (Starter)** | 20 calls a month | Free | Throws 429 quota error mid-task |
+| **Local dev plugin + CDP** | Unlimited | Free | Requires local browser setup |
+| **Figma paid plan** | High | Paid seat | Adds monthly subscription costs |
+
 To keep moving without waiting a month, I pointed the agent to local files to find any exported scripts. It found an exported `code.js` plugin file in my `Downloads` folder and used it to generate the layout.
 
 <div class="annotated-block">
 
-The problem was version drift. That local file was an export from November 6, sitting at version 5. The live Figma file had already moved forward to version 7.7. Column widths, font sizes, back link styling, and highlights were all from the older iteration.
+The problem was version drift. While building the design in Figma, I had been exporting plugin scripts as local backups, tagging each iteration with a version number. The agent picked up an old version 5 export from November 6, but the active Figma file had already moved forward to version 7.7. Column widths, font sizes, back link styling, and highlights were all from the older iteration.
 
 <aside class="annotation">
   <img src="/doodle-arrow.svg" width="48" height="28" alt="" aria-hidden="true" class="annotation-arrow" />
@@ -79,7 +87,10 @@ The problem was version drift. That local file was an export from November 6, si
 
 Lesson learned: <mark class="sky">if you fall back to local exports, verify the version timestamp first.</mark> An agent will gladly trust whatever file you give it, even if your design has moved five versions ahead.
 
-![The home page after matching the version 7.7 Figma file](/images/2026-11-10-site-fixed-home.png)
+<figure>
+  <img src="/images/2026-11-10-site-fixed-home.png" alt="The home page after matching the version 7.7 Figma file with restored 14px cat and aligned layout" />
+  <figcaption>The home page after matching the real version 7.7 Figma file: 14px cat icon restored and layout rhythm aligned.</figcaption>
+</figure>
 
 **2. The fake doodle.** Figma had a hand drawn arrow for side notes. Instead of exporting the SVG asset, the agent literally typed raw `<path>` coordinates in code. The result was a stiff, awkward curve instead of a loose doodle.
 
@@ -114,7 +125,10 @@ Going slowly exposed plenty of small details on raquezha.net:
 - On mobile, `text-wrap: pretty` broke lines awkwardly, so I turned it off on the home page.
 - Under my name, Figma grouped name, subtitle, and bio into one 16px stack, leaving the subtitle stranded in the middle. It belongs right under my name (2px away) with 32px before the bio. If Figma looks wrong in the browser, code wins.
 
-![A code heavy post with the 14px back arrow and syntax highlighting](/images/2026-11-17-post-compact-parity.png)
+<figure>
+  <img src="/images/2026-11-17-post-compact-parity.png" alt="Article post with 160px sticky table of contents, 14px back arrow, and syntax-highlighted code block" />
+  <figcaption>Article layout with compact typography, 160px sticky table of contents, and syntax highlighted code blocks.</figcaption>
+</figure>
 
 To make sure things stay locked down, the site now has three test posts and <mark class="lilac">24 Playwright checks</mark> verifying token values, font sizes, icon sizes, footnote order, and zero horizontal scroll at 1440px, 390px, and 320px.
 
