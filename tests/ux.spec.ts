@@ -74,7 +74,19 @@ test.describe("UX & Accessibility Checks", () => {
     await expect(page.locator(".post-toc-link").first()).toHaveClass(/is-active/);
 
     // Verify heading scroll-margin-top prevents top clipping on deep links
-    await expect(page.locator(".post h2").first()).toHaveCSS("scroll-margin-top", "48px");
+    const firstH2 = page.locator(".post h2").first();
+    await expect(firstH2).toHaveCSS("scroll-margin-top", "48px");
+    await expect(firstH2).toHaveCSS("margin-top", "64px");
+    await expect(firstH2).toHaveCSS("margin-bottom", "24px");
+
+    // Verify top scroll dissolve overlay (benji.org style)
+    const fadeStyles = await page.evaluate(() => {
+      const before = window.getComputedStyle(document.body, "::before");
+      return { height: before.height, pointerEvents: before.pointerEvents, position: before.position };
+    });
+    expect(fadeStyles.height).toBe("128px");
+    expect(fadeStyles.pointerEvents).toBe("none");
+    expect(fadeStyles.position).toBe("fixed");
 
     // Footnote ref jump -> backref jump works cleanly
     const fnRef = page.locator(".post a[data-footnote-ref]").first();

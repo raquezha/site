@@ -582,11 +582,38 @@ a:focus-visible {
     animation: 3.5s ease both targetFade;
   }
 }
+/* Top viewport eased scroll dissolve (benji.org style) */
+body.is-post::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8rem; /* 128px */
+  pointer-events: none;
+  z-index: 30;
+  background: linear-gradient(
+    rgb(255, 255, 255) 0px,
+    rgba(255, 255, 255, 0.737) 19%,
+    rgba(255, 255, 255, 0.54) 34%,
+    rgba(255, 255, 255, 0.38) 47%,
+    rgba(255, 255, 255, 0.28) 56.5%,
+    rgba(255, 255, 255, 0.192) 65%,
+    rgba(255, 255, 255, 0.125) 73%,
+    rgba(255, 255, 255, 0.075) 80.2%,
+    rgba(255, 255, 255, 0.043) 86.1%,
+    rgba(255, 255, 255, 0.02) 91%,
+    rgba(255, 255, 255, 0.008) 95.2%,
+    rgba(255, 255, 255, 0.004) 98.2%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
 .post h2 {
   display: flex;
   align-items: center;
   gap: var(--layout-spacing-12); /* 12px (Figma 48:876 Article / Section heading) */
-  margin: var(--layout-spacing-xl) 0 var(--layout-spacing-12); /* 32px above, 12px below */
+  margin: var(--layout-spacing-3xl) 0 var(--layout-spacing-l); /* 64px above, 24px below (benji.org section breathing) */
   font-size: var(--type-post-h2-size); /* 14px */
   font-weight: var(--type-post-h2-weight); /* 600 */
   line-height: var(--type-post-h2-lh); /* 20px */
@@ -798,7 +825,7 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   gap: var(--layout-spacing-10); /* 10px (Figma 59:1711 Block / Video player) */
-  margin: var(--layout-spacing-xl) 0;
+  margin: var(--layout-spacing-40) 0 var(--layout-spacing-xxl); /* 40px above, 48px below (benji.org media breathing) */
 }
 .post figure > img:not(.post-doodle):not(.annotation-arrow):not(.inline-doodle),
 .post figure > video {

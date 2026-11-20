@@ -26,3 +26,13 @@ Follow the `benji.org` footnote styling in `public/site.css` (`.post sup` and `.
 - **Exponent numbers:** `.post .footnotes ol` uses `list-style: none` with `li::before` (`content: counter(list); font-size: 0.45rem;`) positioned at `right: 100%; top: 0` to render superscript-style footnote numbers.
 - **Clickable row backref (no `↩` arrow):** `.post .footnotes a.data-footnote-backref` is visually hidden (`text-indent: -9999px; overflow: hidden`) and stretched over the footnote item (`position: absolute; inset: 0; bottom: 0.5em; z-index: 1`) so clicking anywhere on the footnote line jumps back to the inline reference.
 - **Inline footnote links:** `.post .footnotes a` uses `color: inherit`, and `.post .footnotes li p a:not(.data-footnote-backref)` sits at `position: relative; z-index: 2` so inline links remain clickable above the row backref overlay.
+
+## Section Spacing, Media & Viewport Fade (benji.org Conventions)
+
+Follow these global layout and breathing room conventions in `public/site.css`:
+
+- **Top viewport scroll dissolve:** `body.is-post::before` renders a 128px (8rem) fixed overlay with `pointer-events: none` and `z-index: 30`. It uses a 12-stop eased linear gradient so text and media floating upward dissolve smoothly into the top edge as the user scrolls.
+- **Section breathing room (`h2`):** `.post h2` uses 64px (`--layout-spacing-3xl`) above the heading and 24px (`--layout-spacing-l`) below it.
+- **Hairline section ruler:** `.post h2::after` renders a 1px `#f2f2f2` (`var(--outline-subtle)`) horizontal rule that extends from the heading text out to the right margin.
+- **Media and figure breathing room:** `.post figure` uses 40px (`var(--layout-spacing-40)`) above and 48px (`var(--layout-spacing-xxl)`) below. Captions are centered, muted, and sized at 13px.
+- **Code block spacing:** Code blocks use 32px (`var(--layout-spacing-xl)`) top margin with 8px border radius and tokenized border colors.
