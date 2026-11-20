@@ -66,7 +66,7 @@ Once the mock felt close enough, I asked if it could turn the image into HTML. I
 
 > *I could have stopped at HTML, except vibe coded HTML isn't a real handoff.* <mark>*My actual goal at work is helping our mobile and UX/UI teams standardize Figma handoffs.*</mark> *So when I discovered `html.to.design`[^4] could turn rendered HTML into editable Figma layers, I pulled the whole thing into Figma.*
 
-## Hitting real Figma pain
+## The Limitation
 
 Going from image to HTML to Figma got screens onto the canvas, except <del><strong>I'm not a UI designer</strong></del> <em class="muted">(wait, with AI am I a UI designer now? haha)</em> I still barely knew how to use Figma. Digging around those imported layers is where <mark>I discovered components and variables</mark>: you can connect components, link variables across screens, and standardize colors with proper structure. That's when it clicked for me: <span class="mark-wavy">good Figma can be structured just like good code</span>.
 
@@ -74,7 +74,7 @@ Then I talked to Ralph from our UX/UI team, and he showed me the Design System t
 
 That's when the real friction hit. Simple layout tweaks take two seconds in Figma and cost zero AI tokens. Because I'm <u>dumb at Figma</u>, I was <mark class="peach">burning tokens and MCP calls</mark> just to move a button 2 pixels up haha.
 
-## Hacking around the limits
+## .hack//
 
 Even <img src="/doodle-plugin.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> `html.to.design` had a free tier wall. For <img src="/doodle-spaces.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> **Spaces**, I needed 6 main screens and 13 state variants (empty, loading, and error states). Instead of importing them one by one, I stacked 11 states onto one giant HTML page, imported it in a single shot, and split the frames inside Figma. Later I did the same for <img src="/doodle-website.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> **raquezha.net**, drafting pages in HTML, checking them in Zen, and importing them to organize Foundations, Components, and Screens.
 
