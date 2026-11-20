@@ -108,10 +108,10 @@ The cat icons had the same problem: large drawings shrunk 31 times, so the strok
 
 The giant cat was just the symptom. The real issue is the connection between Figma and the developer workflow:
 
-If a Figma screen has disconnected components, raw hex codes instead of variables (`#20201E` on my name, `#30302E` on the bio), and untokenized spacing, no AI model can match it 100%. The agent is forced to guess. When it guesses, it hallucinates or grabs old code.
+If a Figma screen has disconnected components, raw hex codes instead of variables (<code class="hex-badge" style="background-color: #20201E; color: #ffffff;">#20201E</code> on my name, <code class="hex-badge" style="background-color: #30302E; color: #ffffff;">#30302E</code> on the bio), and untokenized spacing, no AI model can match it 100%. The agent is forced to guess. When it guesses, it hallucinates or grabs old code.
 
 <div class="callout">
-  <strong>Values versus roles:</strong> A raw hex code like <code>#FD8770</code> is just a value. <code>theme/primary</code> is a role. When a Figma canvas only has raw values and loose padding, the AI is forced to guess the intent. When it guesses, the build drifts.
+  <strong>Values versus roles:</strong> A raw hex code like <code class="hex-badge" style="background-color: #FD8770; color: #141414;">#FD8770</code> is just a value. <code>theme/primary</code> is a role. When a Figma canvas only has raw values and loose padding, the AI is forced to guess the intent. When it guesses, the build drifts.
 </div>
 
 Combine that with limited context windows, token pricing, and rate limits, and one-shot prompting an entire screen is dead on arrival.
@@ -133,7 +133,7 @@ I do not think this is the only way to do it. But on a super simple personal sit
 
 Going slowly exposed plenty of small details on raquezha.net:
 - Figma dimmed rows to 60% on hover, which looked too faint in Chrome, so I kept 30% like benji.org.[^4]
-- The highlight yellow in Figma (`#EBD38F`) did not match the CSS (`#EADBB4`).
+- The highlight yellow in Figma (<code class="hex-badge" style="background-color: #EBD38F; color: #141414;">#EBD38F</code>) did not match the CSS (<code class="hex-badge" style="background-color: #EADBB4; color: #141414;">#EADBB4</code>).
 - On mobile, `text-wrap: pretty` broke lines awkwardly, so I turned it off on the home page.
 - Under my name, Figma grouped name, subtitle, and bio into one 16px stack, leaving the subtitle stranded in the middle. It belongs right under my name (2px away) with 32px before the bio. If Figma looks wrong in the browser, code wins.
 

@@ -860,6 +860,18 @@ body.is-post::before {
 .post .note > :last-child,
 .post .callout > :last-child { margin-bottom: 0; }
 
+.post .hex-badge {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  font-weight: 500;
+  vertical-align: 0.5px;
+  letter-spacing: -0.01em;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
 /* Interactive task checkboxes (Figma 42:1899–42:3373 Article / Task item) */
 .post .contains-task-list {
   list-style: none;
