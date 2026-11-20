@@ -144,6 +144,8 @@ Going slowly exposed plenty of small details on raquezha.net:
 
 To make sure things stay locked down, the site now runs <mark class="lilac">24 Playwright checks</mark> against an [absurd stress test post](/writing/_absurd-stress-test). It throws unbroken identifiers, 6-column tables, multi-line brush highlights, and wordy callout boxes with 27px 32px padding at the layout to verify zero horizontal scroll and zero text clipping on 390px mobile screens.
 
+Since this article is live on raquezha.net, you are looking directly at the product of that research. Feel free to explore the site, test the navigation, and check the mobile layout. Are you happy with what you are seeing? Getting here took fighting through 500px cats, stale backup files, and API quota walls.
+
 ## Next stop: Spaces on mobile
 
 Testing this on raquezha.net gave me the exact playbook I needed. A small sandbox lets you find where AI breaks before you bring it into a larger architecture.
