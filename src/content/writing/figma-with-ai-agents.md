@@ -84,16 +84,18 @@ To edit inside Figma without burning my 20 monthly MCP calls, I found a second w
   <video autoplay loop muted playsinline controls preload="metadata">
     <source src="/images/figma-plugin-magic.mp4" type="video/mp4" />
   </video>
-  <figcaption>The local plugin workaround: generate the plugin, drop it into Figma, hit run. Boom! There's your UI! Magic! <img src="/doodle-explode.svg" width="16" height="16" alt="" aria-hidden="true" class="inline-doodle" /> Mind blown! Curated by me with help from Gemini 4 Neon.</figcaption>
+  <figcaption>The local plugin workaround: generate the plugin, drop it into Figma, hit run. Boom! There's your UI! Magic! <img src="/doodle-explode.svg" width="16" height="16" alt="" aria-hidden="true" class="inline-doodle" /> Mind blown! The video is curated by me with help of Gemini 4 Neon.</figcaption>
 </figure>
 
 Hooray, right? Except I'm a developer, and I didn't want to manually click buttons every time. I wanted to drive it even further.
 
-Once a development plugin is imported, Figma reads `code.js` fresh from disk on every run. At home on <img src="/doodle-arch.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> Arch Linux,[^4] `figma-linux` lets you open a local debug port,[^2] so I wired the agent to update `code.js` and trigger Figma's **Run last plugin** shortcut by itself. You just prompt a change, the agent edits the same plugin and reruns it, and <mark class="mint">the updated UI automatically appears in Figma</mark> with zero clicks.
+Once a development plugin is imported, Figma reads `code.js` fresh from disk on every run. At home on <img src="/doodle-arch.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> EndeavourOS (Arch Linux),[^4] `figma-linux` lets you open a local debug port,[^2] so I wired the agent to update `code.js` and trigger Figma's **Run last plugin** shortcut by itself. You just prompt a change, the agent edits the same plugin and reruns it, and <mark class="mint">the updated UI automatically appears in Figma</mark> with zero clicks.
 
 <figure>
-  <img src="/figma-linux-auto-loop.svg" alt="Hand-drawn sketch of the zero-click Arch Linux loop: prompt in terminal updates code.js, triggers Run last plugin over figma-linux debug port, and updates Figma automatically, until the office Mac Mini blocks it" />
-  <figcaption>Pushing the hack to zero clicks on Arch Linux, before hitting the Mac Mini wall.</figcaption>
+  <video autoplay loop muted playsinline controls preload="metadata">
+    <source src="/images/figma-linux-auto-loop.mp4" type="video/mp4" />
+  </video>
+  <figcaption>The zero-click loop on EndeavourOS: pi agent updates code.js in Ghostty, triggers Run last plugin via port 9222, and Figma updates live with 0 manual clicks. The video is curated by me with help of Gemini 4 Neon.</figcaption>
 </figure>
 
 <div class="annotated-block">

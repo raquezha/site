@@ -14,6 +14,7 @@ public/images/*
 !public/images/spaces-phase1-screens.png
 !public/images/figma-plugin-magic.webm
 !public/images/figma-plugin-magic.mp4
+!public/images/figma-linux-auto-loop.mp4
 public/demo-placeholder.mp4
 
 # Playwright artifacts & local visual snapshots
