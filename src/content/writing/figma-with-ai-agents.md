@@ -66,7 +66,7 @@ Once the mock felt close enough, I asked if it could turn the image into HTML. I
 
 > *I could have stopped at HTML, except vibe coded HTML isn't a real handoff.* <mark>*My actual goal at work is helping our mobile and UX/UI teams standardize Figma handoffs.*</mark> *So when I discovered `html.to.design`[^4] could turn rendered HTML into editable Figma layers, I pulled the whole thing into Figma.*
 
-## The Limitation
+## 20 calls
 
 Going from image to HTML to Figma got screens onto the canvas, except <del><strong>I'm not a UI designer</strong></del> <em class="muted">(wait, with AI am I a UI designer now? haha)</em> I still barely knew how to use Figma. Digging around those imported layers is where <mark>I discovered components and variables</mark>: you can connect components, link variables across screens, and standardize colors with proper structure. That's when it clicked for me: <span class="mark-wavy">good Figma can be structured just like good code</span>.
 

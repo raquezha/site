@@ -18,7 +18,7 @@ Spaces is a full Kotlin Multiplatform mobile app with multiple screens and share
 
 For the tech stack, I originally wanted to build this using Kobweb,[^1] but I never really had the time to sit down and finish a whole project with it. When it came to shipping this site, I just searched what was popular right now. Astro[^2] was sitting right at the top of the pile, so I went with it. No deep reason.
 
-## The one-shot experiment
+## One prompt
 
 I set up the Astro repo and had the Figma design ready.
 
@@ -35,7 +35,7 @@ I opened `localhost:4321`. Instead of my clean minimal header, I got this:
 
 A 500 pixel cat was taking over the screen, and my name was squished into a vertical column of single letters. A passing build only means the computer did not crash. It does not mean your page actually looks right.
 
-## Diagnosing the crime scene
+## Diagnosis
 
 Why did a passing build look like a disaster? Two things went wrong:
 
@@ -61,7 +61,7 @@ Lesson learned: set up your repo the right way and put real guard rails in place
 
 The terminal gave me green checkmarks in 515 milliseconds, but the browser was unusable. That was the second lesson: a passing build only proves your syntax is valid. It cannot tell you if the visual design actually survived.
 
-## Hitting the tool limits
+## Out of calls
 
 Once I saw the giant cat, I told the agent to stop guessing and read the real design through the Figma MCP server. That immediately hit a wall.
 
@@ -75,7 +75,7 @@ I forgot I had already burned my 20 monthly Starter MCP calls on Spaces. The cal
 
 A 20-call limit sounds fine until an agent starts inspecting a canvas. A single screen lookup can chew through three or four calls just inspecting frames, component trees, and styles. Halfway through the build, the free tier shuts the door.
 
-## Stale backups and version drift
+## Version 5
 
 To keep moving without waiting a month for my quota to reset, I pointed the agent to local files to find any exported scripts. It found an exported `code.js` plugin file in my `Downloads` folder and used it to generate the layout.
 
@@ -104,7 +104,7 @@ The cat icons had the same problem: large drawings shrunk 31 times, so the strok
   <figcaption>The home page after matching the real version 7.7 Figma file: 14px cat icon restored and layout rhythm aligned.</figcaption>
 </figure>
 
-## The interconnected breakdown
+## Why it guessed
 
 The giant cat was just the symptom. The real issue is the connection between Figma and the developer workflow:
 
@@ -116,7 +116,7 @@ If a Figma screen has disconnected components, raw hex codes instead of variable
 
 Combine that with limited context windows, token pricing, and rate limits, and one-shot prompting an entire screen is dead on arrival.
 
-## The lightbulb: task slicing
+## Small steps
 
 I do not think this is the only way to do it. But on a super simple personal site like this, the working pattern I landed on was a disciplined two-sided handshake:
 
@@ -146,7 +146,7 @@ To make sure things stay locked down, the site now runs <mark class="lilac">24 P
 
 Since this article is live on raquezha.net, you are looking directly at the product of that research. Feel free to explore the site, test the navigation, and check the mobile layout. Are you happy with what you are seeing? Getting here took fighting through 500px cats, stale backup files, and API quota walls.
 
-## Next stop: Spaces on mobile
+## Spaces next
 
 Testing this on raquezha.net gave me the exact playbook I needed. A small sandbox lets you find where AI breaks before you bring it into a larger architecture.
 
