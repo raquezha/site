@@ -2,7 +2,7 @@
 title: "Figma to code"
 shortTitle: "Figma to code"
 date: "2026-11-20"
-status: "draft"
+status: "published"
 description: "My build passed in 515ms and still showed a 500px cat. Why one-shot prompting fails, the breakdown between Figma and code, and why task slicing is the only way forward."
 routeOverride: "/writing/figma-to-code"
 tags:
