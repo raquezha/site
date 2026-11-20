@@ -82,10 +82,9 @@ To edit inside Figma without burning my 20 monthly MCP calls, I found a second w
 
 <figure>
   <video autoplay loop muted playsinline controls preload="metadata">
-    <source src="/images/figma-plugin-magic.webm" type="video/webm" />
     <source src="/images/figma-plugin-magic.mp4" type="video/mp4" />
   </video>
-  <figcaption>The local plugin workaround: generate the plugin, drop it into Figma, hit run. Boom! There's your UI! Magic! <img src="/doodle-explode.svg" width="16" height="16" alt="" aria-hidden="true" class="inline-doodle" /> Mind blown!</figcaption>
+  <figcaption>The local plugin workaround: generate the plugin, drop it into Figma, hit run. Boom! There's your UI! Magic! <img src="/doodle-explode.svg" width="16" height="16" alt="" aria-hidden="true" class="inline-doodle" /> Mind blown! Curated by me with help from Gemini 4 Neon.</figcaption>
 </figure>
 
 Hooray, right? Except I'm a developer, and I didn't want to manually click buttons every time. I wanted to drive it even further.
@@ -126,4 +125,4 @@ On the design side, both Spaces and raquezha.net made it cleanly into Figma. The
 [^4]: Turned my old 2018 Asus ROG GLX703GE into a home server running EndeavourOS. Wanna know how I set that up? Writing that post next.
 [^5]: Google "DTCG" and the first thing that pops up is the Digimon Trading Card Game haha. The one I discovered here is the W3C [Design Tokens Community Group](https://www.w3.org/community/design-tokens/) ([designtokens.org](https://www.designtokens.org/) and their [2025.10 Format Spec](https://www.designtokens.org/tr/2025.10/format/)), a community of designers and engineers defining a portable JSON standard ($value, $type, and primitive to semantic aliases) so one token file works across Figma, web (CSS), Android (Compose), and iOS (SwiftUI).
 [^6]: It is hardcoded into Figma Desktop's main Electron bundle (`app.asar`): `process.env.FIGMA_TEST || app.commandLine.removeSwitch("remote-debugging-port")`. Unless you run in their internal test harness (which loads `about:blank`), Figma deletes the debug flag on startup. A forum reply suggested "Reset Figma and Restart", but that only clears cache; the flag deletion is in the app bundle. This really sucks haha. See the [Figma Forum bug report](https://forum.figma.com/report-a-problem-6/remote-debugging-port-not-working-in-figma-desktop-126-1-2-50858).
-[^models]: Models used across the loop: Grok Bot for initial mocks and targeted tweaks, ChatGPT (mostly gpt-5.6-terra and gpt-6.1-sol) for polish, and Gemini 3.8 Flash for fast HTML and code passes.
+[^models]: Models used across the loop: Grok Bot for initial mocks and targeted tweaks, ChatGPT (mostly gpt-5.6-terra and gpt-6.1-sol) for polish, Gemini 3.8 Flash for fast HTML and code passes, and Gemini 4 Neon for the video simulation and Spaces states.
