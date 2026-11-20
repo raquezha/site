@@ -106,7 +106,7 @@ Combine that with limited context windows, token pricing, and rate limits, and o
 
 ## The lightbulb: task slicing
 
-The only way design to code actually works with AI agents is a disciplined two-sided handshake:
+I do not think this is the only way to do it. But on a super simple personal site like this, the working pattern I landed on was a disciplined two-sided handshake:
 
 **For the UX/UI team:** Standardize the Figma file. Bind real token variables, kill raw hex codes, and use structured components so the design has a single source of truth. (I am documenting this full feedback for our design team in a separate article on Figma Design Standardization).
 
