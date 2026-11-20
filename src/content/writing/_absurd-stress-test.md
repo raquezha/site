@@ -72,7 +72,7 @@ Look at the `1px` `#f2f2f2` divider beside this heading when the heading itself 
 
 <figure>
   <video controls preload="metadata" poster="/images/2026-11-10-site-fixed-home.png" aria-label="Absurd stress test video player">
-    <source src="/demo-placeholder.mp4" type="video/mp4" />
+    <source src="/images/figma-plugin-magic.mp4" type="video/mp4" />
   </video>
   <figcaption>Video player (`59:1711`, `16:9` `#141414` container with `1px solid #333333` stroke and crisp `8px` corners) paired with a multi-line video subtitle underneath.</figcaption>
 </figure>
