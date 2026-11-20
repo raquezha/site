@@ -81,7 +81,9 @@ That introduced two new silent failures:
 
 <div class="annotated-block">
 
-**1. Version drift.** While building the design in Figma, I had been exporting plugin scripts as local backups, tagging each iteration with a version number. The agent picked up an old version 5 export from November 6, but the active Figma file had already moved forward to version 7.7. Column widths, font sizes, back link styling, and highlights were all from the older iteration.
+**1. Version drift.** While building the design in Figma, I had been exporting plugin scripts as local backups, tagging each iteration with a version number like version 5 or 7.7. Why the versioning? Nothing fancy. They were just personal checkpoints so I had a rollback point if an experiment went wrong.
+
+The problem was that the agent grabbed an old version 5 export from November 6. By then, the active Figma file had already moved forward to version 7.7. Column widths, font sizes, back link styling, and highlights were all from an older checkpoint.
 
 <aside class="annotation">
   <img src="/doodle-arrow.svg" width="48" height="28" alt="" aria-hidden="true" class="annotation-arrow" />
