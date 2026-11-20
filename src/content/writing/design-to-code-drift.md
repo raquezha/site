@@ -59,7 +59,7 @@ Lesson learned: set up your repo the right way and put real guard rails in place
 
 `.article img` was more specific, so `height: auto` won. The SVG had `width="686" height="438"` on it, so it took over the row and crushed my name into single letters.
 
-The terminal gave me green checkmarks in 515 milliseconds, but the browser was unusable. That was the first lesson: a passing build only proves your syntax is valid. It cannot tell you if the visual design actually survived.
+The terminal gave me green checkmarks in 515 milliseconds, but the browser was unusable. That was the second lesson: a passing build only proves your syntax is valid. It cannot tell you if the visual design actually survived.
 
 ## Hitting the tool limits
 
