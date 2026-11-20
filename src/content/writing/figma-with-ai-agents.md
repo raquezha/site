@@ -119,7 +119,7 @@ After documenting all of this, I actually understand the UX/UI team's side too, 
 
 To be fair, AI is insanely helpful when reading a bunch of components and updating them in real time. **Figma MCP is god tier**, and so is the price haha. Since this is R&D, I stuck to the free tier and pushed those hacks to the limit first to prove whether the whole venture is actually worth it.
 
-On the design side, both Spaces and raquezha.net made it cleanly into Figma. The next headache was turning those Figma files back into production code. I wrote about what broke on raquezha.net in **Figma to code** (coming next). Spaces is up next too.
+On the design side, both Spaces and raquezha.net made it cleanly into Figma. The next headache was turning those Figma files back into production code. I wrote about what broke on raquezha.net in [**Figma to code**](/writing/figma-to-code). Spaces is up next too.
 
 [^1]: Our company has a paid Figma plan (200+ calls a day), so my colleagues never hit this. My personal R&D files sit on my free Starter account, where 20 calls a month vanish fast, so I had to hack around it haha. See [Figma's MCP rate limits](https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/).
 [^2]: Figma has no official Linux desktop app, so the community [figma-linux](https://github.com/Figma-Linux/figma-linux) project is a beast. Because it lets you open remote debugging, my AI agent could control Figma autonomously at home instead of getting locked out like on macOS.
