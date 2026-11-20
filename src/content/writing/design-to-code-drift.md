@@ -35,15 +35,15 @@ I opened `localhost:4321`. Instead of my clean minimal header, I got this:
   <figcaption>Expectation in Figma versus reality on localhost: 515ms build, zero errors, and a 500px cat haha.</figcaption>
 </figure>
 
-A 500 pixel cat was taking over the screen, and my name was squished into a vertical column of single letters haha. A passing build only means the computer did not crash. It does not mean your page actually looks right.
+A 500 pixel cat was taking over the screen, and my name was squished into a vertical column of single letters. A passing build only means the computer did not crash. It does not mean your page actually looks right.
 
 ## Diagnosing the crime scene
 
-Why did it fail? It was not just that the AI was dumb. It was an interconnected chain of shortcuts:
+Why did a passing build look like a disaster? Two things went wrong:
 
-**1. The Kobweb heist.** The agent did not parse Figma at all.[^3] It took the lazy path: it found my old Kobweb prototype files lying around the repo and copied the old CSS line for line. Copying code perfectly also copies its mistakes.
+**1. The agent took a shortcut.** It did not parse Figma at all.[^3] It found my old Kobweb prototype files lying around the repo and copied the old CSS line for line. Copying code perfectly also copies its mistakes.
 
-**2. The CSS specificity trap.**
+**2. A silent CSS collision.**
 
 ```css
 /* Specificity (0, 1, 1) */
@@ -57,15 +57,19 @@ Why did it fail? It was not just that the AI was dumb. It was an interconnected 
 }
 ```
 
-`.article img` was more specific, so `height: auto` won. The SVG had `width="686" height="438"` on it, so it took the whole row and squeezed my name. Every token name in that file was valid, and none of it caught this bug.
+`.article img` was more specific, so `height: auto` won. The SVG had `width="686" height="438"` on it, so it took over the row and crushed my name into single letters. Every token name was valid, the build passed, and the page was still completely broken.
 
-**3. The Figma MCP quota trap and stale cache.** Next I told the agent: stop guessing, use the Figma MCP server to read every layer and variable. But I forgot I already burned my 20 monthly Starter MCP calls on Spaces.
+## Hitting the tool limits
 
-The calls threw 429 quota errors. To keep moving without waiting a month, I pointed the agent to my local files to find any exported scripts or manifests. It found an exported `code.js` plugin file in my `Downloads` folder and used it to generate the layout.
+Once I saw the giant cat, I told the agent to stop guessing and read the real design through the Figma MCP server. That immediately hit another wall:
+
+**1. The quota trap and stale cache.** I forgot I had already burned my 20 monthly Starter MCP calls on Spaces. The calls threw 429 quota errors.
+
+To keep moving without waiting a month, I pointed the agent to local files to find any exported scripts. It found an exported `code.js` plugin file in my `Downloads` folder and used it to generate the layout.
 
 <div class="annotated-block">
 
-The problem was version drift. That local script was an export from November 6, sitting at version 5. The live Figma file had already moved forward to version 7.7. Column widths, font sizes, back link styling, and highlights were all from the older iteration.
+The problem was version drift. That local file was an export from November 6, sitting at version 5. The live Figma file had already moved forward to version 7.7. Column widths, font sizes, back link styling, and highlights were all from the older iteration.
 
 <aside class="annotation">
   <img src="/doodle-arrow.svg" width="48" height="28" alt="" aria-hidden="true" class="annotation-arrow" />
@@ -77,9 +81,9 @@ Lesson learned: <mark class="sky">if you fall back to local exports, verify the 
 
 ![The home page after matching the version 7.7 Figma file](/images/2026-11-10-site-fixed-home.png)
 
-**4. The fake doodle.** Figma had a hand drawn arrow for side notes. The agent did not export the SVG asset. It literally typed its own raw `<path>` coordinates in code, giving me a stiff, awkward curve instead of the loose doodle.
+**2. The fake doodle.** Figma had a hand drawn arrow for side notes. Instead of exporting the SVG asset, the agent literally typed raw `<path>` coordinates in code. The result was a stiff, awkward curve instead of a loose doodle.
 
-The cat icons had the same issue: large drawings shrunk 31 times, so the strokes looked faint when zoomed in. I replaced them with real size exports from Figma.
+The cat icons had the same problem: large drawings shrunk 31 times, so the strokes looked faint when zoomed in. I replaced them with real size exports from Figma.
 
 ## The interconnected breakdown
 
