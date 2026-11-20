@@ -18,7 +18,7 @@ In [Figma with AI agents](/writing/figma-with-ai-agents), I got both <img src="/
 
 Spaces is a full Kotlin Multiplatform mobile app with multiple screens and shared logic. There was no way I was going to let an AI agent loose on that first haha. I needed something small and simple to test the loop on, and this site was the obvious target.
 
-For the tech stack, I originally wanted to build this using Kobweb,[^1] but I never really had the time to sit down and finish a whole project with it. When it came to shipping this site, I just searched what was popular right now. Astro was sitting right at the top of the pile, so I went with it. No deep reason.
+For the tech stack, I originally wanted to build this using Kobweb,[^1] but I never really had the time to sit down and finish a whole project with it. When it came to shipping this site, I just searched what was popular right now. Astro[^2] was sitting right at the top of the pile, so I went with it. No deep reason.
 
 ## The one-shot experiment
 
@@ -41,7 +41,7 @@ A 500 pixel cat was taking over the screen, and my name was squished into a vert
 
 Why did it fail? It was not just that the AI was dumb. It was an interconnected chain of shortcuts:
 
-**1. The Kobweb heist.** The agent did not parse Figma at all.[^2] It took the lazy path: it found my old Kobweb prototype files lying around the repo and copied the old CSS line for line. Copying code perfectly also copies its mistakes.
+**1. The Kobweb heist.** The agent did not parse Figma at all.[^3] It took the lazy path: it found my old Kobweb prototype files lying around the repo and copied the old CSS line for line. Copying code perfectly also copies its mistakes.
 
 **2. The CSS specificity trap.**
 
@@ -105,7 +105,7 @@ The only way design to code actually works with AI agents is a disciplined two-s
 6. **Navigation:** Connect the screens and page routes.
 
 Going slowly exposed plenty of small details on raquezha.net:
-- Figma dimmed rows to 60% on hover, which looked too faint in Chrome, so I kept 30% like benji.org.[^3]
+- Figma dimmed rows to 60% on hover, which looked too faint in Chrome, so I kept 30% like benji.org.[^4]
 - The highlight yellow in Figma (`#EBD38F`) did not match the CSS (`#EADBB4`).
 - On mobile, `text-wrap: pretty` broke lines awkwardly, so I turned it off on the home page.
 - Under my name, Figma grouped name, subtitle, and bio into one 16px stack, leaving the subtitle stranded in the middle. It belongs right under my name (2px away) with 32px before the bio. If Figma looks wrong in the browser, code wins.
@@ -121,5 +121,6 @@ Testing this on raquezha.net gave me the exact playbook I needed. A small sandbo
 Now the real challenge begins: taking these exact lessons back to the Mobile Team to build **Spaces** in Kotlin Multiplatform (Jetpack Compose on Android and native SwiftUI on iOS). Once we ship Spaces on mobile, I will update this series with what worked, what broke, and how Compose and SwiftUI handled the exact same loop.
 
 [^1]: [Kobweb on GitHub](https://github.com/varabyte/kobweb), a modern web framework built on Kotlin and Compose HTML.
-[^2]: The test ran on my daily setup using Gemini 3.8 Flash and Grok Bot, not frontier models like GPT 6.1 Astra or Fable. Maybe a top model could parse the whole canvas in one shot, but I work with what I have, and everyday agents look for the nearest shortcut.
-[^3]: [benji.org](https://benji.org) was the visual reference for the compact typography scale and muted hover states.
+[^2]: [Astro](https://astro.build), a web framework for content driven websites that renders static HTML with zero client JavaScript by default.
+[^3]: The test ran on my daily setup using Gemini 3.8 Flash and Grok Bot, not frontier models like GPT 6.1 Astra or Fable. Maybe a top model could parse the whole canvas in one shot, but I work with what I have, and everyday agents look for the nearest shortcut.
+[^4]: [benji.org](https://benji.org) was the visual reference for the compact typography scale and muted hover states.
