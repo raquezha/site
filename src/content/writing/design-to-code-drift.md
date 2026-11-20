@@ -41,6 +41,8 @@ Why did a passing build look like a disaster? Two things went wrong:
 
 **1. The agent took a shortcut.** It did not parse Figma at all.[^3] It found my old Kobweb prototype files lying around the repo and copied the old CSS line for line. Copying code perfectly also copies its mistakes.
 
+Lesson learned: set up your repo the right way and put real guard rails in place. An agent will always look for the path of least resistance. If you leave old scrap files or obsolete prototypes lying around, the agent will treat them as ground truth instead of reading the design.
+
 **2. A silent CSS collision.**
 
 ```css
