@@ -108,7 +108,7 @@ That could have been the perfect ending for the hack, except the real ending hap
 </aside>
 </div>
 
-## What it gave me
+## Conclusion
 
 Getting screens into Figma was never the end goal by itself. <mark>The whole point of this R&D was to learn how Figma handoffs actually work, document everything I found, and bring real dev feedback back to our UX/UI team:</mark>
 
