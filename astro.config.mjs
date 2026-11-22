@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://raquezha.net",
+  base: "/",
   output: "static",
   integrations: [
     sitemap({
@@ -26,6 +27,11 @@ export default defineConfig({
     shikiConfig: {
       theme: "github-light",
       wrap: false,
+    },
+  },
+  vite: {
+    server: {
+      allowedHosts: true,
     },
   },
 });

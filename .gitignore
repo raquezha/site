@@ -10,7 +10,15 @@ npm-debug.log*
 
 # Local-only article drafts & draft media (never push)
 src/content/writing/drafts/
-public/images/
+public/images/*
+!public/images/spaces-phase1-screens.png
+!public/images/figma-plugin-magic.webm
+!public/images/figma-plugin-magic.mp4
+!public/images/figma-linux-auto-loop.mp4
+!public/images/2026-11-10-site-drift-giant-cat.png
+!public/images/2026-11-10-site-fixed-home.png
+!public/images/2026-11-17-post-compact-parity.png
+!public/images/2026-11-18-asset-drift.png
 public/demo-placeholder.mp4
 
 # Playwright artifacts & local visual snapshots

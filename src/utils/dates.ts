@@ -30,10 +30,10 @@ export function formatYear(iso: string): string {
   return y;
 }
 
-/** "2026-10-23" -> "23/10" (Figma v7.7 Home right day/month column) */
+/** "2026-10-23" -> "10/23" (Home right month/day column) */
 export function formatDayMonth(iso: string): string {
   const [, m, d] = parts(iso);
-  return `${d}/${m}`;
+  return `${m}/${d}`;
 }
 
 /** Resolve post slug from routeOverride or filename id */

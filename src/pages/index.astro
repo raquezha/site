@@ -1,6 +1,7 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import WritingList from "../components/WritingList.astro";
+import { withBase } from "../utils/paths";
 import { getSortedPublishedWriting, toSectionRows } from "../utils/writing";
 
 const entries = await getSortedPublishedWriting();
@@ -15,7 +16,7 @@ const hasPosts = entries.length > 0;
       <div class="home-name">
         <h1>Jan Celada</h1>
         <img
-          src="/cat-lounging.svg"
+          src={withBase("/cat-lounging.svg")}
           width="22"
           height="14"
           alt=""
@@ -31,16 +32,20 @@ const hasPosts = entries.length > 0;
       I focus on developer experience for the mobile team.
     </p>
     <p>
-      I look after our shared Android toolboxes and CI/CD pipelines—automating
+      I look after our shared Android toolboxes and CI/CD pipelines, automating
       releases, shaping Jetpack Compose and Kotlin Multiplatform foundations,
       and building practical AI workflows that take friction out of shipping.
     </p>
     <p>
-      On the side, I maintain open-source tools like{" "}
-      <a href="https://github.com/raquezha/nothing" target="_blank" rel="noopener noreferrer">nothing</a>,{" "}
-      <a href="https://github.com/raquezha/spaces" target="_blank" rel="noopener noreferrer">spaces</a>,
-      and{" "}
-      <a href="https://github.com/raquezha/kinsena" target="_blank" rel="noopener noreferrer">kinsena</a>.
+      On the side, I build and self host tools I actually use:{" "}
+      <a href="https://github.com/raquezha/nuecagram" target="_blank" rel="noopener noreferrer">nuecagram</a>{" "}
+      for GitLab Telegram alerts,{" "}
+      <a href="https://github.com/raquezha/nothing" target="_blank" rel="noopener noreferrer">nothing</a>{" "}
+      for my Pi dev setup,{" "}
+      <a href="https://github.com/raquezha/kinsena" target="_blank" rel="noopener noreferrer">kinsena</a>{" "}
+      for payday bills, and{" "}
+      <a href="https://github.com/raquezha/spaces" target="_blank" rel="noopener noreferrer">spaces</a>{" "}
+      for weekly reports.
     </p>
     <p>
       Away from work, I spend time with my eight cats, write poetry and
