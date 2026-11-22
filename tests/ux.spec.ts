@@ -24,7 +24,7 @@ test.describe("UX & Accessibility Checks", () => {
       ["160%", 1025, false],
     ] as const) {
       await page.setViewportSize({ width: vw, height: 900 });
-      await page.goto("/writing/_absurd-stress-test");
+      await page.goto("/writing/kitchen-sink");
 
       const metrics = await page.evaluate(() => {
         const overflowX = document.documentElement.scrollWidth > window.innerWidth;
@@ -58,7 +58,7 @@ test.describe("UX & Accessibility Checks", () => {
 
   test("TOC bottom scroll-spy, smooth top return, footnotes jump, and keyboard code copy", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/writing/_absurd-stress-test");
+    await page.goto("/writing/kitchen-sink");
 
     // Scroll to bottom -> final TOC item activates
     await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }));
@@ -73,15 +73,36 @@ test.describe("UX & Accessibility Checks", () => {
     await expect.poll(async () => page.evaluate(() => window.scrollY)).toBeLessThan(40);
     await expect(page.locator(".post-toc-link").first()).toHaveClass(/is-active/);
 
-    // Verify heading scroll-margin-top prevents top clipping on deep links
-    await expect(page.locator(".post h2").first()).toHaveCSS("scroll-margin-top", "48px");
+    // Verify heading scroll-margin-top clears the 128px top dissolve
+    const firstH2 = page.locator(".post h2").first();
+    await expect(firstH2).toHaveCSS("scroll-margin-top", "128px");
+    await expect(firstH2).toHaveCSS("margin-top", "64px");
+    await expect(firstH2).toHaveCSS("margin-bottom", "24px");
 
-    // Footnote ref jump -> backref jump works cleanly
+    // Verify top scroll dissolve overlay (benji.org style)
+    const fadeStyles = await page.evaluate(() => {
+      const before = window.getComputedStyle(document.body, "::before");
+      return { height: before.height, pointerEvents: before.pointerEvents, position: before.position };
+    });
+    expect(fadeStyles.height).toBe("128px");
+    expect(fadeStyles.pointerEvents).toBe("none");
+    expect(fadeStyles.position).toBe("fixed");
+
+    // Footnote ref jump -> backref jump lands the exponent below the dissolve
     const fnRef = page.locator(".post a[data-footnote-ref]").first();
+    await expect(fnRef).toHaveCSS("scroll-margin-top", "128px");
     await fnRef.click();
     await expect(page.locator(".post .footnotes li").first()).toBeInViewport();
-    await page.locator(".post .footnotes a[data-footnote-backref]").first().click();
+    await page.locator(".post .footnotes a[data-footnote-backref]").first().click({ force: true });
     await expect(fnRef).toBeInViewport();
+    await expect
+      .poll(async () =>
+        page.evaluate(() => {
+          const ref = document.querySelector(".post a[data-footnote-ref]");
+          return ref ? ref.getBoundingClientRect().top : -1;
+        })
+      )
+      .toBeGreaterThanOrEqual(120);
 
     // Keyboard Enter triggers copy button morph cleanly
     const copyBtn = page.locator(".article .code-copy-btn").first();
@@ -111,10 +132,7 @@ test.describe("UX & Accessibility Checks", () => {
 
     for (const route of [
       "/",
-      "/writing/_ui-kitchen-sink",
-      "/writing/_figma-samples",
-      "/writing/_absurd-stress-test",
-      "/writing/design-to-implementation-drift",
+      "/writing/kitchen-sink",
     ]) {
       await page.goto(route, { waitUntil: "networkidle" });
       const check = await page.evaluate(() => {

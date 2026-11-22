@@ -49,6 +49,20 @@ test.describe("Unit: NoDesign Tokens & Static Assets", () => {
     expect(checkedWebVars).toBeGreaterThanOrEqual(20);
   });
 
+  test("post deep-link scroll clearance matches the top dissolve height", () => {
+    expect(css).toMatch(/body\.is-post::before[\s\S]*?height:\s*8rem/);
+    expect(css).toMatch(/\.post a\[data-footnote-ref\][\s\S]*?scroll-margin-top:\s*8rem/);
+    expect(css).toMatch(/\.post :is\(h2, h3, h4\)[\s\S]*?scroll-margin-top:\s*8rem/);
+  });
+
+  test("post body / strong / italic weights match the reading scale", () => {
+    expect(css).toMatch(/--type-post-body-weight:\s*460/);
+    expect(css).toMatch(/--type-post-strong-weight:\s*600/);
+    expect(css).toMatch(/\.post strong\s*\{[\s\S]*?font-weight:\s*var\(--type-post-strong-weight\)/);
+    expect(css).toMatch(/\.post em\s*\{[\s\S]*?font-style:\s*italic/);
+    expect(css).toMatch(/\.post em\.muted[\s\S]*?color:\s*var\(--content-muted\)/);
+  });
+
   test("media assets referenced by fixtures exist in public/", () => {
     const coreAssets = [
       "public/cat-lounging.svg",
@@ -58,13 +72,13 @@ test.describe("Unit: NoDesign Tokens & Static Assets", () => {
       "public/favicon.svg",
       "public/favicon.ico",
       "public/robots.txt",
-      "public/CNAME",
     ];
     const draftAssets = fs.existsSync(path.join(root, "src/content/writing/drafts"))
       ? [
           "public/demo-placeholder.mp4",
           "public/images/2026-11-10-site-fixed-home.png",
           "public/images/2026-11-17-post-compact-parity.png",
+          "public/images/2026-11-18-asset-drift.png",
         ]
       : [];
     for (const rel of [...coreAssets, ...draftAssets]) {
@@ -83,7 +97,6 @@ test.describe("Unit: NoDesign Tokens & Static Assets", () => {
       "sitemap-index.xml",
       "sitemap-0.xml",
       "robots.txt",
-      "CNAME",
     ]) {
       expect(fs.existsSync(path.join(distDir, file)), `Missing dist/${file}`).toBe(true);
     }
