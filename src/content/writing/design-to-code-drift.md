@@ -31,8 +31,8 @@ The terminal gave me **green checkmarks**: build completed in 515 milliseconds. 
 I opened `localhost:4321`. Instead of my clean minimal header, I got this <img src="/doodle-sweat-smile.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" />:
 
 <figure>
-  <img src="/images/2026-11-10-site-drift-giant-cat.png" alt="Side by side comparison: Figma header expectation with a 20px cat icon versus Zen browser reality where a 500px cat squished Jan Celada into single letters" />
-  <figcaption>Expectation in Figma versus reality on localhost. That's not a header icon anymore haha.</figcaption>
+  <img src="/images/2026-11-10-site-drift-giant-cat.png" alt="Crops from the historical comparison: Figma expected a 20 by 14 pixel cat icon, while localhost showed a roughly 500 pixel cat that squished Jan Celada into single letters" loading="lazy" decoding="async" />
+  <figcaption>Cropped from the historical comparison: expectation in Figma versus reality on localhost. That's not a header icon anymore haha.</figcaption>
 </figure>
 
 A 500-pixel cat was taking over the screen, and my name was squished into a vertical column of single letters. So yeah, the **code** built fine. The page was another story.
@@ -155,8 +155,8 @@ Checking in the browser also showed me that some things needed changing in Figma
 - Figma put my name, subtitle, and bio in one 16px stack. The subtitle belongs 2px below my name, then 32px before the bio. In this case, the browser check showed me the design needed a fix too.
 
 <figure>
-  <img src="/images/2026-11-17-post-compact-parity.png" alt="Article post with 160px sticky table of contents, 14px back arrow, and syntax-highlighted code block" />
-  <figcaption>Article layout after checking the details in the browser.</figcaption>
+  <img src="/images/2026-11-17-post-compact-parity.png" alt="Historical Kitchen Sink capture showing sticky table of contents, Index back link, inline marks, and a syntax-highlighted code block" loading="lazy" decoding="async" />
+  <figcaption>Historical Kitchen Sink capture after checking the details in the browser.</figcaption>
 </figure>
 
 The site now runs <mark class="lilac">21 Playwright checks</mark>[^5] against the [Kitchen Sink](/writing/kitchen-sink). It throws long identifiers, six-column tables, multi-line highlights, and wordy callouts at the layout to check for horizontal scroll and clipped text at 390px wide.
@@ -169,8 +169,8 @@ What I'd do differently next time:
 - Open the browser after <span class="mark-circle">each</span> small change, not just when the agent says it's done.
 
 <figure>
-  <img src="/images/2026-11-10-site-fixed-home.png" alt="The home page after matching the version 7.7 Figma file with restored 14px cat and aligned layout" />
-  <figcaption>The home page after matching the version 7.7 Figma file, restoring the 14px cat, and fixing the layout rhythm.</figcaption>
+  <img src="/images/2026-11-10-site-fixed-home.png" alt="Historical home page capture after the layout fixes, with the restored cat icon beside Jan Celada and the Writing list aligned" loading="lazy" decoding="async" />
+  <figcaption>Historical home capture after matching the Figma file, restoring the cat icon, and fixing the layout rhythm.</figcaption>
 </figure>
 
 ## Spaces next

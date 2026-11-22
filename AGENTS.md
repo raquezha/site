@@ -17,6 +17,45 @@ Guidelines for agents working in `raquezha/site`.
 - Posts live in `src/content/writing/*.md`. Keep unfinished posts as `status: "draft"` so they are excluded from production builds.
 - `public/images/*` is gitignored by default; explicitly unignore (`!public/images/<asset>`) only media referenced by published posts.
 
+## Showing Images To The User
+
+When the user asks to **see**, **show**, or **compare** images, do not claim they rendered in chat unless the user confirms pixels appeared.
+
+On Cursor↔pi bridge runs, `Read` / `image()` often returns a **text description** of the PNG to the model. Markdown `![](...)` links also do not render local scratch files. Writing “here they are” after a description-only tool result is a lie.
+
+### Required tool call (macOS Preview)
+
+Locate or write the PNG under the repo, then call **Shell** exactly like this (absolute paths):
+
+```text
+Shell
+command: open /Users/raquezha/RQZ/personal/site/scratch/article-figures/side-by-side/fixed-home.png /Users/raquezha/RQZ/personal/site/scratch/article-figures/side-by-side/compact-parity.png
+```
+
+Then tell the user the absolute paths and that Preview should have opened. Ask once whether they can see the images. Do not keep re-calling the same show path hoping chat will suddenly paint pixels.
+
+### Secondary tool calls (inspect only unless the user confirms pixels)
+
+**Read** absolute PNG path — for the agent to inspect composition. Treat the result as a description unless the user says they saw the image:
+
+```text
+Read
+path: /Users/raquezha/RQZ/personal/site/scratch/article-figures/side-by-side/fixed-home.png
+```
+
+**pi__codemode** `tools.read` + `image()` — may attach pixels on some pi surfaces; still not a substitute for Preview on Cursor↔pi bridge:
+
+```js
+const block = await tools.read({ path: "/Users/raquezha/RQZ/personal/site/scratch/article-figures/side-by-side/fixed-home.png" });
+image(block);
+```
+
+If Preview is unavailable: serve a temp copy from the local Astro preview and give a `http://127.0.0.1:4321/...` URL, or paste the absolute path for the user to open.
+
+### Deterministic figure parity
+
+For article-figure parity proofs, also follow `topics/deterministic-media/Deterministic Image Standard.md` in the notes vault: compose historical evidence, do not recreate it, and show side-by-sides with the required `open` Shell tool call above.
+
 ## Footnotes & Typography Conventions
 
 Follow the `benji.org` footnote styling in `public/site.css` (`.post sup` and `.post .footnotes`), which applies globally across all articles:
