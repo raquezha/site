@@ -16,6 +16,8 @@ Guidelines for agents working in `raquezha/site`.
 
 - Posts live in `src/content/writing/*.md`. Keep unfinished posts as `status: "draft"` so they are excluded from production builds.
 - `public/images/*` is gitignored by default; explicitly unignore (`!public/images/<asset>`) only media referenced by published posts.
+- **Self-contained diagram SVGs:** Diagram SVGs using custom fonts (`Caveat`, `Inter`) must embed base64 WOFF2 `@font-face` rules inside `<style>` so they render identically on macOS, Linux, and Obsidian without system font fallbacks.
+- **Mirror media to Obsidian:** Whenever an SVG, image, or video in `public/` is added or updated for an article, copy the exact file to the matching `~/RQZ/notes/articles/.../assets/` folder in the same turn so both repos stay byte-identical.
 
 ## Showing Images To The User
 
