@@ -19,6 +19,8 @@ public/images/*
 !public/images/2026-11-10-site-fixed-home.png
 !public/images/2026-11-17-post-compact-parity.png
 !public/images/2026-11-18-asset-drift.png
+!public/images/outline-before-after.png
+!public/images/figma-from-the-dev-side-flow.png
 public/demo-placeholder.mp4
 
 # Playwright artifacts & local visual snapshots

@@ -97,13 +97,13 @@ This is the dark terminal version
   <figcaption>A normal image and a normal short caption before the long ones start acting up.</figcaption>
 </figure>
 
-Speaking of video fixtures: I got tired of re-encoding article loops by hand, so I shipped <mark>[`@raquezha/story-video`](https://www.npmjs.com/package/@raquezha/story-video)</mark> — an agent skill + npm CLI that renders deterministic local story videos from an HTML scene. Same tool that built the loop below haha.
+Speaking of video fixtures: I got tired of re-encoding article loops by hand, so I shipped <mark>[`@raquezha/article-media`](https://www.npmjs.com/package/@raquezha/article-media)</mark> — an agent skill + npm CLI that renders deterministic local article media from an HTML scene. Same tool that built the loop below haha.
 
 <figure>
   <video autoplay loop muted playsinline controls preload="metadata" poster="/images/2026-11-10-site-fixed-home.png" aria-label="Kitchen Sink autoplay video test">
     <source src="/images/figma-linux-auto-loop.mp4" type="video/mp4" />
   </video>
-  <figcaption>Real local video rendered with <a href="https://www.npmjs.com/package/@raquezha/story-video"><code>@raquezha/story-video</code></a>: autoplay, loop, mute, controls, poster, border, radius, and caption all in one annoying little test.</figcaption>
+  <figcaption>Real local video rendered with <a href="https://www.npmjs.com/package/@raquezha/article-media"><code>@raquezha/article-media</code></a>: autoplay, loop, mute, controls, poster, border, radius, and caption all in one annoying little test.</figcaption>
 </figure>
 
 - [x] Checked interactive task with a short description

@@ -23,7 +23,7 @@ What I actually wanted was simpler than a Notion replacement checklist:
 
 Those three pushed me to self-host [Outline](https://www.getoutline.com/).[^1]
 
-![Before and after sketch: local laptop files, Telegram ping pong, and Loop vs self-hosted Outline with GitLab login](/outline-before-after.svg)
+![Before and after sketch: local laptop files, Telegram ping pong, and Loop vs self-hosted Outline with GitLab login](/images/outline-before-after.png)
 
 ## Friction
 

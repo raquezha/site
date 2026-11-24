@@ -39,7 +39,7 @@ Three things got in the way:
 </ul>
 
 <figure>
-  <img src="/figma-from-the-dev-side-flow.svg" alt="Hand-drawn Excalidraw style sketch of going from Grok Bot and ChatGPT chat prompts to a website in Chrome, imported via the html.to.design Figma plugin" />
+  <img src="/images/figma-from-the-dev-side-flow.png" alt="Hand-drawn Excalidraw style sketch of going from Grok Bot and ChatGPT chat prompts to a website in Chrome, imported via the html.to.design Figma plugin" />
   <figcaption>How I fell into Figma backwards.</figcaption>
 </figure>
 
