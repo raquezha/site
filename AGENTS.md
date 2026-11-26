@@ -12,6 +12,13 @@ Guidelines for agents working in `raquezha/site`.
   ```
 - Pushing to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 
+## Commit Hygiene & Release Rules
+
+- **One commit per article publish:** When publishing a new article, bundle the article Markdown (`status: "published"`), its unignored public media assets, and any dedicated test/scene fixtures into exactly **one** clean commit (e.g. `content: publish <Title> article and deterministic media pipeline`). Do not pollute git history with intermediate wording tweaks or drafting WIP commits.
+- **Kitchen Sink exception:** `src/content/writing/kitchen-sink.md` is an active test fixture and component catalog; it can be updated alongside UI feature commits or standalone test changes.
+- **Updating existing articles:** Polishing or updating previously published articles over time is completely fine; keep revisions focused in a single clean commit per update.
+- **Separate UI and foundations:** Always isolate site CSS, token updates, new doodle badges, and core layout changes into their own `feat(ui): ...` commit, separate from article content commits.
+
 ## Content & Media Rules
 
 - Posts live in `src/content/writing/*.md`. Keep unfinished posts as `status: "draft"` so they are excluded from production builds.

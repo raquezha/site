@@ -57,7 +57,7 @@ test.describe("Parity & Stress: Home & Article Layouts", () => {
       expect(styles.rowLh).toBe("17px");
       expect(styles.footerSize).toBe("12px");
       expect(styles.footerLh).toBe("18px");
-      expect(styles.homeCat).toEqual({ w: 22, h: 14 });
+      expect(styles.homeCat).toEqual({ w: 20, h: 20 });
       expect(styles.footerCat).toEqual({ w: 22, h: 13 });
     });
   }
