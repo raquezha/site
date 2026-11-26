@@ -788,6 +788,27 @@ body.is-post::before {
   font-size: inherit;
   overflow-wrap: normal;
   scrollbar-width: thin;
+  counter-reset: line;
+}
+.article pre code .line {
+  display: inline-block;
+  min-height: 1.25rem;
+  width: 100%;
+  padding-left: 1.75rem;
+}
+.article pre code .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.25rem;
+  margin-right: 0.5rem;
+  margin-left: -1.75rem;
+  text-align: left;
+  color: hsla(0, 0%, 7%, 0.4);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: normal;
+  user-select: none;
 }
 .article pre code:focus-visible {
   border-radius: 8px;
@@ -810,6 +831,13 @@ body.is-post::before {
 .article pre[data-language="console"] span,
 .article pre[data-language="zsh"] span {
   color: var(--content-on-inverse) !important;
+}
+.article pre[data-language="bash"] .line::before,
+.article pre[data-language="sh"] .line::before,
+.article pre[data-language="shell"] .line::before,
+.article pre[data-language="console"] .line::before,
+.article pre[data-language="zsh"] .line::before {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .post img:not(.post-doodle):not(.annotation-arrow):not(.inline-doodle) {

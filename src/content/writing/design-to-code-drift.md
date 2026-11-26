@@ -159,7 +159,7 @@ Checking in the browser also showed me that some things needed changing in Figma
   <figcaption>Historical Kitchen Sink capture after checking the details in the browser.</figcaption>
 </figure>
 
-The site now runs <mark class="lilac">21 Playwright checks</mark>[^5] against the [Kitchen Sink](/writing/kitchen-sink). It throws long identifiers, six-column tables, multi-line highlights, and wordy callouts at the layout to check for horizontal scroll and clipped text at 390px wide.
+The site now runs <mark class="lilac">28 Playwright checks</mark>[^5] against the [Kitchen Sink](/writing/kitchen-sink). It throws long identifiers, six-column tables, multi-line highlights, and wordy callouts at the layout to check for horizontal scroll and clipped text at 390px wide.
 
 What I'd do differently next time:
 

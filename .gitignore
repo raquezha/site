@@ -21,9 +21,12 @@ public/images/*
 !public/images/2026-11-18-asset-drift.png
 !public/images/outline-before-after.png
 !public/images/figma-from-the-dev-side-flow.png
+!public/images/nocapture-pipeline.png
+!public/images/nocapture-audio-demo.mp4
 public/demo-placeholder.mp4
 
 # Playwright artifacts & local visual snapshots
 test-results/
 playwright-report/
 tests/__screenshots__/
+scratch/

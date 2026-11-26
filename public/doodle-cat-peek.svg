@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 22" width="22" height="20" fill="none" aria-hidden="true">
+  <path d="M 4 16.5 C 4 9.5 4.5 5.5 5.2 3.5 L 9 7.5 Q 12 8.2 15 7.5 L 18.8 3.5 C 19.5 5.5 20 9.5 20 16.5 C 20 19.5 17.5 20.5 15 20.5 L 9 20.5 C 6.5 20.5 4 19.5 4 16.5 Z" fill="currentColor"/>
+  <circle cx="8.5" cy="11" r="1.1" fill="#141414"/>
+  <circle cx="15.5" cy="11" r="1.1" fill="#141414"/>
+  <circle cx="12" cy="13.2" r="0.6" fill="#141414"/>
+  <!-- 2 Whiskers Left -->
+  <line x1="1.5" y1="11.5" x2="4" y2="12.2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+  <line x1="1.8" y1="14" x2="4.2" y2="13.6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+  <!-- 2 Whiskers Right -->
+  <line x1="22.5" y1="11.5" x2="20" y2="12.2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+  <line x1="22.2" y1="14" x2="19.8" y2="13.6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+</svg>
