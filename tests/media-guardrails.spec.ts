@@ -17,6 +17,14 @@ const MIRRORED_ASSETS = [
     site: "images/outline-before-after.png",
     vault: "Self-Hosting Outline/assets/outline-before-after.png",
   },
+  {
+    site: "images/nocapture-pipeline.png",
+    vault: "No Capture/assets/nocapture-pipeline.png",
+  },
+  {
+    site: "images/nocapture-audio-demo.mp4",
+    vault: "No Capture/assets/nocapture-audio-demo.mp4",
+  },
 ];
 
 function auditSvg(svgPath: string) {

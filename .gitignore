@@ -22,7 +22,10 @@ public/images/*
 !public/images/outline-before-after.png
 !public/images/figma-from-the-dev-side-flow.png
 !public/images/nocapture-pipeline.png
+!public/images/nocapture-spectrum-gap.png
 !public/images/nocapture-audio-demo.mp4
+!public/images/gemini-agent-nocapture-loop.png
+!public/images/frame-66-deadlock.png
 public/demo-placeholder.mp4
 
 # Playwright artifacts & local visual snapshots
