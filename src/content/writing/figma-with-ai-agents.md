@@ -70,7 +70,7 @@ That's when the real friction hit. Simple layout tweaks take two seconds in Figm
 
 Even <img src="/doodle-plugin.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> `html.to.design` had a free tier wall. For <img src="/doodle-spaces.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> **Spaces**, I ended up with six main screens and 13 state variants (empty, loading, and error states). Instead of importing them one by one, I stacked 11 states onto one giant HTML page, imported it in a single shot, and split the frames inside Figma. Later I did the same for <img src="/doodle-website.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> **raquezha.net**, drafting pages in HTML, checking them in Zen, and importing them to organize Foundations, Components, and Screens.
 
-To edit inside Figma without burning through the free tier again, I found a second workaround: have the agent generate a local Figma plugin (`manifest.json` and `code.js`), drop it into Figma's `Plugins > Development` menu, and hit **Run**. It <mark>feels like enabling god mode in Figma</mark>. Zero design skills, zero clue what half the buttons do, one click on Run, and suddenly five full mobile screens just spawn on the canvas haha.
+Then came editing. Remote MCP calls have latency and round trip delays, so I looked into local options. I had the agent generate a local Figma plugin (`manifest.json` and `code.js`), dropped it into Figma's `Plugins > Development` menu, and clicked **Run**. It <mark>feels like enabling god mode in Figma</mark>. Zero design skills, zero clue what half the buttons do, one click on Run, and suddenly five full mobile screens just spawn on the canvas haha.
 
 <figure>
   <video autoplay loop muted playsinline controls preload="metadata">
@@ -79,7 +79,7 @@ To edit inside Figma without burning through the free tier again, I found a seco
   <figcaption>The local plugin workaround: generate the plugin, drop it into Figma, hit run. Boom! There's your UI! Magic! <img src="/doodle-explode.svg" width="16" height="16" alt="" aria-hidden="true" class="inline-doodle" /> Mind blown! The video is curated by me with the help of Gemini 4 Neon.</figcaption>
 </figure>
 
-Hooray, right? Except I'm a developer, and I didn't want to manually click buttons every time. I wanted to drive it <u>even further</u>.
+That worked, but clicking Run by hand on every tiny edit got old fast. I wanted to see if I could automate the loop completely.
 
 Once a development plugin is imported, Figma reads `code.js` fresh from disk on every run. At home on <img src="/doodle-arch.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> EndeavourOS (Arch Linux),[^5] `figma-linux` lets you open a local debug port,[^2] so I wired the agent to update `code.js` and trigger Figma's **Run last plugin** shortcut by itself. You just prompt a change, the agent edits the same plugin and reruns it, and <mark class="mint">the updated UI automatically appears in Figma</mark> with zero clicks.
 
@@ -87,12 +87,14 @@ Once a development plugin is imported, Figma reads `code.js` fresh from disk on 
   <video autoplay loop muted playsinline controls preload="metadata">
     <source src="/images/figma-linux-auto-loop.mp4" type="video/mp4" />
   </video>
-  <figcaption>The zero-click loop on EndeavourOS: pi agent updates code.js in Ghostty, triggers Run last plugin via port 9222, and Figma updates live with 0 manual clicks. The video is curated by me with the help of Gemini 4 Neon.</figcaption>
+  <figcaption>The zero click loop on EndeavourOS: pi agent updates code.js in Ghostty, triggers Run last plugin via port 9222, and Figma updates live with zero manual clicks. Curated with the help of Gemini 4 Neon.</figcaption>
 </figure>
 
 <div class="annotated-block">
 
-That could have been the perfect ending for the hack, except the real ending happened at the office. My office <img src="/doodle-macmini.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> Mac Mini runs the official macOS Figma app, where debug mode is completely blocked.[^6] And since my colleagues on the UX/UI team all use Macs too, an Arch Linux hack doesn't help them at all. So yeah, <del><strong>full automation</strong></del> fuck that hack haha, back to clicking Run on the Mac Mini. Fun times anyway.
+That could have been the perfect ending for the hack, except the real ending happened at the office. My office <img src="/doodle-macmini.svg" width="18" height="18" alt="" aria-hidden="true" class="inline-doodle" /> Mac Mini runs the official macOS Figma app, where debug mode is completely blocked.[^6] It makes complete sense because leaving a debug port open locally is a security risk, and driving desktop apps through synthetic events is unsupported. And since my colleagues on the UX/UI team all use Macs too, an Arch Linux hack does not help them at all. 
+
+So yeah, <del><strong>full automation</strong></del> fuck that hack haha, back to clicking Run on the Mac Mini. Fun times anyway.
 
 <aside class="annotation">
   <img src="/doodle-arrow.svg" width="48" height="28" alt="" aria-hidden="true" class="annotation-arrow" />
